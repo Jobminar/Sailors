@@ -1,16 +1,19 @@
 
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Login from './components/login/login'
+import { Header } from './components/header/header'
 
-const Routes = () =>{
+const Routing = () =>{
     return(
         <>
             <BrowserRouter>
+               <Header/>
                 <Routes>
-                    <Route path="/login" element={<Login />} />
+                    
+                    
                 </Routes>
             </BrowserRouter>
         </>
     )
 }
-export default Routes
+export default Routing
