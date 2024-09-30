@@ -1,16 +1,16 @@
 
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import Login from './components/login/login'
+import Login from './components/login/login.jsx'
 
-const Routes = () =>{
+const Routing = () =>{
     return(
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/login" element={<Login />} />
+                   <Route path='/' element={<Login/>} />
                 </Routes>
             </BrowserRouter>
         </>
     )
 }
-export default Routes
+export default Routing
