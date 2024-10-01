@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.color-prop{
+    background-color: #ffffff;
+}
+
+.our-services{
+    margin: 0px;
+    padding: 3rem;
+  
+}
+.service-row{
+    display: flex;
+  justify-content: space-evenly;
+    align-items: center;
+    column-gap: 5rem;
+    border: none;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+}
+.card-total{
+    /* border: 1px solid black; */
+    width: 20rem;
+    min-height: 10rem;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+    padding: 10px;
+    
+}
+.card-total img{
+    width: 3rem;
+    height: 3rem;
+}
+.services {
+    font-family: poppins;
+    font-weight: 700;
+    font-size: 40px;
+    /* border: 1px solid black; */
+}
+.card-title{
+    font-family: Poppins;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    text-align: center;
+
+}
+.card-text{
+    font-family: Poppins;
+font-size: 16px;
+font-weight: 400;
+line-height: 26px;
+text-align: center;
+
+}
+
+.our-services {
+    /* background-color: rgb(230, 241, 238); */
+    background-color: #ffffff;
+}
+
+@media screen and (min-width: 360px) and (max-width: 600px){
+    .our-services{
+        margin: 0px;
+        padding: 3rem;
+        border-radius: 10px;
+      
+    }
+    .service-row{
+        display: flex;
+      justify-content: space-evenly;
+        align-items: center;
+        column-gap: 5rem;
+        border: none;
+        flex-wrap: wrap;
+        row-gap: 1rem;
+    }
+    .card-total{
+        /* border: 1px solid black; */
+        width: 20rem;
+        min-height: 10rem;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 1rem;
+        padding: 10px;
+        
+    }
+    .card-total img{
+        width: 3rem;
+        height: 3rem;
+    }
+    .services {
+        font-family: poppins;
+        font-weight: 700;
+        font-size: 40px;
+        /* border: 1px solid black; */
+    }
+    .card-title{
+        font-family: Poppins;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 32px;
+        text-align: center;
+    
+    }
+    .card-text{
+        font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: center;
+    
+    }
+    
+    .our-services {
+        background-color: rgb(230, 241, 238);
+    }
+}
