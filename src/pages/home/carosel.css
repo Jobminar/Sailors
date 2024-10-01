@@ -1,0 +1,23 @@
+.slider-container{
+    padding: 40px;
+    margin-left: 55px;
+    margin-bottom: -55px;
+    
+}
+.image3{
+    border-radius: 45px;
+}
+.sidebarIcon{
+    height: 250px;
+    position: relative ;
+    top: 195px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+.main-container{
+    display: flex;
+    flex-direction: column;
+}
+.sidebar{
+    position: absolute;
+}
