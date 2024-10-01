@@ -1,0 +1,24 @@
+.logingPage, .verifiloginPage{
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    height: 100vh;
+    width: 100%;
+}
+.img{
+    padding: 10px;
+    height: 100vh;
+    width: 690px;
+}
+.logingHeading{
+    all: unset;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 72px;
+    text-align: left;
+}
+.numberLogin{
+    background-image: url('../../assets/Images/imagebg.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
+}
