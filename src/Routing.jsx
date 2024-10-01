@@ -18,7 +18,6 @@ const Routing = () => {
           {/* <Route path="/" element={Section}></Route> */}
         </Routes>
       </BrowserRouter>
-      <Section/>
       <Footer/>
     </>
   );

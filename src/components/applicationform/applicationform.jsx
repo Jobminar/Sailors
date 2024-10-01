@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Grid, TextField, MenuItem, Typography, Box } from '@mui/material';
+import { Grid, TextField, MenuItem, Box } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 const ApplicationForm = () => {
     const [formData, setFormData] = useState({
