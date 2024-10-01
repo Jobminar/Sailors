@@ -1,0 +1,41 @@
+.clientreview-container{
+    background-image: url("../../../assets/Images/img-group-18.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 2vh 10vh 2vh 10vh;
+    padding:2vh 5vh 2vh 5vh ;
+    border-radius: 2vh;
+}
+
+.clientreview-container {
+    background-color: #f5f9ff;
+    padding: 5vh 0;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #1F284F;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+  .page-dot{
+    margin-left: 50px;
+  }
+  .page-dot:hover{
+    cursor: pointer;
+  }
+  li{
+    font-size: 30px;
+    color: #f5f9ff;
+  }
+  
+  
+  .bi-chevron-left,
+  .bi-chevron-right {
+    cursor: pointer;
+  }
+  
+  
+  
+
