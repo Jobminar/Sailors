@@ -1,19 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .test-container{
+    margin: 15vh 10vh 15vh 10vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 75px;
+    /* padding: 75px; */
+}
+.icon1-container{
+    width: 10%;
 }
 .icon1{
-    width: 150px;
-    margin: 50px;   
+    display: flex;
+    text-align: center;
+    width: 100%;
+    /* margin: .2rem;    */
 }
 .icons-container{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 .heading1{
@@ -23,9 +29,9 @@
 }
 .para1{
     font-family: 'Roboto';
-    font-size: 15px;
+    font-size: 100%;
     color:  #1F284F;
     text-align: center;
-    width: 1050px;
+    width: 85%;
     padding-top: 10px;
 }

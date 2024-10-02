@@ -1,11 +1,11 @@
 import "./about.css";
 // import aboutImg from "../../../assets/Images/background-image.jpg";
-
+import underlineabout from '../../../assets/Images/arrow-underline.png'
 const About = () => (
-  <div className="p-5 m-5 d-flex justify-content-between">
+  <div className="py-5 d-flex justify-content-center about-container " >
     <div className="first-container">
-      <h1 className="heading my-4">About sailorswave</h1>
-      <hr className="hr" />
+      <h1 className="heading ">About sailorswave</h1>
+      <img src={underlineabout}></img>
       <p className="heading my-4">
         Welcome to Sailors wave Shipment Management Pvt Ltd, your trusted
         partner in comprehensive maritime solutions. Established in 2022,
@@ -25,7 +25,7 @@ const About = () => (
         unparalleled maritime service.
       </p>
       <div>
-        <button className="  my-2 text-white button  ">
+        <button className="  my-2 text-white button-about  ">
           Read More
         </button>
       </div>
@@ -33,13 +33,13 @@ const About = () => (
     <div className="second-container d-flex flex-column justify-content-between">
       <div>
         <h1 className="sub-heading">
-          20 <span>years</span>
+          20 <span className="yearspan">years</span>
         </h1>
         <p className="para">Experience in merchant navy</p>
       </div>
       <div>
         <h1 className="sub-heading">
-          2000+ <span></span>
+          2000+
         </h1>
         <p className="para">Placements in Every Year</p>
       </div>

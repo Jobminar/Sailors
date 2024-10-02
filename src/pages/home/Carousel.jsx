@@ -14,13 +14,10 @@ const Carousel = () => {
   };
   return (
     <div className="main-container">
-      <div className="sidebar">
-        <img src={sidebar} alt="sidebar" className="sidebarIcon" />
-      </div>
       <div className="slider-container">
         <Slider {...settings}>
-          <div className="logo">
-            <img src={image1} alt="" className="image3" />
+          <div className="logo" id="mainbanner">
+            <img src={image1} alt="" className="image3" style={{ width: "100%" }} />
           </div>
           <div>
             <h1>2</h1>

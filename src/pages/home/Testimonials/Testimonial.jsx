@@ -17,19 +17,19 @@ const Testimonial = () => (
     </p>
 
     <div className="icons-container">
-      <div className="bg-light">
+      <div className="bg-light icon1-container">
         <img src={icon1} alt="icon1" className="icon1" />
       </div>
-      <div>
+      <div className="icon1-container">
         <img src={icon2} alt="icon1" className="icon1" />
       </div>
-      <div>
+      <div className="icon1-container">
         <img src={icon3} alt="icon1" className="icon1" />
       </div>
-      <div>
+      <div className="icon1-container">
         <img src={icon4} alt="icon1" className="icon1" />
       </div>
-      <div>
+      <div className="icon1-container">
         <img src={icon5} alt="icon1" className="icon1" />
       </div>
     </div>
