@@ -2,3 +2,20 @@
     color: #F88035;
     cursor: pointer;
 }
+header{
+    /* font-family: Poppins; */
+    display: grid;
+    grid-template-columns: 2fr 8fr 2fr;
+    margin: 2vh 10vh 2vh 10vh;
+    align-items: center;
+    font-size: 1.3rem;
+}
+.headernav span{
+    margin:0rem 5% 0rem 5%;
+}
+.headernav span:hover{
+    cursor: pointer;
+}
+.headernav{
+    margin-left: 9%;
+}

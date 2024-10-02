@@ -12,3 +12,12 @@
     opacity: 0.3;
     background-color: #0070F0E5;
 }
+.section-whychoseus{
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+}
+.content-section-container{
+    padding-top: 2% ;
+    padding-bottom: 2% ;
+    font-size: 100%;
+}

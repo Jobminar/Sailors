@@ -1,3 +1,11 @@
 .footeritem div{
     margin-bottom: 2vh;
+
+}
+footer{
+    font-style: Poppins;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 4rem;
+    font-size: 14px;
 }

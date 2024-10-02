@@ -12,25 +12,21 @@
     padding: 5vh 0;
 }
 
-h2 {
+.clientreviewh2 {
     font-size: 2rem;
     color: #1F284F;
     font-weight: bold;
     margin-bottom: 2rem;
 }
-
   .page-dot{
-    margin-left: 50px;
+    margin-left: 3rem;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #f5f9ff;
   }
   .page-dot:hover{
     cursor: pointer;
   }
-  li{
-    font-size: 30px;
-    color: #f5f9ff;
-  }
-  
-  
   .bi-chevron-left,
   .bi-chevron-right {
     cursor: pointer;
