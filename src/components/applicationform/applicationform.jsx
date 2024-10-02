@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, TextField, MenuItem, Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import axios from 'axios'
 
 const ApplicationForm = () => {
     const [formData, setFormData] = useState({
@@ -48,6 +49,7 @@ const ApplicationForm = () => {
     };
 
     const HandileformSubmit = () => {
+        axios.post('http://localhost:7000/candidate',formData)
         console.log(formData)
         alert(JSON.stringify(formData))
     }

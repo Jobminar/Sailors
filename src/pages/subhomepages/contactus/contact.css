@@ -1,0 +1,22 @@
+.contactHomepage{
+    display: flex;
+    justify-content: center;
+    padding: 60px 0px;
+    height: 100vh;
+    width: 100%;
+}
+.bgcontactus{
+    background: linear-gradient(90deg, #FFFFFF 75%, #037DA3 25%);
+    height: 70vh;
+    width: 75%;
+    border-radius: 10px;
+    box-shadow: 0px 50px 50px rgb(213, 210, 210);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Gettotuch{
+    width: 75%;
+    height: 80%;
+    display:flex;
+}
