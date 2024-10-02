@@ -30,7 +30,7 @@ const OurServices = () => {
                 </p>
               </div>
             </div>
-            <div className=" card-total">
+            <div className="card-total">
               <img
                 src={Vector2}
                 className=" card-img-top rounded  d-block card-image1"

@@ -2,7 +2,7 @@ import "./Testimonial.css";
 import icon1 from "../../../assets/Images/img-grid-18.png";
 import icon2 from "../../../assets/Images/img-grid-19.png";
 import icon3 from "../../../assets/Images/img-grid-20.png";
-import icon4 from "../../../assets/Images/img-grid-21.png";
+import icon4 from "../../../assets/Images/hapag-icon.png";
 import icon5 from "../../../assets/Images/img-grid-22.png";
 
 const Testimonial = () => (
