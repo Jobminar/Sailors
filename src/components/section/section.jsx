@@ -76,6 +76,7 @@ export function Section() {
                                 src={arrow}
                                 alt="arrow"
                             />
+                            
                             <div className="mt-4">
                                 <div  className=" content-section-container"> 
                                     <h6 className="fw-bold pb-3" style={{ color: "#1F284F" }}>Expertise and Experience</h6>
