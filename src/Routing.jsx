@@ -20,7 +20,7 @@ const Routing = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/application" element={<ApplicationForm/>} />
+          {/* <Route path="/application" element={<ApplicationForm/>} /> */}
           <Route path="/contact" element={<ContactHomepage/>} />
           <Route path="/application" element={<ApplicationForm />} />
           <Route path="/" element={<Home />} />
