@@ -1,5 +1,6 @@
 import Testimonial from "../../home/Testimonials/Testimonial";
 import "./AboutRoute.css";
+// import bgImage from '../../../assets/Images/aboutBgImage.png'
 const AboutRoute = () => (
   <>
     <section>
@@ -10,8 +11,13 @@ const AboutRoute = () => (
             We're constantly trying to express ourselves and actualize your
             dreams. if you have an intrest join with us and fullfill your dream
           </p>
-          <button>APPLY NOW</button>
+          <button className="apply-btn2">APPLY NOW</button>
           <p>Find us on</p>
+          <div>
+            <i className="bi bi-facebook mx-2 "></i>
+            <i className="bi bi-instagram mx-2"></i>
+            <i className="bi bi-twitter mx-2"></i>
+          </div>
         </div>
         <div className="container-for-paras">
           <p className="para-about-sailors1">
