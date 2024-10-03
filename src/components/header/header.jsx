@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState("home");
-    const [navitemclr, setNavitemclr] = useState('#F97D3D')
+    const [navitemclr, setNavitemclr] = useState('#F97D3D');
     function navitemclicked(e) {
         switch (e.target.id) {
             case "home":
@@ -16,7 +16,6 @@ export function Header() {
                 break;
             case "services":
                 setIsMenuOpen("services")
-                
                 break;
             case "contact":
                 setIsMenuOpen("contact")
