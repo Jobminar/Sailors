@@ -12,7 +12,10 @@ const ApplicationForm = () => {
     gender: "Male",
     mobileNumber: "",
     email: "",
-    address: "",
+    houseNo: "",
+    postOffice: "",
+    policeStation: "",
+    district: "",
     city: "",
     state: "",
     postalCode: "",
@@ -47,9 +50,9 @@ const ApplicationForm = () => {
       });
     }
     const HandileformSubmit = () => {
-        axios.post('http://localhost:7000/candidate',formData)
-        console.log(formData)
-        alert(JSON.stringify(formData))
+      axios.post('http://localhost:7000/candidate', formData)
+      console.log(formData)
+      alert(JSON.stringify(formData))
     }
   };
 
@@ -204,14 +207,52 @@ const ApplicationForm = () => {
               Address of Candidates
             </Typography>
             <Grid container spacing={3}>
-              {/* Address */}
+              {/* House Number  houseNo: "",
+                                postOffice:"",
+                                policeStation:"", */}
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  label="Address"
-                  name="address"
-                  value={formData.address}
+                  label="House Number"
+                  name="houseNo"
+                  value={formData.houseNo}
+                  onChange={handleInputChange}
+                  variant="outlined"
+                />
+              </Grid>
+              {/* Post Office */}
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  label="Post office"
+                  name="postOffice"
+                  value={formData.postOffice}
+                  onChange={handleInputChange}
+                  variant="outlined"
+                />
+              </Grid>
+              {/* Police Station */}
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  label="Police station"
+                  name="policeStation"
+                  value={formData.policeStation}
+                  onChange={handleInputChange}
+                  variant="outlined"
+                />
+              </Grid>
+              {/* District */}
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  label="District"
+                  name="district"
+                  value={formData.district}
                   onChange={handleInputChange}
                   variant="outlined"
                 />

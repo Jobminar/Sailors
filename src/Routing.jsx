@@ -11,6 +11,7 @@ import AboutRoute from "./pages/subhomepages/aboutroute/AboutRoute";
 import { Selectionletterhead } from "./pages/letters/selectionletterhead/selectionletterhead";
 import Myresult from "./pages/letter/myresult/myresult";
 import ConfirmationLetter from "./pages/letter/confirmationletter/confirmationletter";
+import UpladDocument from "./pages/letter/uploadDocument/uploadDocument";
 
 const Routing = () => {
   return (
@@ -25,12 +26,10 @@ const Routing = () => {
           <Route path="/about" element={<AboutRoute />} />
           {/* <Route path="/selectionletter" element={<SelectionLetter />} /> */}
           <Route path="/services" element={<Services />} />
-          <Route
-            path="/selectionletterhead"
-            element={<Selectionletterhead />}
-          />
+          <Route path="/selectionletterhead"  element={<Selectionletterhead />}/>
           <Route path="/myresult" element={<Myresult />} />
           <Route path="/confirmationlatter" element={<ConfirmationLetter />} />
+          <Route path="/uploadDocument" element={<UpladDocument />} />
         </Routes>
         <Footer />
       </BrowserRouter>
