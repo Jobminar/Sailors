@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState("home");
   const [displayStyleLogin, setDisplayStyleLogin] = useState("d-none");
-  const [cookies] = useCookies(["user"]);
+  const [cookies,removecookie] = useCookies(["user"]);
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   let navigate = useNavigate();
@@ -47,7 +47,18 @@ export function Header() {
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
-
+  function myApplicationclick(){
+    navigate("/application");
+  }
+  function myResultclick(){
+    navigate("/myresult");
+  }
+  const confirmationLetterclick=()=>{
+    navigate("/confirmationlatter");
+  }
+//   const selectionLeterclick=()=>{
+//     navigate("/selectionletter");
+//   }
   return (
     <div>
       <header>
@@ -145,14 +156,14 @@ export function Header() {
                   </div>
                   <div className="dropdown-divider"></div>
                   <div className="dropdown-item">Apply Now</div>
-                  <div className="dropdown-item">My Application</div>
+                  <div className="dropdown-item" onClick={myApplicationclick}>My Application</div>
                   <div className="dropdown-item">My Admit Cards</div>
-                  <div className="dropdown-item">My Results</div>
-                  <div className="dropdown-item">Selection Letters</div>
+                  <div className="dropdown-item" onClick={myResultclick}>My Results</div>
+                  <div className="dropdown-item" >Selection Letters</div>
                   <div className="dropdown-item">Upload Docx</div>
-                  <div className="dropdown-item">Confirmation Letters</div>
+                  <div className="dropdown-item" onClick={confirmationLetterclick}>Confirmation Letters</div>
                   <div className="dropdown-divider"></div>
-                  <div className="bi bi-box-arrow-left dropdown-item text-danger">
+                  <div className="bi bi-box-arrow-left dropdown-item text-danger" onClick={()=>{removecookie("user")}}>
                     <span className="ms-1">Sign Out</span>
                   </div>
                 </div>

@@ -14,6 +14,8 @@ import SelectionLetter from "./pages/letter/selectionLetter/SelectionLetter";
 import ApplicationLetter from "./pages/letter/ApplicationLetter/ApplicationLetter";
 import Myadmitcard from "./pages/letter/myadmitcard/Myadmitcard";
 import { InterviewLetterHead3 } from "./pages/letters/interviewletterhead3/interviewletterhead3";
+import Documentsailorwave from "./pages/letter/DocumentSailorwave/documentsailorwave";
+import { Confirmationletterhead } from "./pages/letters/confirmationletterhead/confirmationletterhead";
 
 const Routing = () => {
   return (
@@ -31,6 +33,7 @@ const Routing = () => {
             path="/selectionletterhead"
             element={<Selectionletterhead />}
           />
+          <Route path="/confirmationletterhead" element={<Confirmationletterhead/>} /> 
           <Route path="/myresult" element={<Myresult />} />
           <Route path="/confirmationlatter" element={<ConfirmationLetter />} />
 
@@ -42,6 +45,7 @@ const Routing = () => {
             path="/interviewletterhead3"
             element={<InterviewLetterHead3 />}
           />
+          <Route path="/documentsailorwave" element={<Documentsailorwave/>}  />
         </Routes>
         <Footer />
       </BrowserRouter>

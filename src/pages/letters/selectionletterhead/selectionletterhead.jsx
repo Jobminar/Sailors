@@ -25,7 +25,7 @@ export function Selectionletterhead(param) {
             <p>
               Welcome to <strong>SAILORSWAVE-SHIP MANAGEMENT PVT LTD</strong>{" "}
             </p>
-            <div className="modal-body-leterhead">
+            <div className="modal-body-leterhead-selectionhead">
               <div className="mb-4">
                 We are pleased to inform you that this has reference for your
                 application, After verifying you're all documents/ certificates
@@ -72,6 +72,15 @@ export function Selectionletterhead(param) {
                 before given date Rs.10000/-25-7-2024. For your seat
                 conformation. Reporting Date will be known to you after your
                 seat registration
+              </div>
+            </div>
+            <div className="footerBg">
+              <div className="shape1 p-2 d-flex ">
+                <span className="d-flex">
+                  <div className="bi bi-telephone-fill text-light mx-4">+91 7994703181</div>
+                  <div className="bi bi-envelope-fill text-light"> sailorswaveshipmanagement@gmail.com</div>
+                </span>
+                <span className="shape3 "  ></span>
               </div>
             </div>
           </div>
