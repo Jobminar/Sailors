@@ -13,6 +13,7 @@ import ConfirmationLetter from "./pages/letter/confirmationletter/confirmationle
 import SelectionLetter from "./pages/letter/selectionLetter/SelectionLetter";
 import ApplicationLetter from "./pages/letter/ApplicationLetter/ApplicationLetter";
 import Myadmitcard from "./pages/letter/myadmitcard/Myadmitcard";
+import { InterviewLetterHead3 } from "./pages/letters/interviewletterhead3/interviewletterhead3";
 
 const Routing = () => {
   return (
@@ -36,6 +37,11 @@ const Routing = () => {
           <Route path="/selectionletter" element={<SelectionLetter />} />
           <Route path="/applicationletter" element={<ApplicationLetter />} />
           <Route path="/myadmitcard" element={<Myadmitcard />} />
+
+          <Route
+            path="/interviewletterhead3"
+            element={<InterviewLetterHead3 />}
+          />
         </Routes>
         <Footer />
       </BrowserRouter>

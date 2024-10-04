@@ -6,6 +6,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    
 
 }
 .heading-for-selection-letter{
@@ -26,7 +27,7 @@
 .table-container{
     /* border: 2px solid red; */
     margin-left: 100px;
-    width: 1840px;
+    width: 1240px;
     margin-top: 0px; 
     
     /* border-radius: 5px; */

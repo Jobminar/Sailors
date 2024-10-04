@@ -68,7 +68,7 @@ const SelectionLetter = () => {
           />
           <h4 className="heading-for-selection-letter">Selection Letters</h4>
         </div>
-        <div >
+        <div>
           <table className="table table-bordered mt-4 border-dark table-container">
             <thead>
               <tr>
@@ -80,25 +80,25 @@ const SelectionLetter = () => {
                 <th>Download Admit card</th>
                 <th>Interview date</th>
                 <th>Interview Feedback</th>
-                <th>Selection Letter</th>
-                <th>Confirmation Letter</th>
+                <th>Selection letter</th>
+                <th>Confirmation letter</th>
                 <th>Comments</th>
               </tr>
             </thead>
             <tbody>
-              {data.map((confirmLetter, i) => (
+              {data.map((result, i) => (
                 <tr>
                   <td>{i + 1}</td>
-                  <td>{confirmLetter.ApplicationNo}</td>
-                  <td>{confirmLetter.SubmittedApplication}</td>
-                  <td>{confirmLetter.ApplicationStatus}</td>
-                  <td>{confirmLetter.AdmitCardStatus}</td>
-                  <td>{confirmLetter.DownloadAdmitCard}</td>
-                  <td>{confirmLetter.InterviewDate}</td>
-                  <td>{confirmLetter.InterviewFeedback}</td>
-                  <td>{confirmLetter.SelectionLetter}</td>
-                  <td>{confirmLetter.ConfirmationLetter}</td>
-                  <td>{confirmLetter.Commants}</td>
+                  <td>{result.ApplicationNo}</td>
+                  <td>{result.SubmittedApplication}</td>
+                  <td>{result.ApplicationStatus}</td>
+                  <td>{result.AdmitCardStatus}</td>
+                  <td>{result.DownloadAdmitCard}</td>
+                  <td>{result.InterviewDate}</td>
+                  <td>{result.InterviewFeedback}</td>
+                  <td>{result.SelectionLetter}</td>
+                  <td>{result.ConfirmationLetter}</td>
+                  <td>{result.Commants}</td>
                 </tr>
               ))}
             </tbody>
