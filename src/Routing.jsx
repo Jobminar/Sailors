@@ -33,7 +33,6 @@ const Routing = () => {
           <Route path="/application" element={<ApplicationForm />} />
           <Route path="/about" element={<AboutRoute />} />
           <Route path="/services" element={<Services />} />
-<<<<<<< HEAD
           <Route
             path="/selectionletterhead"
             element={<Selectionletterhead />}
@@ -51,12 +50,7 @@ const Routing = () => {
             element={<InterviewLetterHead3 />}
           />
           <Route path="/documentsailorwave" element={<Documentsailorwave/>}  />
-=======
-          <Route path="/selectionletterhead"  element={<Selectionletterhead />}/>
-          <Route path="/myresult" element={<Myresult />} />
-          <Route path="/confirmationlatter" element={<ConfirmationLetter />} />
           <Route path="/uploadDocument" element={<UpladDocument />} />
->>>>>>> vishnu
         </Routes>
         <Footer />
       </BrowserRouter>
