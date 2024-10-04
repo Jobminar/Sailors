@@ -1,11 +1,11 @@
-.modal-body-leterhead {
+.modal-body-leterhead-selectionhead {
     position: relative; /* add this */
     height: 100vh;
   }
   #selectionlettermodal{
     width: 60%;
   }
-  .modal-body-leterhead::before {
+  .modal-body-leterhead-selectionhead::before {
     content: "";
     background-image: url("../../../assets/Images/logo.png");
     background-size: cover;
@@ -19,6 +19,23 @@
     z-index: 0;
     /* margin-top: 5%; */
   }
-.letterheadtitle{
+.leterheadtitle{
     font-family: Nunito Sans;
+}
+.footerBg{
+  background:linear-gradient(135deg, white 70%, #263672 30%) ;
+  height: 75px;
+  width: 100%;
+  align-content: center;
+}
+.shape1 {
+  width: 100%;
+  background: linear-gradient(135deg, #e86c3d 80%, transparent 20%);
+}
+
+.shape3 {
+  width: 10%;
+  margin-left: 27%;
+  background: linear-gradient(135deg, white 50%, green 50%);
+  clip-path: polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%);
 }

@@ -16,7 +16,6 @@ const Myresult = () => {
     return (
         <>
             <div style={{margin:'200px 30px'}}>
-
                 <table className="table table-bordered mt-4" >
                     <thead>
                         <tr>

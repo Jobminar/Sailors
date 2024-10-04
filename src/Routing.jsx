@@ -12,6 +12,7 @@ import { Selectionletterhead } from "./pages/letters/selectionletterhead/selecti
 import Myresult from "./pages/letter/myresult/myresult";
 import ConfirmationLetter from "./pages/letter/confirmationletter/confirmationletter";
 import Documentsailorwave from "./pages/letter/DocumentSailorwave/documentsailorwave";
+import { Confirmationletterhead } from "./pages/letters/confirmationletterhead/confirmationletterhead";
 
 const Routing = () => {
   return (
@@ -30,6 +31,7 @@ const Routing = () => {
             path="/selectionletterhead"
             element={<Selectionletterhead />}
           />
+          <Route path="/confirmationletterhead" element={<Confirmationletterhead/>} /> 
           <Route path="/myresult" element={<Myresult />} />
           <Route path="/confirmationlatter" element={<ConfirmationLetter />}/>
           <Route path="/documentsailorwave" element={<Documentsailorwave/>}  />
