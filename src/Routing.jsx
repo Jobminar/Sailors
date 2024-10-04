@@ -10,12 +10,16 @@ import AboutRoute from "./pages/subhomepages/aboutroute/AboutRoute";
 import { Selectionletterhead } from "./pages/letters/selectionletterhead/selectionletterhead";
 import Myresult from "./pages/letter/myresult/myresult";
 import ConfirmationLetter from "./pages/letter/confirmationletter/confirmationletter";
+<<<<<<< HEAD
 import SelectionLetter from "./pages/letter/selectionLetter/SelectionLetter";
 import ApplicationLetter from "./pages/letter/ApplicationLetter/ApplicationLetter";
 import Myadmitcard from "./pages/letter/myadmitcard/Myadmitcard";
 import { InterviewLetterHead3 } from "./pages/letters/interviewletterhead3/interviewletterhead3";
 import Documentsailorwave from "./pages/letter/DocumentSailorwave/documentsailorwave";
 import { Confirmationletterhead } from "./pages/letters/confirmationletterhead/confirmationletterhead";
+=======
+import UpladDocument from "./pages/letter/uploadDocument/uploadDocument";
+>>>>>>> vishnu
 
 const Routing = () => {
   return (
@@ -29,6 +33,7 @@ const Routing = () => {
           <Route path="/application" element={<ApplicationForm />} />
           <Route path="/about" element={<AboutRoute />} />
           <Route path="/services" element={<Services />} />
+<<<<<<< HEAD
           <Route
             path="/selectionletterhead"
             element={<Selectionletterhead />}
@@ -46,6 +51,12 @@ const Routing = () => {
             element={<InterviewLetterHead3 />}
           />
           <Route path="/documentsailorwave" element={<Documentsailorwave/>}  />
+=======
+          <Route path="/selectionletterhead"  element={<Selectionletterhead />}/>
+          <Route path="/myresult" element={<Myresult />} />
+          <Route path="/confirmationlatter" element={<ConfirmationLetter />} />
+          <Route path="/uploadDocument" element={<UpladDocument />} />
+>>>>>>> vishnu
         </Routes>
         <Footer />
       </BrowserRouter>
