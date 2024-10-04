@@ -1,7 +1,7 @@
 import { useState } from "react";
-import myapplication from "../../../assets/Images/appLetterimage.png";
-import "./ApplicationLetter.css";
-const ApplicationLetter = () => {
+import writingImage from "../../../assets/Images/admitcardimage.png";
+import "./Myadmitcard.css";
+const Myadmitcard = () => {
   const [data] = useState([
     {
       Slno: 1,
@@ -11,9 +11,6 @@ const ApplicationLetter = () => {
       AdmitCardStatus: "N/A",
       DownloadAdmitCard: "N/A",
       InterviewDate: "N/A",
-      InterviewFeedback: "N/A",
-      SelectionLetter: "N/A",
-      ConfirmationLetter: "N/A",
       Commants: "NIL",
     },
     {
@@ -24,9 +21,6 @@ const ApplicationLetter = () => {
       AdmitCardStatus: "N/A",
       DownloadAdmitCard: "N/A",
       InterviewDate: "N/A",
-      InterviewFeedback: "N/A",
-      SelectionLetter: "N/A",
-      ConfirmationLetter: "N/A",
       Commants: "NIL",
     },
     {
@@ -37,9 +31,6 @@ const ApplicationLetter = () => {
       AdmitCardStatus: "N/A",
       DownloadAdmitCard: "N/A",
       InterviewDate: "N/A",
-      InterviewFeedback: "N/A",
-      SelectionLetter: "N/A",
-      ConfirmationLetter: "N/A",
       Commants: "NIL",
     },
     {
@@ -50,9 +41,6 @@ const ApplicationLetter = () => {
       AdmitCardStatus: "N/A",
       DownloadAdmitCard: "N/A",
       InterviewDate: "N/A",
-      InterviewFeedback: "N/A",
-      SelectionLetter: "N/A",
-      ConfirmationLetter: "N/A",
       Commants: "NIL",
     },
   ]);
@@ -62,11 +50,11 @@ const ApplicationLetter = () => {
       <section>
         <div className="container-for-selection-letter">
           <img
-            src={myapplication}
+            src={writingImage}
             alt="selection-letter-image"
             className="selection-letter-image"
           />
-          <h4 className="heading-for-selection-letter">My Applications</h4>
+          <h4 className="heading-for-selection-letter">My Admit Cards</h4>
         </div>
         <div>
           <table className="table table-bordered mt-4 border-dark table-container">
@@ -79,10 +67,7 @@ const ApplicationLetter = () => {
                 <th>Admit card status</th>
                 <th>Download Admit card</th>
                 <th>Interview date</th>
-                <th>Interview Feedback</th>
-                <th>Selection Letter</th>
-                <th>Confirmation Letter</th>
-                <th>Comments</th>
+                <th>Click here</th>
               </tr>
             </thead>
             <tbody>
@@ -95,9 +80,7 @@ const ApplicationLetter = () => {
                   <td>{confirmLetter.AdmitCardStatus}</td>
                   <td>{confirmLetter.DownloadAdmitCard}</td>
                   <td>{confirmLetter.InterviewDate}</td>
-                  <td>{confirmLetter.InterviewFeedback}</td>
-                  <td>{confirmLetter.SelectionLetter}</td>
-                  <td>{confirmLetter.ConfirmationLetter}</td>
+
                   <td>{confirmLetter.Commants}</td>
                 </tr>
               ))}
@@ -109,4 +92,4 @@ const ApplicationLetter = () => {
   );
 };
 
-export default ApplicationLetter;
+export default Myadmitcard;

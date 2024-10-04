@@ -14,6 +14,8 @@
     font-size: 22px;
     width: 1177px;    
     height: 236px;
+    color: #414141;
+    
 }
 .para-about-sailors2{
     font-family: poppins;
@@ -21,6 +23,7 @@
     font-size: 22px;
     width: 1170px;    
     height: 183px;
+    color: #414141;
 }
 .workwithus-container{
     /* border: 2px solid red; */

@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.container-for-selection-letter{
+    /* border: 1px solid; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+.heading-for-selection-letter{
+    width: 117px;
+    height: 20px;
+    margin-top: 215px;
+    margin-left: 4px;
+    font-size: 14px;
+    font-family: 'monteserat';
+}
+.selection-letter-image{
+    height: 24px;
+    width: 24px;
+    margin-top: 204px;
+    margin-left: 100px;
+}
+
+.table-container{
+    /* border: 2px solid red; */
+    margin-left: 100px;
+    width: 1840px;
+    margin-top: 0px; 
+    
+    /* border-radius: 5px; */
+    /* margin-bottom: 20px;*/
+    margin-bottom: 350px; 
+    
+}
+
+.th-first-row{
+    width: 26px;
+    height: 15px;
+    color: yellow;
+
+}
+/* .first-row{
+    color: #d01010;
+    font-family: "Inter";
+    font-weight: 400;
+} */

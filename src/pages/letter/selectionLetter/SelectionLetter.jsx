@@ -68,37 +68,37 @@ const SelectionLetter = () => {
           />
           <h4 className="heading-for-selection-letter">Selection Letters</h4>
         </div>
-        <div className="table-container ">
-          <table class="table table-bordered border-dark main-table">
+        <div >
+          <table className="table table-bordered mt-4 border-dark table-container">
             <thead>
-              <tr className="first-row">
+              <tr>
                 <th>S.no</th>
                 <th>Application No.</th>
                 <th>Submitted Application</th>
                 <th>Application Status</th>
-                <th>Admit card status.</th>
+                <th>Admit card status</th>
                 <th>Download Admit card</th>
                 <th>Interview date</th>
                 <th>Interview Feedback</th>
-                <th>Selection letter</th>
-                <th>Confirmation letter</th>
-                <th>Commants</th>
+                <th>Selection Letter</th>
+                <th>Confirmation Letter</th>
+                <th>Comments</th>
               </tr>
             </thead>
             <tbody>
-              {data.map((result, i) => (
+              {data.map((confirmLetter, i) => (
                 <tr>
                   <td>{i + 1}</td>
-                  <td>{result.ApplicationNo}</td>
-                  <td>{result.SubmittedApplication}</td>
-                  <td>{result.ApplicationStatus}</td>
-                  <td>{result.AdmitCardStatus}</td>
-                  <td>{result.DownloadAdmitCard}</td>
-                  <td>{result.InterviewDate}</td>
-                  <td>{result.InterviewFeedback}</td>
-                  <td>{result.SelectionLetter}</td>
-                  <td>{result.ConfirmationLetter}</td>
-                  <td>{result.Commants}</td>
+                  <td>{confirmLetter.ApplicationNo}</td>
+                  <td>{confirmLetter.SubmittedApplication}</td>
+                  <td>{confirmLetter.ApplicationStatus}</td>
+                  <td>{confirmLetter.AdmitCardStatus}</td>
+                  <td>{confirmLetter.DownloadAdmitCard}</td>
+                  <td>{confirmLetter.InterviewDate}</td>
+                  <td>{confirmLetter.InterviewFeedback}</td>
+                  <td>{confirmLetter.SelectionLetter}</td>
+                  <td>{confirmLetter.ConfirmationLetter}</td>
+                  <td>{confirmLetter.Commants}</td>
                 </tr>
               ))}
             </tbody>

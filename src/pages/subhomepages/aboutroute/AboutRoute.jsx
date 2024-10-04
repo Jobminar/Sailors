@@ -20,7 +20,7 @@ const AboutRoute = () => (
           </div>
         </div>
         <div className="container-for-paras">
-          <p className="para-about-sailors1">
+          <p className="para-about-sailors1 pt-5">
             Welcome to Sailors wave Shipment Management Pvt Ltd, your trusted
             partner in comprehensive maritime solutions. Established in 2022,
             Sailors wave is dedicated to delivering top-tier services in onshore
