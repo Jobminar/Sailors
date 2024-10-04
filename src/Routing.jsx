@@ -11,6 +11,7 @@ import AboutRoute from "./pages/subhomepages/aboutroute/AboutRoute";
 import { Selectionletterhead } from "./pages/letters/selectionletterhead/selectionletterhead";
 import Myresult from "./pages/letter/myresult/myresult";
 import ConfirmationLetter from "./pages/letter/confirmationletter/confirmationletter";
+import Documentsailorwave from "./pages/letter/DocumentSailorwave/documentsailorwave";
 
 const Routing = () => {
   return (
@@ -30,7 +31,8 @@ const Routing = () => {
             element={<Selectionletterhead />}
           />
           <Route path="/myresult" element={<Myresult />} />
-          <Route path="/confirmationlatter" element={<ConfirmationLetter />} />
+          <Route path="/confirmationlatter" element={<ConfirmationLetter />}/>
+          <Route path="/documentsailorwave" element={<Documentsailorwave/>}  />
         </Routes>
         <Footer />
       </BrowserRouter>
