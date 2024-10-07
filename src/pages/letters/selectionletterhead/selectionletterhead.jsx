@@ -74,15 +74,6 @@ export function Selectionletterhead(param) {
                 seat registration
               </div>
             </div>
-            <div className="footerBg">
-              <div className="shape1 p-2 d-flex ">
-                <span className="d-flex">
-                  <div className="bi bi-telephone-fill text-light mx-4">+91 7994703181</div>
-                  <div className="bi bi-envelope-fill text-light"> sailorswaveshipmanagement@gmail.com</div>
-                </span>
-                <span className="shape3 "  ></span>
-              </div>
-            </div>
           </div>
         </div>
       </div>

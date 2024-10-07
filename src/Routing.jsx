@@ -17,6 +17,7 @@ import { InterviewLetterHead3 } from "./pages/letters/interviewletterhead3/inter
 import Documentsailorwave from "./pages/letter/DocumentSailorwave/documentsailorwave";
 import { Confirmationletterhead } from "./pages/letters/confirmationletterhead/confirmationletterhead";
 import UpladDocument from "./pages/letter/uploadDocument/uploadDocument";
+import InterviewSchedule from "./adminpanel/interviewfeadback/interviewfeadback";
 
 const Routing = () => {
   return (
@@ -48,6 +49,7 @@ const Routing = () => {
           />
           <Route path="/documentsailorwave" element={<Documentsailorwave/>}  />
           <Route path="/uploadDocument" element={<UpladDocument />} />
+          <Route path ="interviewSchedule"element={<InterviewSchedule/>} />
         </Routes>
         <Footer />
       </BrowserRouter>

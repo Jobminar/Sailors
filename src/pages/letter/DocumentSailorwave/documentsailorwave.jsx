@@ -1,7 +1,9 @@
 import { useRef, useState } from "react";
 import './documentsailorwave.css'
+import axios from "axios";
+
 const Documentsailorwave = () => {
-    const fileInputRef = useRef(null);
+
     const [applicationData, setApplicationData] = useState([
         {
             applicationNumber: "xxxxxxxx",
@@ -16,16 +18,54 @@ const Documentsailorwave = () => {
             uploadDocuments: "Upload"
         }
     ]);
+    const [file, setFile] = useState(null);
+    const fileInputRef = useRef(null);
+
     const handleClick = () => {
         fileInputRef.current.click();
     };
 
     const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            console.log("File selected:", file.name);
+        setFile(event.target.files[0]);
+    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!file) {
+            alert('Please select a file to upload.');
+            return;
+        }
+        const formData = new FormData();
+        formData.append('file', file);
+        try {
+            await axios.post('http://localhost:2024/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            alert('File uploaded successfully');
+            setFile(null);
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            alert('Failed to upload file');
         }
     };
+
+    const handleViewDocument = async (filename) => {
+        try {
+            const response = await axios.get(`http://localhost:2024/file/${filename}`, {
+                responseType: 'blob' // Important to specify blob type for file download
+            });
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', filename); // Specify the file name
+            document.body.appendChild(link);
+            link.click();
+        } catch (error) {
+            console.error('Error fetching document:', error);
+        }
+    };
+
     return (
         <>
             <div style={{ margin: '200px 30px' }}>
@@ -49,7 +89,7 @@ const Documentsailorwave = () => {
                         <tbody>
                             {
                                 applicationData.map((val, index) =>
-                                    <tr className="text-center documentsailorwavebody">
+                                    <tr className="text-center documentsailorwavebody" key={index}>
                                         <td >{index + 1}</td>
                                         <td >{val.applicationNumber}</td>
                                         <td >{val.submittedApplication}</td>
@@ -58,18 +98,21 @@ const Documentsailorwave = () => {
                                             <span className="bi bi-check-circle-fill text-success ms-4"></span>
                                         </td>
                                         <td >{val.admitCardStatus}</td>
-                                        <td >{val.downloadAdmitCard}</td>
+                                        <td
+
+                                            onClick={() => handleViewDocument("c1bd3eebdf7cc070b14e25289f7b0a69.docx")} // Pass the filename
+                                        ><button className="btn " >{val.downloadAdmitCard}</button></td>
                                         <td >{val.interviewDate}</td>
                                         <td >{val.interviewFeedback}</td>
                                         <td >{val.outcome}</td>
                                         <td >{val.comments}</td>
-                                        <td >{val.uploadDocuments}
+                                        <td>
+                                            {val.uploadDocuments}
                                             <span
                                                 className="bi bi-upload ms-3"
                                                 style={{ cursor: "pointer", fontSize: "24px" }}
                                                 onClick={handleClick}
                                             ></span>
-
                                             <input
                                                 type="file"
                                                 ref={fileInputRef}
@@ -77,7 +120,13 @@ const Documentsailorwave = () => {
                                                 style={{ display: "none" }}
                                                 accept=".docx"
                                             />
+                                            {file && (
+                                                <button className="btn btn-primary mt-2" onClick={handleSubmit}>
+                                                    Upload File
+                                                </button>
+                                            )}
                                         </td>
+
                                     </tr>
                                 )
                             }
@@ -88,16 +137,5 @@ const Documentsailorwave = () => {
         </>
     )
 }
+
 export default Documentsailorwave;
-
-
-
-
-
-
-
-
-
-
-
-

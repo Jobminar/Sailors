@@ -17,6 +17,7 @@ const ConfirmationLetter = () => {
             comments: "N/A"
         }
     ])
+    
     const letterInputRef = useRef(null);
 
     const handleLetterclick = () => {
