@@ -49,17 +49,16 @@ const ApplicationForm = () => {
         [name]: value,
       });
     }
-    const HandileformSubmit = () => {
-      axios.post('http://localhost:7000/candidate', formData)
-      console.log(formData)
-      alert(JSON.stringify(formData))
-    }
   };
-
   const HandileformSubmit = () => {
-    console.log(formData);
-    alert(JSON.stringify(formData));
-  };
+    axios.post('http://localhost:7000/candidate', formData)
+    console.log(formData)
+    alert(JSON.stringify(formData))
+  }
+  // const HandileformSubmit = () => {
+  //   console.log(formData);
+  //   alert(JSON.stringify(formData));
+  // };
 
   const handleFileChange = (e) => {
     const { name } = e.target;
