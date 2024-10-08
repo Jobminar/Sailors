@@ -1,21 +1,23 @@
+import { useNavigate } from 'react-router-dom';
 import filterimg from '../../assets/Images/filter.png'
 import { useState } from "react"
-import './interviewfeadback.css'
-const InterviewSchedule = () => {
+// import './interviewfeadback.css'
+const Myapplication = () => {
+    const navigate=useNavigate();
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedStatus, setSelectedStatus] = useState('');
     const [selectedAdmitCard, setSelectedAdmitCard] = useState('');
     const [selectNumber, setSelectNumber] = useState('')
     const fakeData = [
-        { sno: 1, applicationNo: '110009997609', status: 'Approved', admitCard: 'NotGenerated', download: 'Download', interviewDate: '27/06/24' },
-        { sno: 2, applicationNo: '110009997611', status: 'NotApproved', admitCard: 'NotGenerated', download: 'Download', interviewDate: '28/06/24' },
-        { sno: 3, applicationNo: '110009997612', status: 'Approved', admitCard: 'Generated', download: 'Download', interviewDate: '27/06/24' },
-        { sno: 4, applicationNo: '110009997613', status: 'NotApproved', admitCard: 'NotGenerated', download: 'Download', interviewDate: '29/06/24' },
-        { sno: 5, applicationNo: '110009997614', status: 'NotApproved', admitCard: 'NotGenerated', download: 'Download', interviewDate: '1/07/24' },
-        { sno: 6, applicationNo: '110009997690', status: 'Approved', admitCard: 'Generated', download: 'Download', interviewDate: '28/06/24' },
-        { sno: 7, applicationNo: '110009997615', status: 'Approved', admitCard: 'Generated', download: 'Download', interviewDate: '29/06/24' },
-        { sno: 8, applicationNo: '110009997610', status: 'NotApproved', admitCard: 'NotGenerated', download: 'Download', interviewDate: '30/06/24' },
-        { sno: 9, applicationNo: '110009997616', status: 'Approved', admitCard: 'NotGenerated', download: 'Download', interviewDate: '28/06/24' },
+        { sno: 1, applicationNo: '110009997609', status: 'Approved', admitCard: 'NotGenerated',  interviewOutcome: 'Approved',interviewDate: '27/06/24' },
+        { sno: 2, applicationNo: '110009997611', status: 'NotApproved', admitCard: 'NotGenerated',  interviewOutcome: 'NA',interviewDate: '28/06/24' },
+        { sno: 3, applicationNo: '110009997612', status: 'Approved', admitCard: 'Generated',  interviewOutcome: 'NA',interviewDate: '27/06/24' },
+        { sno: 4, applicationNo: '110009997613', status: 'NotApproved', admitCard: 'NotGenerated',  interviewOutcome: 'Approved',interviewDate: '29/06/24' },
+        { sno: 5, applicationNo: '110009997614', status: 'NotApproved', admitCard: 'NotGenerated',  interviewOutcome: 'NA',interviewDate: '1/07/24'  },
+        { sno: 6, applicationNo: '110009997690', status: 'Approved', admitCard: 'Generated',  interviewOutcome: 'Approved',interviewDate: '28/06/24' },
+        { sno: 7, applicationNo: '110009997615', status: 'Approved', admitCard: 'Generated',  interviewOutcome: 'NA',interviewDate: '29/06/24' },
+        { sno: 8, applicationNo: '110009997610', status: 'NotApproved', admitCard: 'NotGenerated',  interviewOutcome: 'Approved',interviewDate: '30/06/24' },
+        { sno: 9, applicationNo: '110009997616', status: 'Approved', admitCard: 'NotGenerated',  interviewOutcome: 'NA',interviewDate: '28/06/24' },
     ];
     const filteredData = fakeData.filter((item) => {
         if (selectedDate && item.interviewDate !== selectedDate) {
@@ -45,9 +47,9 @@ const InterviewSchedule = () => {
     const handleAdmitCardChange = (e) => {
         setSelectedAdmitCard(e.target.value);
     };
-    const handleNumberChange = (e) => {
-        setSelectNumber(e.target.value);
-    }
+
+    const rollNoClicked = (applicationNo) => navigate(`/dashboardadmin/myapplication/${applicationNo}`);
+
     return (
         <div>
            
@@ -80,19 +82,17 @@ const InterviewSchedule = () => {
                         </button>
                         <button className="btn btn-light">
                             <select className="form-select" value={selectedAdmitCard} onChange={handleAdmitCardChange}>
-                                <option value=""> Admit Card</option>
+                                <option value="">Admit Card</option>
                                 <option value="Generated">Generated</option>
                                 <option value="NotGenerated">NotGenerated</option>
                             </select>
                         </button>
                         <button className="btn btn-light">
-                            <div className="d-flex">
-                                <input className="form-control" placeholder="search with Number" vlaue={selectNumber} onChange={handleNumberChange}>
-
-                                </input>
-                                <span className="bi bi-search" style={{ marginLeft: "-12%", alignContent: "center" }}></span>
-
-                            </div>
+                        <select className="form-select" value={selectedAdmitCard} onChange={handleAdmitCardChange}>
+                                <option value="">Interview Outcomes</option>
+                                <option value="">Approved</option>
+                                <option value="">NotGenerated</option>
+                            </select>
                         </button>
                     </div>
                     <div className="table-responsive" >
@@ -103,21 +103,17 @@ const InterviewSchedule = () => {
                                     <th>Application No.</th>
                                     <th>Application Status</th>
                                     <th>Admit Card</th>
-                                    <th>Download Admit Card</th>
-                                    <th>Interview Date</th>
+                                    <th>Interview outcomme</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {filteredData.map((item, index) => (
                                     <tr key={index}>
-                                        <td>{item.sno}</td>
+                                        <td onClick={()=>{rollNoClicked(item.no)}}>{item.sno} </td>
                                         <td>{item.applicationNo}</td>
                                         <td>{item.status}</td>
                                         <td>{item.admitCard}</td>
-                                        <td>
-                                            <a href="#" className="btn btn-link">{item.download}</a>
-                                        </td>
-                                        <td>{item.interviewDate}</td>
+                                        <td>{item.interviewOutcome}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -130,4 +126,4 @@ const InterviewSchedule = () => {
     );
 };
 
-export default InterviewSchedule;
+export default Myapplication;

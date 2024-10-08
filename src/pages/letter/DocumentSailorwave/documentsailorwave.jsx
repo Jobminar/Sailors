@@ -53,12 +53,12 @@ const Documentsailorwave = () => {
     const handleViewDocument = async (filename) => {
         try {
             const response = await axios.get(`http://localhost:2024/file/${filename}`, {
-                responseType: 'blob' // Important to specify blob type for file download
+                responseType: 'blob' 
             });
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', filename); // Specify the file name
+            link.setAttribute('download', filename); 
             document.body.appendChild(link);
             link.click();
         } catch (error) {
@@ -100,7 +100,7 @@ const Documentsailorwave = () => {
                                         <td >{val.admitCardStatus}</td>
                                         <td
 
-                                            onClick={() => handleViewDocument("c1bd3eebdf7cc070b14e25289f7b0a69.docx")} // Pass the filename
+                                            onClick={() => handleViewDocument("d5446928d824751baa25ad6dd045ec57.png")} // Pass the filename
                                         ><button className="btn " >{val.downloadAdmitCard}</button></td>
                                         <td >{val.interviewDate}</td>
                                         <td >{val.interviewFeedback}</td>
@@ -118,7 +118,7 @@ const Documentsailorwave = () => {
                                                 ref={fileInputRef}
                                                 onChange={handleFileChange}
                                                 style={{ display: "none" }}
-                                                accept=".docx"
+                                                accept=".docx, .jpg, .jpeg, .png"
                                             />
                                             {file && (
                                                 <button className="btn btn-primary mt-2" onClick={handleSubmit}>

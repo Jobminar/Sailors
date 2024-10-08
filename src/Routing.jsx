@@ -18,6 +18,12 @@ import Documentsailorwave from "./pages/letter/DocumentSailorwave/documentsailor
 import { Confirmationletterhead } from "./pages/letters/confirmationletterhead/confirmationletterhead";
 import UpladDocument from "./pages/letter/uploadDocument/uploadDocument";
 import InterviewSchedule from "./adminpanel/interviewfeadback/interviewfeadback";
+import { Applicantprofile } from "./adminpanel/applicantprofile/applicantprofile";
+import { Applicantprofileapplication } from "./adminpanel/applicantprofileapplications/applicantprofileapplication";
+import { Admitcard } from "./adminpanel/admitcard/admitcard";
+import { Dashboardadmin } from "./adminpanel/dashboardadmin/dashboardadmin";
+import { Dashboard } from "./adminpanel/dashboard/dashboard";
+import Myapplication from "./adminpanel/myapplication/myapplication";
 
 const Routing = () => {
   return (
@@ -31,25 +37,25 @@ const Routing = () => {
           <Route path="/application" element={<ApplicationForm />} />
           <Route path="/about" element={<AboutRoute />} />
           <Route path="/services" element={<Services />} />
-          <Route
-            path="/selectionletterhead"
-            element={<Selectionletterhead />}
-          />
-          <Route path="/confirmationletterhead" element={<Confirmationletterhead/>} /> 
+          <Route path="/selectionletterhead" element={<Selectionletterhead />} />
+          <Route path="/confirmationletterhead" element={<Confirmationletterhead />} />
           <Route path="/myresult" element={<Myresult />} />
           <Route path="/confirmationlatter" element={<ConfirmationLetter />} />
-
           <Route path="/selectionletter" element={<SelectionLetter />} />
           <Route path="/applicationletter" element={<ApplicationLetter />} />
           <Route path="/myadmitcard" element={<Myadmitcard />} />
-
-          <Route
-            path="/interviewletterhead3"
-            element={<InterviewLetterHead3 />}
-          />
-          <Route path="/documentsailorwave" element={<Documentsailorwave/>}  />
+          <Route path="/interviewletterhead3" element={<InterviewLetterHead3 />} />
+          <Route path="/documentsailorwave" element={<Documentsailorwave />} />
           <Route path="/uploadDocument" element={<UpladDocument />} />
-          <Route path ="interviewSchedule"element={<InterviewSchedule/>} />
+          <Route path="/interviewSchedule" element={<InterviewSchedule />} />
+          <Route path="/dashboardadmin" element={<Dashboardadmin />}>
+            <Route path="applicantprofile" element={<Myapplication />} />
+            <Route path="admitcard" element={<Admitcard />} />
+            <Route path="interviewSchedule" element={<InterviewSchedule />} />
+            <Route path="applicantprofileapplication" element={<Applicantprofileapplication />} />
+            <Route path="applicantprofile" element={<Applicantprofile />} />
+          </Route>
+            
         </Routes>
         <Footer />
       </BrowserRouter>
