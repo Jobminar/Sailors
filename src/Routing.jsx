@@ -55,7 +55,6 @@ const Routing = () => {
             <Route path="applicantprofileapplication" element={<Applicantprofileapplication />} />
             <Route path="applicantprofile" element={<Applicantprofile />} />
           </Route>
-            
         </Routes>
         <Footer />
       </BrowserRouter>
