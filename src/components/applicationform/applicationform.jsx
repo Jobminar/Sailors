@@ -1,68 +1,57 @@
 import React, { useState } from 'react';
 import { Grid, TextField, MenuItem, Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import axios from 'axios'
+import axios from 'axios';
 
 const ApplicationForm = () => {
   const [formData, setFormData] = useState({
-    applyFor: "",
-    candidateName: "",
-    fatherName: "",
-    dob: "",
-    gender: "Male",
-    mobileNumber: "",
-    email: "",
-    houseNo: "",
-    postOffice: "",
-    policeStation: "",
-    district: "",
-    city: "",
-    state: "",
-    postalCode: "",
-    qualification: {
-      tenth: { school: "", year: "", percentage: "" },
-      twelfth: { school: "", year: "", percentage: "" },
-      degree: { school: "", year: "", percentage: "" },
-    },
-    files: {
-      passport: "",
-      class10th: "",
-      aadhar: "",
-    },
+    applyFor: '',
+    candidateName: '',
+    fatherName: '',
+    dob: '',
+    gender: 'Male',
+    mobileNumber: '',
+    email: '',
+    houseNo: '',
+    postOffice: '',
+    policeStation: '',
+    district: '',
+    city: '',
+    state: '',
+    postalCode: '',
+    tenthschool: '',
+    tenthyear: '',
+    tenthpercentage: '',
+    twelfthschool: '',
+    twelfthyear: '',
+    twelfthpercentage: '', // Corrected the typo here
+    degreeschool: '',
+    degreeyear: '',
+    degreepercentage: '',
+    // passport: '',
+    // class10th: '',
+    // aadhar: '',
+    // files: {},
   });
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
-    if (name.includes(".")) {
-      const [mainField, subField] = name.split(".");
-      setFormData((prevData) => ({
-        ...prevData,
-        [mainField]: {
-          ...prevData[mainField],
-          [subField]: value,
-        },
-      }));
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
-  const HandileformSubmit = () => {
-    axios.post('http://localhost:7000/candidate', formData)
-    console.log(formData)
-    alert(JSON.stringify(formData))
-  }
-  // const HandileformSubmit = () => {
-  //   console.log(formData);
-  //   alert(JSON.stringify(formData));
-  // };
 
   const handleFileChange = (e) => {
     const { name } = e.target;
     const file = e.target.files[0];
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert('File size should be less than 2MB');
+      return;
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       files: {
@@ -72,35 +61,59 @@ const ApplicationForm = () => {
     }));
   };
 
+  const handleFormSubmit = async () => {
+        // alert('your updated successfull')
+        // console.log(formData)
+
+    const formDataToSend = new FormData();
+
+    Object.keys(formData).forEach((key) => {
+      if (key === 'files') {
+        Object.keys(formData.files).forEach((fileKey) => {
+          formDataToSend.append(fileKey, formData.files[fileKey]);
+        });
+      } else {
+        formDataToSend.append(key, formData[key]);
+      }
+    });
+
+    try {
+      await axios.post('http://localhost:7000/candidate', formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      alert('Form and files submitted successfully');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to submit form');
+    }
+  };
+
   return (
     <>
       <div className="p-3 p-sm-0 d-flex justify-content-center">
         <div className=" w-75 px-5 p-sm-0">
           <div className="p-4 mb-3 fs-2 text-center">
-            <div>Application from for merchant navy</div>
-            <div>Application FORADMISSION IN MARINE TRAINING</div>
+            <div>Application Form for Merchant Navy</div>
+            <div>Application for Admission in Marine Training</div>
           </div>
           <Box
             p={2}
             borderColor="primary.main"
-            style={{ backgroundColor: "#F8F9FA" }}
+            style={{ backgroundColor: '#F8F9FA' }}
           >
             {/* Personal Details */}
             <Typography
               variant="h6"
               component="h2"
               className="text-light p-2"
-              sx={{ mb: 2, bgcolor: "#0486AA" }}
+              sx={{ mb: 2, bgcolor: '#0486AA' }}
             >
               Personal Details
             </Typography>
             <Grid container spacing={3}>
-              <Grid
-                item
-                xs={12}
-                sm={12}
-                style={{ display: "flex", alignItems: "center" }}
-              >
+              <Grid item xs={12} sm={12} style={{ display: 'flex', alignItems: 'center' }}>
                 <div className="fw-medium me-2">Apply for post</div>
                 <TextField
                   required
@@ -201,14 +214,11 @@ const ApplicationForm = () => {
               variant="h6"
               component="h2"
               className="text-light p-2 mt-5"
-              sx={{ mb: 2, bgcolor: "#0486AA" }}
+              sx={{ mb: 2, bgcolor: '#0486AA' }}
             >
               Address of Candidates
             </Typography>
             <Grid container spacing={3}>
-              {/* House Number  houseNo: "",
-                                postOffice:"",
-                                policeStation:"", */}
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -220,7 +230,6 @@ const ApplicationForm = () => {
                   variant="outlined"
                 />
               </Grid>
-              {/* Post Office */}
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -232,7 +241,6 @@ const ApplicationForm = () => {
                   variant="outlined"
                 />
               </Grid>
-              {/* Police Station */}
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -244,7 +252,6 @@ const ApplicationForm = () => {
                   variant="outlined"
                 />
               </Grid>
-              {/* District */}
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -257,7 +264,6 @@ const ApplicationForm = () => {
                 />
               </Grid>
 
-              {/* City */}
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -270,7 +276,6 @@ const ApplicationForm = () => {
                 />
               </Grid>
 
-              {/* State */}
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -283,7 +288,6 @@ const ApplicationForm = () => {
                 />
               </Grid>
 
-              {/* Postal Code */}
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -302,7 +306,7 @@ const ApplicationForm = () => {
               variant="h6"
               component="h2"
               className="text-light p-2 mt-5"
-              sx={{ mb: 2, bgcolor: "#0486AA" }}
+              sx={{ mb: 2, bgcolor: '#0486AA' }}
             >
               Educational Qualification
             </Typography>
@@ -323,41 +327,39 @@ const ApplicationForm = () => {
               <Grid item xs={12} sm={3}>
                 <div className=" text-dark-subtle fw-medium">Percentage%</div>
               </Grid>
+
               {/* 10th Qualification */}
               <Grid item xs={12} sm={3}>
                 <div className=" text-dark-subtle fw-medium">10 th</div>
               </Grid>
               <Grid item xs={12} sm={3}>
-                <input
+                <TextField
+                  required
                   fullWidth
-                  label="10th School/College"
-                  name="qualification.tenth.school"
-                  value={formData.qualification.tenth.school}
+                  name="tenthschool"
+                  value={formData.tenthschool}
                   onChange={handleInputChange}
                   variant="outlined"
-                  className="form-control border border-1 border-dark"
                 />
               </Grid>
               <Grid item xs={12} sm={3}>
-                <input
+                <TextField
+                  required
                   fullWidth
-                  label="Year of Passing"
-                  name="qualification.tenth.year"
-                  value={formData.qualification.tenth.year}
+                  name="tenthyear"
+                  value={formData.tenthyear}
                   onChange={handleInputChange}
                   variant="outlined"
-                  className="form-control border border-1 border-dark"
                 />
               </Grid>
               <Grid item xs={12} sm={3}>
-                <input
+                <TextField
+                  required
                   fullWidth
-                  label="Percentage"
-                  name="qualification.tenth.percentage"
-                  value={formData.qualification.tenth.percentage}
+                  name="tenthpercentage"
+                  value={formData.tenthpercentage}
                   onChange={handleInputChange}
                   variant="outlined"
-                  className="form-control border border-1 border-dark"
                 />
               </Grid>
 
@@ -366,75 +368,68 @@ const ApplicationForm = () => {
                 <div className=" text-dark-subtle fw-medium">12 th</div>
               </Grid>
               <Grid item xs={12} sm={3}>
-                <input
-                  fullWidth
-                  label="12th School/College"
-                  name="qualification.twelfth.school"
-                  value={formData.qualification.twelfth.school}
-                  onChange={handleInputChange}
-                  variant="outlined"
-                  className="form-control border border-1 border-dark"
-                />
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <input
-                  fullWidth
-                  label="Year of Passing"
-                  name="qualification.twelfth.year"
-                  value={formData.qualification.twelfth.year}
-                  onChange={handleInputChange}
-                  variant="outlined"
-                  className="form-control border border-1 border-dark"
-                />
-              </Grid>
-              <Grid item xs={12} sm={3}>
-                <input
+                <TextField
                   required
                   fullWidth
-                  label="Percentage"
-                  name="qualification.twelfth.percentage"
-                  value={formData.qualification.twelfth.percentage}
+                  name="twelfthschool"
+                  value={formData.twelfthschool}
                   onChange={handleInputChange}
                   variant="outlined"
-                  className="form-control border border-1 border-dark"
+                />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <TextField
+                  required
+                  fullWidth
+                  name="twelfthyear"
+                  value={formData.twelfthyear}
+                  onChange={handleInputChange}
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <TextField
+                  required
+                  fullWidth
+                  name="twelfthpercentage"
+                  value={formData.twelfthpercentage}
+                  onChange={handleInputChange}
+                  variant="outlined"
                 />
               </Grid>
 
-              {/* IT/Diploma Qualification */}
+              {/* Degree Qualification */}
               <Grid item xs={12} sm={3}>
-                <div className=" text-dark-subtle fw-medium">IT/Diploma</div>
+                <div className=" text-dark-subtle fw-medium">Degree</div>
               </Grid>
               <Grid item xs={12} sm={3}>
-                <input
+                <TextField
+                  required
                   fullWidth
-                  label="Degree"
-                  name="qualification.degree.school"
-                  value={formData.qualification.degree.school}
+                  name="degreeschool"
+                  value={formData.degreeschool}
                   onChange={handleInputChange}
                   variant="outlined"
-                  className="form-control border border-1 border-dark"
                 />
               </Grid>
               <Grid item xs={12} sm={3}>
-                <input
+                <TextField
+                  required
                   fullWidth
-                  label="Year of Passing"
-                  name="qualification.degree.year"
-                  value={formData.qualification.degree.year}
+                  name="degreeyear"
+                  value={formData.degreeyear}
                   onChange={handleInputChange}
                   variant="outlined"
-                  className="form-control border border-1 border-dark"
                 />
               </Grid>
               <Grid item xs={12} sm={3}>
-                <input
+                <TextField
+                  required
                   fullWidth
-                  label="Percentage"
-                  name="qualification.degree.percentage"
-                  value={formData.qualification.degree.percentage}
+                  name="degreepercentage"
+                  value={formData.degreepercentage}
                   onChange={handleInputChange}
                   variant="outlined"
-                  className="form-control border border-1 border-dark"
                 />
               </Grid>
             </Grid>
@@ -444,63 +439,52 @@ const ApplicationForm = () => {
               variant="h6"
               component="h2"
               className="text-light p-2 mt-5"
-              sx={{ mb: 2, bgcolor: "#0486AA" }}
+              sx={{ mb: 2, bgcolor: '#0486AA' }}
             >
-              Upload Picture{" "}
-              <span style={{ fontSize: "14px" }}>
-                (*Select image of less than 2MB)
-              </span>
+              Upload Picture <span style={{ fontSize: '14px' }}>(*Select image of less than 2MB)</span>
             </Typography>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <input
                   type="file"
                   name="passport"
-                  accept=".jpg"
+                  accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp"
                   onChange={handleFileChange}
                 />
                 <Typography variant="caption">
                   Upload your passport size picture (.jpg)
                 </Typography>
               </Grid>
-              <hr />
+
               <Grid item xs={12}>
                 <input
                   type="file"
                   name="class10th"
-                  accept=".jpg"
+                  accept=".jpg, .jpeg, .png, .pdf"
                   onChange={handleFileChange}
                 />
                 <Typography variant="caption">
-                  Upload your class 10th certificate (.jpg)
+                  Upload your 10th mark sheet (.jpg, .pdf)
                 </Typography>
               </Grid>
-              <hr />
+
               <Grid item xs={12}>
                 <input
                   type="file"
                   name="aadhar"
-                  accept=".jpg"
+                  accept=".jpg, .jpeg, .png, .pdf"
                   onChange={handleFileChange}
                 />
                 <Typography variant="caption">
-                  Upload your Aadhar card (.jpg)
+                  Upload your Aadhar card (.jpg, .pdf)
                 </Typography>
               </Grid>
             </Grid>
-            <hr />
-            <div className="mt-5">
-              <div className=" fw-medium">Declaration:</div>
-              <div className="text-gray">
-                I declare that the particular furnished above are true to the
-                best of my knowledge and belief and whenever called for the
-                records shall be furnished.
-              </div>
-            </div>
+
             <div className="text-center">
               <button
                 className="btn btn-primary px-5 py-2 mt-4"
-                onClick={HandileformSubmit}
+                onClick={handleFormSubmit}
               >
                 Submit
               </button>
