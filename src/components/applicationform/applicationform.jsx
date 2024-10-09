@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 
 const ApplicationForm = () => {
+
   const [formData, setFormData] = useState({
     applyFor: '',
     candidateName: '',
@@ -33,7 +34,63 @@ const ApplicationForm = () => {
     // aadhar: '',
     // files: {},
   });
-  
+  const [passport, setPassport] = useState(null);
+  const [class10th, setClass10th] = useState(null);
+  const [aadhar, setAadhar] = useState(null);
+  const [number, setNumber] = useState(''); // New state for user's number
+  const [message, setMessage] = useState('');
+
+  const handlePassportChange = (event) => {
+    setPassport(event.target.files); // Get files from the passport input
+  };
+
+  const handleClass10thChange = (event) => {
+    setClass10th(event.target.files); // Get files from the class 10th certificate input
+  };
+
+  const handleAadharChange = (event) => {
+    setAadhar(event.target.files); // Get files from the Aadhar input
+  };
+
+  const handleNumberChange = (event) => {
+    setNumber(event.target.value); // Capture the user's number
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    if (passport) {
+      for (let i = 0; i < passport.length; i++) {
+        formData.append('passport', passport[i]); // Append passport files
+      }
+    }
+    if (class10th) {
+      for (let i = 0; i < class10th.length; i++) {
+        formData.append('class10th', class10th[i]); // Append class 10th certificate files
+      }
+    }
+    if (aadhar) {
+      for (let i = 0; i < aadhar.length; i++) {
+        formData.append('aadhar', aadhar[i]); // Append Aadhar card files
+      }
+    }
+    formData.append('number', number); // Append the user's number
+
+    try {
+      const response = await axios.post('http://localhost:8001/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      setMessage(response.data.message); // Update the message on successful upload
+    } catch (error) {
+      console.error('Error uploading files:', error);
+      setMessage('Error uploading files.');
+    }
+  };
+
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -43,51 +100,10 @@ const ApplicationForm = () => {
     });
   };
 
-  const handleFileChange = (e) => {
-    const { name } = e.target;
-    const file = e.target.files[0];
-
-    if (file.size > 2 * 1024 * 1024) {
-      alert('File size should be less than 2MB');
-      return;
-    }
-
-    setFormData((prevData) => ({
-      ...prevData,
-      files: {
-        ...prevData.files,
-        [name]: file,
-      },
-    }));
-  };
-
   const handleFormSubmit = async () => {
-        // alert('your updated successfull')
-        // console.log(formData)
-
-    const formDataToSend = new FormData();
-
-    Object.keys(formData).forEach((key) => {
-      if (key === 'files') {
-        Object.keys(formData.files).forEach((fileKey) => {
-          formDataToSend.append(fileKey, formData.files[fileKey]);
-        });
-      } else {
-        formDataToSend.append(key, formData[key]);
-      }
-    });
-
-    try {
-      await axios.post('http://localhost:7000/candidate', formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      alert('Form and files submitted successfully');
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Failed to submit form');
-    }
+    axios.post('http://localhost:7000/candidate', formData)
+    alert('your data updated successfull')
+    console.log(formData)
   };
 
   return (
@@ -433,54 +449,7 @@ const ApplicationForm = () => {
                 />
               </Grid>
             </Grid>
-
-            {/* File Upload Section */}
-            <Typography
-              variant="h6"
-              component="h2"
-              className="text-light p-2 mt-5"
-              sx={{ mb: 2, bgcolor: '#0486AA' }}
-            >
-              Upload Picture <span style={{ fontSize: '14px' }}>(*Select image of less than 2MB)</span>
-            </Typography>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <input
-                  type="file"
-                  name="passport"
-                  accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp"
-                  onChange={handleFileChange}
-                />
-                <Typography variant="caption">
-                  Upload your passport size picture (.jpg)
-                </Typography>
-              </Grid>
-
-              <Grid item xs={12}>
-                <input
-                  type="file"
-                  name="class10th"
-                  accept=".jpg, .jpeg, .png, .pdf"
-                  onChange={handleFileChange}
-                />
-                <Typography variant="caption">
-                  Upload your 10th mark sheet (.jpg, .pdf)
-                </Typography>
-              </Grid>
-
-              <Grid item xs={12}>
-                <input
-                  type="file"
-                  name="aadhar"
-                  accept=".jpg, .jpeg, .png, .pdf"
-                  onChange={handleFileChange}
-                />
-                <Typography variant="caption">
-                  Upload your Aadhar card (.jpg, .pdf)
-                </Typography>
-              </Grid>
-            </Grid>
-
+              {/* uploadfiles */}
             <div className="text-center">
               <button
                 className="btn btn-primary px-5 py-2 mt-4"
@@ -488,6 +457,70 @@ const ApplicationForm = () => {
               >
                 Submit
               </button>
+              <button className='btn btn-success px-5 py-2 mt-4 ms-2' data-bs-toggle='modal' data-bs-target='#myModal'>Uploadfiles</button>
+              <div className=' modal fade' id='myModal'>
+                <div className=' modal-dialog'>
+                  <div className=' modal-content'>
+                    <div className='text-start p-3'>
+                      <div className='d-flex justify-content-between'>
+                        <div className='h3'>File Upload</div>
+                        <button className='btn btn-close ' data-bs-dismiss='modal'></button>
+                      </div>
+                      <hr />
+                      <form onSubmit={handleSubmit} className='form p-2'>
+                        <dl>
+                          <dt>Enter your number:</dt>
+                          <dd>
+                            <input
+                              type="text"
+                              value={number}
+                              onChange={handleNumberChange}
+                              placeholder="Enter number"
+                              className='form-control ms-2'
+                            />
+                          </dd>
+                          <br />
+                          <dt>Upload your passport size picture (.jpg)</dt>
+                          <dd>
+                            <input
+                              type="file"
+                              name="passport"
+                              onChange={handlePassportChange}
+                              multiple
+                              className='form-control ms-2'
+                            />
+                          </dd>
+                          <br />
+                          <dt>Upload your class 10th certificate (.jpg)</dt>
+                          <dd>
+                            <input
+                              type="file"
+                              name="class10th"
+                              onChange={handleClass10thChange}
+                              multiple
+                              className='form-control ms-2'
+                            />
+                          </dd>
+                          <br />
+                          <dt>Upload your Aadhar card (.jpg)</dt>
+                          <dd>
+                            <input
+                              type="file"
+                              name="aadhar"
+                              onChange={handleAadharChange}
+                              multiple
+                              className='form-control ms-2'
+                            />
+                          </dd>
+                        </dl>
+                        <div className='text-center'>
+                          <button type="submit" className='btn btn-success w-50'>Submit</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </Box>
         </div>
