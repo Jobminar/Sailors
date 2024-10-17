@@ -18,7 +18,7 @@ const Documentsailorwave = () => {
             uploadDocuments: "Upload"
         }
     ]);
-    const [file, setFile] = useState(null);
+    const [file,  setFile] = useState(null);
     const fileInputRef = useRef(null);
 
     const handleClick = () => {
