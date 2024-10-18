@@ -6,6 +6,7 @@ const AboutRoute = () => (
     <section>
       <div className="main-container-aboutroute">
         <div className="workwithus-container">
+          <div className='imgtext'>
           <h1>Work with us</h1>
           <p>
             We're constantly trying to express ourselves and actualize your
@@ -17,6 +18,7 @@ const AboutRoute = () => (
             <i className="bi bi-facebook mx-2 "></i>
             <i className="bi bi-instagram mx-2"></i>
             <i className="bi bi-twitter mx-2"></i>
+          </div>
           </div>
         </div>
         <div className="container-for-paras">
