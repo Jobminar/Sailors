@@ -26,9 +26,8 @@
     color: #414141;
 }
 .workwithus-container{
-    /* border: 2px solid red; */
-    height: 405px;
-    width: 1242px;  
+    height: 60vh ;
+    width: 90%;  
     background-image: url('../../../assets/Images/aboutBgImage.png');
     display: flex;
     justify-content: center;
@@ -42,4 +41,13 @@
     padding: 5px;
     width: 10%;
     border-radius: 10px;
+}
+
+@media only screen and (orientation: portrait) {
+    .workwithus-container{
+        height: 22vh;
+    }
+    .imgtext{
+        display: none;
+    }
 }

@@ -56,9 +56,9 @@ export function Header() {
   const confirmationLetterclick=()=>{
     navigate("/confirmationlatter");
   }
-//   const selectionLeterclick=()=>{
-//     navigate("/selectionletter");
-//   }
+  const selectionLeterclick=()=>{
+    navigate("/selectionletter");
+  }
   return (
     <div>
       <header>
