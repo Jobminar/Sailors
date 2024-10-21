@@ -2,11 +2,12 @@
     color: #F88035;
     cursor: pointer;
 }
-header{
+.headerw{
     /* font-family: Poppins; */
     display: grid;
-    grid-template-columns: 2fr 8fr 2fr;
-    margin: 2vh 10vh 2vh 10vh;
+    grid-template-columns: 2fr 7fr 3fr;
+    /* margin: 2vh 10vh 2vh 10vh; */
+    margin: 1% 5%;
     align-items: center;
     font-size: 1.3rem;
 }
@@ -43,4 +44,35 @@ header{
 }
 .link{
     text-decoration: none;
+}
+.loginbtn{
+    font-size: 1em;
+}
+.headerr{
+    display: none;
+}
+@media(max-width:950px){
+    .headerw{
+        font-size: .9rem;
+    }
+   
+}
+@media(max-width:580px){
+    .headerr{
+        margin: 2% 2% 2% 2%;
+        /* height:5vh ; */
+        display: grid;
+        grid-template-columns: 6fr 6fr;
+        align-content: center;
+    }
+    .headerw{
+        display: none;
+    }
+    .btnapply{
+        padding-left: 17%;
+        padding-right: 17%;
+    }
+    .dropdown-item:hover {
+        background-color: #F88035;
+    }
 }

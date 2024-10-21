@@ -8,10 +8,30 @@ import { useNavigate } from "react-router-dom";
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState("home");
   const [displayStyleLogin, setDisplayStyleLogin] = useState("d-none");
-  const [cookies,removecookie] = useCookies(["user"]);
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-
+  const [cookies, removecookie] = useCookies(["user"]);
+  const [dropdownVisible, setDropdownVisible] = useState(false); // Desktop dropdown
+  const [dropdownmobile, setDropdownMobile] = useState(false); // Mobile dropdown
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768); // Detect mobile view
+  
   let navigate = useNavigate();
+
+  useEffect(() => {
+    if (cookies.user) {
+      setDisplayStyleLogin("d-none");
+    } else {
+      setDisplayStyleLogin("d-block");
+    }
+
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [cookies]);
 
   function navitemclicked(e) {
     switch (e.target.id) {
@@ -36,32 +56,29 @@ export function Header() {
     }
   }
 
-  useEffect(() => {
-    if (cookies.user) {
-      setDisplayStyleLogin("d-none");
-    } else {
-      setDisplayStyleLogin("d-block");
-    }
-  }, [cookies]);
-
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
-  function myApplicationclick(){
+
+  const toggleMobileDropdown = () => {
+    setDropdownMobile(!dropdownmobile);
+  };
+
+  function myApplicationclick() {
     navigate("/application");
   }
-  function myResultclick(){
+
+  function myResultclick() {
     navigate("/myresult");
   }
-  const confirmationLetterclick=()=>{
+
+  const confirmationLetterclick = () => {
     navigate("/confirmationlatter");
-  }
-  const selectionLeterclick=()=>{
-    navigate("/selectionletter");
-  }
+  };
+
   return (
     <div>
-      <header>
+      <header className="headerw">
         <div>
           <img src={logo} alt="Sailorswave logo" style={{ width: "100%" }} />
         </div>
@@ -107,10 +124,7 @@ export function Header() {
             <span>
               <button className="bi bi-person-fill text-light border rounded-circle bg-dark"></button>
             </span>
-            <span
-              className="fw-medium text-light"
-              style={{ marginLeft: "10px" }}
-            >
+            <span className="text-light" style={{ marginLeft: "10px" }}>
               Login
             </span>
           </span>
@@ -129,41 +143,46 @@ export function Header() {
                     style={{ width: "2rem" }}
                   />
                 </span>
-                <span className="fw-medium text-light ms-2">
-                  {cookies.user}{" "}
+                <span className="loginbtn text-light ms-2">
+                  {cookies.user}
                   <span className="ms-2 bi bi-chevron-down"></span>
                 </span>
               </button>
-              {dropdownVisible && (
+              {!isMobileView && dropdownVisible && (
                 <div className="dropdown-menu show mt-2">
-                  <div className="dropdown-item d-flex ">
+                  <div className="dropdown-item d-flex">
                     <span>
                       <img
                         src={dp}
                         alt="Profile"
-                        className="rounded-circle boeder-1 text-center me-2"
+                        className="rounded-circle me-2"
                         style={{ width: "40px" }}
                       />
                     </span>
                     <span>
-                      <div>
-                        <span>{cookies.user} </span>
-                      </div>
-                      <div>
-                        <span className="text-secondary">9390373702</span>
-                      </div>
+                      <div>{cookies.user}</div>
+                      <div className="text-secondary">9390373702</div>
                     </span>
                   </div>
                   <div className="dropdown-divider"></div>
                   <div className="dropdown-item">Apply Now</div>
-                  <div className="dropdown-item" onClick={myApplicationclick}>My Application</div>
+                  <div className="dropdown-item" onClick={myApplicationclick}>
+                    My Application
+                  </div>
                   <div className="dropdown-item">My Admit Cards</div>
-                  <div className="dropdown-item" onClick={myResultclick}>My Results</div>
-                  <div className="dropdown-item" >Selection Letters</div>
+                  <div className="dropdown-item" onClick={myResultclick}>
+                    My Results
+                  </div>
+                  <div className="dropdown-item">Selection Letters</div>
                   <div className="dropdown-item">Upload Docx</div>
-                  <div className="dropdown-item" onClick={confirmationLetterclick}>Confirmation Letters</div>
+                  <div className="dropdown-item" onClick={confirmationLetterclick}>
+                    Confirmation Letters
+                  </div>
                   <div className="dropdown-divider"></div>
-                  <div className="bi bi-box-arrow-left dropdown-item text-danger" onClick={()=>{removecookie("user")}}>
+                  <div
+                    className="bi bi-box-arrow-left dropdown-item text-danger"
+                    onClick={() => removecookie("user")}
+                  >
                     <span className="ms-1">Sign Out</span>
                   </div>
                 </div>
@@ -172,6 +191,39 @@ export function Header() {
           )}
         </div>
       </header>
+      {isMobileView && (
+        <header className="headerr p-3">
+          <div className="d-flex h-100 align-content-center">
+            <div className="dropdown">
+              <span onClick={toggleMobileDropdown} className="bi bi-list"></span>
+              {dropdownmobile && (
+                <div className="dropdown-menu  text-dark show mt-4" style={{width:"250px",  left: 0 }}>
+                  <div className="dropdown-item">Home</div>
+                  <div className="dropdown-item">About us</div>
+                  <div className="dropdown-item" onClick={myApplicationclick}>
+                    Contact
+                  </div>
+                  <div className="dropdown-item">Our services</div>
+                  <div className="dropdown-item" onClick={myResultclick}>
+                    Login/Signup
+                  </div>
+                </div>
+              )}
+            </div>
+            <span className="h-100">
+              <img src={logo} width={120} alt="Logo" />
+            </span>
+          </div>
+          <div className="d-flex justify-content-end">
+            <span
+              className="btnapply text-light d-flex login-button btn"
+              style={{ backgroundColor: "#F97D3D", borderRadius: "2rem" }}
+            >
+              Apply now
+            </span>
+          </div>
+        </header>
+      )}
     </div>
   );
 }
