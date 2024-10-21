@@ -1,14 +1,8 @@
 import arrow from "../../assets/Images/arrow-right.png";
-// import imggrid11 from "../../assets/Images/img-grid-11.png";
-// import imggrid21 from "../../assets/Images/img-grid-21.png";
-// import imggrid31 from "../../assets/Images/img-grid-31.png";
-// import dottedimg from '../../assets/Images/dottedbgimg.png';
 import imagesection from  '../../assets/Images/section-img.png';
-
 import "./section.css"
 import BecomeASailor from "./BecomeASailor/BecomeASailor";
 import { ClientReviews } from "./ClientReviews/ClientReviews";
-// import BecomeASailor from "./BecomeASailor/BecomeASailor";
 export function Section() {
     return (
         <>
