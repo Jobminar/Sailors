@@ -1,9 +1,11 @@
 .contactHomepage{
     display: flex;
     justify-content: center;
-    padding: 60px 0px;
     height: 100vh;
     width: 100%;
+}
+.contactus{
+    display: none;
 }
 .bgcontactus{
     background: linear-gradient(90deg, #FFFFFF 75%, #037DA3 25%);
@@ -14,9 +16,60 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid black;
 }
 .Gettotuch{
     width: 75%;
     height: 80%;
     display:flex;
+}
+.subGettouch{
+    height: 90%;
+    width: 50%;
+    margin-left: 20px;
+}
+
+@media only screen and (orientation: portrait) {
+    .Gettotuch{
+        display: flex;
+        flex-flow: column-reverse;
+        width: 150%;
+    }
+    .bgcontactus{
+        background: linear-gradient(90deg,  #FFFFFF 75%, #FFFFFF 25%);
+        box-shadow: none;
+        border-radius: none;
+        border: none;
+    }
+    .contexts{
+        display: none;
+    }
+    .subGettouch{
+        width: 100%;
+        margin-left: 0px;
+    }
+    .contactus{
+        display: block;
+        text-align: center;
+        padding: 1% 6%;
+    }
+    .contactIcon{
+        font-size: 40px;
+    }
+    .subGettouch{
+        padding: 1% 20%;
+    }
+    .contactuscard{
+        width: 100%;
+        height: 20vh;
+        border-radius: 20px;
+        box-shadow: 0px 0px 10px gray;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
 }
