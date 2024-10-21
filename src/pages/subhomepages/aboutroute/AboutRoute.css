@@ -8,23 +8,26 @@
     align-items: center;
     /* padding: 65px; */
 }
-.para-about-sailors1{
+
+/* .para-about-sailors1{
     font-family: poppins;
     font-weight: 400;
     font-size: 22px;
-    width: 1177px;    
-    height: 236px;
     color: #414141;
-    
-}
-.para-about-sailors2{
+} */
+.para-about-sailors1, .para-about-sailors2{
+    text-align: justify;
     font-family: poppins;
     font-weight: 400;
     font-size: 22px;
-    width: 1170px;    
-    height: 183px;
     color: #414141;
 }
+/* .para-about-sailors2{
+    font-family: poppins;
+    font-weight: 400;
+    font-size: 22px;
+    color: #414141;
+} */
 .workwithus-container{
     height: 60vh ;
     width: 90%;  
@@ -43,11 +46,35 @@
     border-radius: 10px;
 }
 
+.responsiveimg{
+    display: none;
+}
+.testimonial{
+    display: block;
+}
+.container-for-paras{
+    padding: 70px;
+}
+
 @media only screen and (orientation: portrait) {
     .workwithus-container{
         height: 22vh;
     }
     .imgtext{
+        display: none;
+    }
+    .container-for-paras{
+        padding: 20px;
+    }
+    .para-about-sailors1, .para-about-sailors2{
+        font-size: 8px;
+        padding-right: 20px;
+    }
+    .responsiveimg{
+        display: block;
+        width:200px
+    }
+    .testimonial{
         display: none;
     }
 }
