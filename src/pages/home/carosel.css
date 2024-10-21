@@ -1,11 +1,9 @@
 .slider-container{
-    margin: 2vh 9vh 2vh 10vh;
-    /* margin-left: 55px; */
-    /* margin-bottom: -55px; */
+    margin: 1% 5%;
 
 }
 .image3{
-    border-radius: 35px;
+    border-radius:25px;
 }
 
 .main-container{
@@ -15,4 +13,9 @@
 #mainbanner{
     display: flex;
     justify-content: center;
+}
+@media(max-width:768px){
+    .image3{
+        border-radius:10px;
+    }
 }

@@ -198,20 +198,20 @@ export function Header() {
               <span onClick={toggleMobileDropdown} className="bi bi-list"></span>
               {dropdownmobile && (
                 <div className="dropdown-menu  text-dark show mt-4" style={{width:"250px",  left: 0 }}>
-                  <div className="dropdown-item">Home</div>
-                  <div className="dropdown-item">About us</div>
-                  <div className="dropdown-item" onClick={myApplicationclick}>
+                  <div className="dropdown-item"id="home"  onClick={navitemclicked}>Home</div>
+                  <div className="dropdown-item" id="about" onClick={navitemclicked}>About us</div>
+                  <div className="dropdown-item" id="contact" onClick={navitemclicked}>
                     Contact
                   </div>
-                  <div className="dropdown-item">Our services</div>
-                  <div className="dropdown-item" onClick={myResultclick}>
+                  <div className="dropdown-item" id="services"  onClick={navitemclicked}>Our services</div>
+                  <div className="dropdown-item" >
                     Login/Signup
                   </div>
                 </div>
               )}
             </div>
             <span className="h-100">
-              <img src={logo} width={120} alt="Logo" />
+              <img src={logo} width={100} alt="Logo" />
             </span>
           </div>
           <div className="d-flex justify-content-end">

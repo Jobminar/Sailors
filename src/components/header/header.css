@@ -59,11 +59,12 @@
 }
 @media(max-width:580px){
     .headerr{
-        margin: 2% 2% 2% 2%;
+        margin: 2% 2% ;
         /* height:5vh ; */
         display: grid;
         grid-template-columns: 6fr 6fr;
-        align-content: center;
+        align-items: center;
+         font-size: 25px;
     }
     .headerw{
         display: none;
