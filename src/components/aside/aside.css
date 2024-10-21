@@ -12,3 +12,9 @@
     width: 5%;
     z-index: 3;
 }
+@media(max-width:768px){
+    #aside-icons{
+        display: none;
+    }
+  
+}
