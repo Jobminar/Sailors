@@ -1,6 +1,4 @@
-.container-section{
-    /* margin: 2vh 10vh 2vh 10vh; */
-}
+
 .container-section-form{
     display: grid;
     grid-template-columns: 3fr 9fr;
