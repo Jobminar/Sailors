@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .test-container{
-    margin: 15vh 10vh 15vh 10vh;
+    margin: 3% 5%;
     display: flex;
+    font-size: 30px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -26,12 +27,31 @@
     font-family: 'Roboto';
     color: #1F284F;
     font-weight: bold;
+    font-size: 1.5rem;
 }
 .para1{
     font-family: 'Roboto';
-    font-size: 100%;
+    font-size: 1rem;
     color:  #1F284F;
     text-align: center;
     width: 85%;
     padding-top: 10px;
+
+}
+@media(max-width:768px){
+    .heading1{
+        font-family: 'Roboto';
+        color: #1F284F;
+        font-weight: bold;
+        font-size: .8rem;
+    }
+    .para1{
+        font-family: 'Roboto';
+        font-size: .5rem;
+        color:  #1F284F;
+        text-align: center;
+        width: 85%;
+        padding-top: 10px;
+    
+    }
 }

@@ -192,7 +192,7 @@ export function Header() {
         </div>
       </header>
       {isMobileView && (
-        <header className="headerr p-3">
+        <header className="headerr ">
           <div className="d-flex h-100 align-content-center">
             <div className="dropdown">
               <span onClick={toggleMobileDropdown} className="bi bi-list"></span>

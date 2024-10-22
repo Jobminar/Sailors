@@ -3,7 +3,7 @@
 
 }
 .image3{
-    border-radius:25px;
+    border-radius:35px;
 }
 
 .main-container{
@@ -14,8 +14,18 @@
     display: flex;
     justify-content: center;
 }
+.mblcarousel{
+    display: none;
+}
 @media(max-width:768px){
     .image3{
-        border-radius:10px;
+        border-radius:0px;
+    }
+    .slider-container{
+        display: none;
+    }
+    .mblcarousel{
+        display: block;
+        margin: 0% 2%;
     }
 }

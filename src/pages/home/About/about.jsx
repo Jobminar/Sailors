@@ -2,16 +2,15 @@ import "./about.css";
 // import aboutImg from "../../../assets/Images/background-image.jpg";
 import underlineabout from '../../../assets/Images/arrow-underline.png'
 const About = () => (
-  <div className="py-5 d-flex justify-content-center about-container " >
+  <div className="py-5  justify-content-center about-container " >
     <div className="first-container">
       <h1 className="heading ">About sailorswave</h1>
       <img src={underlineabout}></img>
-      <p className="heading my-4">
+      <p  className=" heading my-4">
         Welcome to Sailors wave Shipment Management Pvt Ltd, your trusted
         partner in comprehensive maritime solutions. Established in 2022,
         Sailors wave is dedicated to delivering top-tier services in onshore
-        resource management, offshore resource management, training, and
-        placements. Our mission is to support and enhance the global maritime
+        
         industry by providing innovative and reliable solutions tailored to meet
         the unique needs of our clients.
         <br />
