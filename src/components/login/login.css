@@ -22,3 +22,35 @@
     background-repeat: no-repeat;
     background-position: top;
 }
+.loginimgsm{
+    display: none;
+}
+.showcountry{
+    display: none;
+}
+@media only screen and (orientation: portrait) {
+    .logingPage, .verifiloginPage{
+        display: grid;
+        grid-template-columns: 12fr;
+        height: 100vh;
+        width: 100%;
+    }
+    .loginimg, .logingHeading{
+        display: none;
+    }
+    .numberLogin{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .loginimgsm{
+        display: block;
+        width: 100%;
+        border-radius: 10px;
+    }
+    .showcountry{
+        display: block;
+        padding: 5px;
+    }
+}

@@ -116,7 +116,7 @@ export function Header() {
             Contact us
           </span>
         </nav>
-        <div className="d-flex justify-content-end">
+        <div className="d-flex justify-content-end" onClick={()=>navigate('/login')}>
           <span
             className={`${displayStyleLogin} d-flex login-button btn ms-4`}
             style={{ backgroundColor: "#F97D3D", borderRadius: "2rem" }}
@@ -214,7 +214,7 @@ export function Header() {
               <img src={logo} width={100} alt="Logo" />
             </span>
           </div>
-          <div className="d-flex justify-content-end">
+          <div className="d-flex justify-content-end" onClick={()=>navigate('/login')}>
             <span
               className="btnapply text-light d-flex login-button btn"
               style={{ backgroundColor: "#F97D3D", borderRadius: "2rem" }}

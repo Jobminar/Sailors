@@ -60,15 +60,15 @@ const ContactHomepage = () => {
                                 {
                                     form => <Form className="mt-4">
                                         <div className="mb-3">
-                                            <Field name='userName' type='text' placeholder='Your Name' className="form-control" />
+                                            <Field name='userName' type='text' placeholder='Your Name' className="form-control w-100" />
                                             <ErrorMessage name="userName" />
                                         </div>
                                         <div className="mb-3">
-                                            <Field name='userEmail' type='text' placeholder='Your Email' className="form-control" />
+                                            <Field name='userEmail' type='text' placeholder='Your Email' className="form-control w-100" />
                                             <ErrorMessage name="userEmail" />
                                         </div>
                                         <div className="mb-3">
-                                            <Field name='userNumber' type='text' placeholder='Your Number' className="form-control" />
+                                            <Field name='userNumber' type='text' placeholder='Your Number' className="form-control w-100" />
                                             <ErrorMessage name="userNumber" />
                                         </div>
                                         <div>
@@ -99,7 +99,7 @@ const ContactHomepage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
         </>
     )
 }

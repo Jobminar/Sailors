@@ -7,6 +7,8 @@ import img2 from '../../assets/Images/image2.png';
 import logo from '../../assets/Images/logo.png';
 import success from '../../assets/Images/image3.png';
 // import bgimg from '../../assets/Images/imagebg.png';
+import loginimg from '../../assets/Images/loginimgsm.png';
+import indiaimg from '../../assets/Images/india.png'
 
 const Login = () => {
     const [timer, setTimer] = useState(30);
@@ -38,11 +40,12 @@ const Login = () => {
     return (
         <>
             <div className={`logingPage  ${showLogin ? 'd-none' : 'd-gird'}`}>
-                <div>
+                <div className='loginimg'>
                     <img src={img1} className='img' alt="Login Image" />
                 </div>
                 <div className='py-4 p-4 numberLogin'>
                     <h2 style={{ color: '#0486AA' }} className='logingHeading'>Welcome to SAILORSWAVE</h2>
+                    <div><img src={loginimg} className='loginimgsm'/></div>
                     <Formik
                         initialValues={{ userNumber: '' }}
                         validationSchema={yup.object({
@@ -55,14 +58,18 @@ const Login = () => {
                     >
                         {form => (
                             <Form>
-                                <div className='mt-5 pt-5 w-75'>
+                                <div className='mt-5 pt-5 w-100'>
                                     <label>Phone Number<span className='text-danger badge ps-1 mb-3'>*</span></label>
-                                    <Field
+                                    <div className='d-flex align-items-center border border-1 rounded-3'>
+                                         <img src={indiaimg} className='showcountry ' />
+                                        <span className='showcountry '>+91</span>
+                                        <Field
                                         type='text'
-                                        className='form-control w-100 border border-info p-3'
+                                        className='form-control border-0 p-3'
                                         name='userNumber'
                                         placeholder='Enter Your Phone Number'
                                     />
+                                    </div>
                                     <ErrorMessage name='userNumber' component='div' className='text-danger' />
                                     <div className='text-center'>
                                         <button type="submit" className="btn btn-primary px-5 py-2 mt-4">GET OTP</button>
