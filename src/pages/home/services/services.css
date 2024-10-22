@@ -3,15 +3,9 @@
 .color-prop{
     background-color: #ffffff;
 }
-
-.our-services{
-    margin: 0px;
-    padding: 3rem;
-  
-}
 .service-row{
     display: flex;
-  justify-content: space-evenly;
+    justify-content: space-evenly;
     align-items: center;
     column-gap: 5rem;
     border: none;
@@ -19,7 +13,6 @@
     row-gap: 1rem;
 }
 .card-total{
-    /* border: 1px solid black; */
     width: 20rem;
     min-height: 10rem;
     display: flex;
@@ -64,8 +57,7 @@ text-align: center;
 
 @media screen and (min-width: 360px) and (max-width: 600px){
     .our-services{
-        margin: 0px;
-        padding: 3rem;
+        padding: 2rem;
         border-radius: 10px;
       
     }
@@ -97,22 +89,24 @@ text-align: center;
     .services {
         font-family: poppins;
         font-weight: 700;
-        font-size: 40px;
+        font-size: 20px;
         /* border: 1px solid black; */
+        color: #1F284F;
     }
     .card-title{
         font-family: Poppins;
-        font-size: 24px;
+        font-size: 17px;
         font-weight: 600;
-        line-height: 32px;
+        line-height: 20px;
         text-align: center;
+        color: #1F284F;
     
     }
     .card-text{
         font-family: Poppins;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 400;
-    line-height: 26px;
+    line-height: 20px;
     text-align: center;
     
     }

@@ -2,26 +2,29 @@
     background-image: url("../../../assets/Images/img-group-18.png");
     background-size: cover;
     background-repeat: no-repeat;
-    /* margin: 2vh 10vh 2vh 10vh;
-     */
     margin: 1% 5% 1% 5%;
     display: flex;
     justify-content: center;
 
-    /* padding:2vh 5vh 2vh 5vh ; */
     border-radius: 2vh;
 }
 
 .clientreview-container {
     background-color: #f5f9ff;
-    padding: 5vh 0;
+    padding: 1vh 0;
 }
 
 .clientreviewh2 {
     font-size: 2rem;
     color: #1F284F;
     font-weight: bold;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
+}
+.bi-chevron-left{
+  font-size: 140%;
+}
+.bi-chevron-right{
+ font-size: 140%;
 }
   .page-dot{
     margin-left: 3rem;
@@ -36,7 +39,30 @@
   .bi-chevron-right {
     cursor: pointer;
   }
-  
+  @media(max-width:768px){
+    .page-dot{
+      margin-left: 2rem;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #f5f9ff;
+    }
+    .clientreviewh2{
+      font-size: 1rem;
+    /* margin-bottom: 0rem; */
+
+    }
+    .bi-chevron-left{
+      font-size: 90%;
+    }
+    .bi-chevron-right{
+     font-size: 90%;
+    }
+.clientreview-container{
+  margin: 1% 2% 1% 2%;
+
+  }
+
+}
   
   
 

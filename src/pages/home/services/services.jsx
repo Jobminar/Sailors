@@ -10,7 +10,7 @@ const OurServices = () => {
   return (
     <>
       <section id="services">
-        <div className="our-services mx-4">
+        <div className="our-services ">
           <p className="text-center services">Our Services</p>
           <div className="service-row">
             <div className=" card-total">

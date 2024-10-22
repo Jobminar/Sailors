@@ -7,7 +7,7 @@ import icon5 from "../../../assets/Images/img-grid-22.png";
 
 const Testimonial = () => (
   <div className="test-container">
-    <h4 className="heading1">Trusted By Companies including</h4>
+    <div className="heading1">Trusted By Companies including</div>
 
     <p className="para1">
       At Sailorswave Shipment Management Pvt Ltd, our clients are at the heart

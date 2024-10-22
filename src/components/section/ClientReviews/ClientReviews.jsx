@@ -10,8 +10,8 @@ export function ClientReviews() {
         switch (currentPage) {
             case 1:
                 return (
-                    <div className="mt-4 p-4 ">
-                        <h2 className='clientreviewh2' style={{ marginBottom: "5vh", textAlign: "center", color:"#001E6C"}}>Here is what our Clients are saying About us</h2>
+                    <div className=" p-4 ">
+                        <div className='clientreviewh2' style={{ marginBottom: "5vh", textAlign: "center", color:"#001E6C"}}>Here is what our Clients are saying About us</div>
                         <div className='p-4 bg-light rounded'>
                             <img className="d-block w-100" src={bgimg} alt="first slide" />
                         </div>
@@ -19,8 +19,8 @@ export function ClientReviews() {
                 );
             case 2:
                 return (
-                    <div className="mt-4 p-4 ">
-                        <h2 className='clientreviewh2' style={{ marginBottom: "2rem", textAlign: "center", color:"#001E6C" }}>Here is what our Clients are saying About us</h2>
+                    <div className=" p-4 ">
+                        <div className='clientreviewh2' style={{ marginBottom: "2rem", textAlign: "center", color:"#001E6C" }}>Here is what our Clients are saying About us</div>
                         <div className='p-4 bg-light rounded'>
                             <img className="d-block w-100" src={bgimg} alt="second slide" />
                         </div>
@@ -28,8 +28,8 @@ export function ClientReviews() {
                 );
             case 3:
                 return (
-                    <div className="mt-4 p-4 ">
-                        <h2 className='clientreviewh2' style={{ marginBottom: "5vh", textAlign: "center" , color:"#001E6C"}}>Here is what our Clients are saying About us</h2>
+                    <div className=" p-4 ">
+                        <div className='clientreviewh2' style={{ marginBottom: "5vh", textAlign: "center" , color:"#001E6C"}}>Here is what our Clients are saying About us</div>
                         <div className=' p-4 bg-light rounded'>
                             <img className="d-block w-100" src={bgimg} alt="third slide" />
                         </div>
@@ -62,9 +62,9 @@ export function ClientReviews() {
                 <div>
                     {renderContent()}
                 </div>
-                <nav className='mt-3'>
+                <nav className='mt-2'>
                     <ul className="d-flex align-items-center  justify-content-center">
-                        <span className='bi bi-chevron-left mx-4 fs-3' onClick={leftarrowclick} style={{color:"#001E6C"}}></span>
+                        <span className='bi bi-chevron-left me-4 ' onClick={leftarrowclick} style={{color:"#001E6C"}}></span>
 
                         <li className="page-dot" onClick={() => setCurrentPage(1)} 
                             style={{color: currentPage === 1 ? bullutclr : 'white'}}>
@@ -79,7 +79,7 @@ export function ClientReviews() {
                             <span className="page"></span>
                         </li>
 
-                        <span className='bi bi-chevron-right fs-3 mx-4' onClick={rightarrowclick} style={{color:"#001E6C"}}></span>
+                        <span className='bi bi-chevron-right mx-4' onClick={rightarrowclick} style={{color:"#001E6C"}}></span>
                     </ul>
                 </nav>
             </div>
