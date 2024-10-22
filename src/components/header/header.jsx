@@ -74,13 +74,22 @@ export function Header() {
 
   const confirmationLetterclick = () => {
     navigate("/confirmationlatter");
-  };
 
+  };
+function mainlogoclicked(){
+  navigate("/")
+  setIsMenuOpen("home");
+}
+function loginbtnclick(){
+  if(!cookies){
+    navigate('/login')
+  }
+}
   return (
     <div>
       <header className="headerw">
         <div>
-          <img src={logo} alt="Sailorswave logo" style={{ width: "100%" }} />
+          <img src={logo} onClick={mainlogoclicked} alt="Sailorswave logo" style={{ width: "100%" }} />
         </div>
         <nav className="text-center headernav">
           <span
@@ -116,7 +125,7 @@ export function Header() {
             Contact us
           </span>
         </nav>
-        <div className="d-flex justify-content-end" onClick={()=>navigate('/login')}>
+        <div className="d-flex justify-content-end" onClick={loginbtnclick}>
           <span
             className={`${displayStyleLogin} d-flex login-button btn ms-4`}
             style={{ backgroundColor: "#F97D3D", borderRadius: "2rem" }}
@@ -165,8 +174,8 @@ export function Header() {
                     </span>
                   </div>
                   <div className="dropdown-divider"></div>
-                  <div className="dropdown-item">Apply Now</div>
-                  <div className="dropdown-item" onClick={myApplicationclick}>
+                  <div className="dropdown-item" onClick={myApplicationclick}>Apply Now</div>
+                  <div className="dropdown-item" >
                     My Application
                   </div>
                   <div className="dropdown-item">My Admit Cards</div>

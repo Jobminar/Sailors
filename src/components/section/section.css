@@ -13,7 +13,6 @@
 .section-whychoseus{
     display: grid;
     grid-template-columns: 7fr 5fr;
-    /* font-size: 3em; */
 }
 .content-section-container{
     padding-top: 2% ;
