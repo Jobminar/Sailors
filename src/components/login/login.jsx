@@ -82,11 +82,11 @@ const Login = () => {
             </div>
 
             <div className={`verifiloginPage  ${showLogin ? (isSuccessful ? 'd-none':'d-grid'): 'd-none'}`}>
-                <div>
+                <div className='loginimg'>
                     <img src={img2} className='img' alt="Verification Image" />
                 </div>
                 <div>
-                    <div className='text-center'>
+                    <div className='text-center loginimg'>
                         <img src={logo} style={{ height: '188px', width: '389px' }} alt="Logo" />
                     </div>
                     <Formik
@@ -105,14 +105,14 @@ const Login = () => {
                         {form => (
                             <Form className='text-center mt-5 pt-5'>
                                 <h2 className='text-center mt-4'>Verification</h2>
-                                <p className='text-dark-emphasis mb-4'>Enter the 4-digit code sent to your email.</p>
-                                <div className='pe-5 d-flex justify-content-center gap-4'>
+                                <p className='text-dark-emphasis mb-4'>Enter the 4-digit code sent to your Number.</p>
+                                <div className='d-flex justify-content-center gap-4'>
                                     {['otp1', 'otp2', 'otp3', 'otp4'].map((otp, index) => (
                                         <Field
                                             key={otp}
                                             name={otp}
                                             type='text'
-                                            className='form-control border border-1 border-dark-subtle'
+                                            className='form-control border border-1 border-dark shadow'
                                             style={{ width: '50px', fontSize: '24px', textAlign: 'center' }}
                                             maxLength={1}
                                             innerRef={el => otpRefs.current[index] = el}
