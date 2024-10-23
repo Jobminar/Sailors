@@ -89,9 +89,8 @@ const ApplicationForm = () => {
     formData.append('passport', files.passport);
     formData.append('class10th', files.class10th);
     formData.append('aadhar', files.aadhar);
-
     try {
-      const response = await fetch('http://localhost:7000/userformsubmit', {
+      const response = await fetch('http://localhost:7001/userformsubmit', {
         method: 'POST',
         body: formData,
       });
