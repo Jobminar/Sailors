@@ -9,13 +9,15 @@ import success from '../../assets/Images/image3.png';
 // import bgimg from '../../assets/Images/imagebg.png';
 import loginimg from '../../assets/Images/loginimgsm.png';
 import indiaimg from '../../assets/Images/india.png'
+import { useCookies } from 'react-cookie';
 
 const Login = () => {
     const [timer, setTimer] = useState(30);
     const [showLogin, setShowLogin] = useState(false);
     const [isSuccessful, setIsSuccessful] = useState(false);
     const otpRefs = useRef([null, null, null, null]);
-
+    const [cookies,setcookie,removecookie]=useCookies(["usernumber"])
+//////////////////////////////we have to make a api call on basic of their gmail and on basis of mail id we will get user application number
     useEffect(() => {
         let interval;
         if (showLogin && timer > 0) {
@@ -24,7 +26,7 @@ const Login = () => {
             }, 1000);
         }
         return () => clearInterval(interval);
-    }, [showLogin, timer]);
+    }, [showLogin, timer,cookies]);
 
     const toggleLoginView = () => {
         setShowLogin(!showLogin);
@@ -34,6 +36,7 @@ const Login = () => {
         const value = event.target.value;
         if (value.length === 1 && index < otpRefs.current.length - 1) {
             otpRefs.current[index + 1].focus(); // Move to the next input field
+            
         }
     };
 
@@ -53,6 +56,7 @@ const Login = () => {
                         })}
                         onSubmit={(values) => {
                             alert('User Number is: ' + values.userNumber);
+                            setcookie("usernumber",values.userNumber)
                             toggleLoginView();
                         }}
                     >

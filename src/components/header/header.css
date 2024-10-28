@@ -51,13 +51,13 @@
 .headerr{
     display: none;
 }
-@media(max-width:950px){
+@media(max-width:1020px){
     .headerw{
         font-size: .9rem;
     }
    
 }
-@media(max-width:580px){
+@media(max-width:768px){
     .headerr{
         margin: 2% 2% ;
         /* height:5vh ; */
