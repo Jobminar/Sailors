@@ -1,3 +1,14 @@
 .table-container{
     width:87%;
 }
+@media only screen and (max-width: 768px) {
+    .rotate {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        display: flex;
+        flex-direction: column; /* Stacks items vertically */
+        align-items: center;
+        width: 100vh;
+        height: 100vw;
+    }
+}

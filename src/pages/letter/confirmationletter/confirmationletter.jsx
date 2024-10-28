@@ -1,24 +1,25 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import imgicons from '../../../assets/Images/Writingimage.png'
+import './confirmationletter.css'
+import axios from "axios";
 
 const ConfirmationLetter = () => {
-    const [confirmLetters, setConfirmLetter] = useState([
-        {
-            serialNo: "01",
-            applicationNo: "xxxxxxxxxx",
-            submittedApplication: "21/06/24",
-            applicationStatus: "Received",
-            admitCardStatus: "N/A",
-            downloadAdmitCard: "N/A",
-            interviewDate: "N/A",
-            interviewFeedback: "N/A",
-            selectionLetter: "N/A",
-            confirmationLetter: "N/A",
-            comments: "N/A"
-        }
-    ])
-    
+    const [confirmLetters, setConfirmLetter] = useState([])
+
     const letterInputRef = useRef(null);
+
+    const Fetchdata = async () => {
+        try {
+            const user = await axios.get('http://127.0.0.1:7001/candidates')
+            setConfirmLetter(user.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        Fetchdata()
+    }, [])
+
 
     const handleLetterclick = () => {
         letterInputRef.current.click();
@@ -30,10 +31,16 @@ const ConfirmationLetter = () => {
             console.log("File selected:", file.name);
         }
     };
+
+    const handleViewDocument = (filename) => {
+        const url = `http://127.0.0.1:7001/fileById/${filename}`;
+        window.location.href = url;
+    };
+
     return (
         <>
-            <div style={{ margin: '150px 30px' }}>
-                <div className=" container">
+            <div style={{ margin: '150px 30px' }} className="Maindiv">
+                <div className="container">
                     <div>
                         <img src={imgicons} alt="imgicon" style={{ cursor: "pointer", fontSize: "24px" }}
                             onClick={handleLetterclick} />
@@ -66,16 +73,17 @@ const ConfirmationLetter = () => {
                                 confirmLetters.map((confirmLetter, i) =>
                                     <tr>
                                         <td>{i + 1}</td>
-                                        <td>{confirmLetter.applicationNo}</td>
-                                        <td>{confirmLetter.submittedApplication}</td>
-                                        <td>{confirmLetter.applicationStatus}</td>
-                                        <td>{confirmLetter.admitCardStatus}</td>
-                                        <td>{confirmLetter.downloadAdmitCard}</td>
-                                        <td>{confirmLetter.interviewDate}</td>
-                                        <td>{confirmLetter.interviewFeedback}</td>
-                                        <td>{confirmLetter.selectionLetter}</td>
-                                        <td>{confirmLetter.confirmationLetter}</td>
-                                        <td>{confirmLetter.comments}</td>
+                                        <td>{confirmLetter.applicationId}</td>
+                                        <td>date</td>
+                                        <td>{confirmLetter.applicationstatus.status}</td>
+                                        <td>{confirmLetter.admitcard.status}</td>
+                                        <td onClick={() => handleViewDocument(confirmLetter.passport)} // Pass the filename
+                                        ><button className="btn" >{confirmLetter?.downloadAdmitCard} download</button></td>
+                                        <td>{confirmLetter.admitcard.date}</td>
+                                        <td>{confirmLetter.interviewoutcome.interviewFeedback}</td>
+                                        <td>{confirmLetter.selectionletter.status}</td>
+                                        <td>{confirmLetter.confirmationletter.status}</td>
+                                        <td>{(confirmLetter.Commants ? '' : 'No comments')}</td>
                                     </tr>
                                 )
                             }

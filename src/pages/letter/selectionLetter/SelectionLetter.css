@@ -24,26 +24,21 @@
     margin-left: 100px;
 }
 
-.table-container{
-    /* border: 2px solid red; */
-    margin-left: 100px;
-    width: 1240px;
-    margin-top: 0px; 
-    
-    /* border-radius: 5px; */
-    /* margin-bottom: 20px;*/
-    margin-bottom: 350px; 
-    
-}
-
 .th-first-row{
     width: 26px;
     height: 15px;
     color: yellow;
 
 }
-/* .first-row{
-    color: #d01010;
-    font-family: "Inter";
-    font-weight: 400;
-} */
+
+@media only screen and (orientation: portrait){
+    .rotate{
+        transform: rotate(90deg);
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 80%;
+    }
+}

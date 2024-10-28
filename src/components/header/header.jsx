@@ -210,16 +210,12 @@ function signoutclick(){
                     </span>
                   </div>
                   <div className="dropdown-divider"></div>
-                  <div className="dropdown-item" onClick={()=>Applynowclick()}>Apply Now</div>
-                  <div className="dropdown-item"  onClick={()=>myApplicationclick(formData.applicationId)}>
-                    My Application
-                  </div>
-                  <div className="dropdown-item">My Admit Cards</div>
-                  <div className="dropdown-item" onClick={myResultclick}>
-                    My Results
-                  </div>
-                  <div className="dropdown-item">Selection Letters</div>
-                  <div className="dropdown-item">Upload Docx</div>
+                  <div className="dropdown-item" onClick={()=>navigate("/application")}>Apply Now</div>
+                  <div className="dropdown-item" onClick={()=>navigate('/applicationletter')} >My Application</div>
+                  <div className="dropdown-item" onClick={()=>navigate('/myadmitcard')}>My Admit Cards</div>
+                  <div className="dropdown-item" onClick={()=>navigate('/myresult')}>My Results</div>
+                  <div className="dropdown-item" onClick={()=>navigate('/selectionletter')}>Selection Letters</div>
+                  <div className="dropdown-item" onClick={()=>navigate('/documentsailorwave')} >Upload Docx</div>
                   <div className="dropdown-item" onClick={confirmationLetterclick}>
                     Confirmation Letters
                   </div>
@@ -258,7 +254,7 @@ function signoutclick(){
               <img src={logo} width={100} alt="Logo" />
             </span>
           </div>
-          <div className="d-flex justify-content-end" onClick={()=>navigate('/login')}>
+          <div className="d-flex justify-content-end" onClick={()=>cookies.user?'':navigate('/login')}>
             <span
               className="btnapply text-light d-flex login-button btn"
               style={{ backgroundColor: "#F97D3D", borderRadius: "2rem" }}
