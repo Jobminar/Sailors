@@ -1,108 +1,68 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import writingImage from "../../../assets/Images/Writingimage.png";
 import "./SelectionLetter.css";
+import axios from "axios";
 const SelectionLetter = () => {
-  const [data] = useState([
-    {
-      Slno: 1,
-      ApplicationNo: "xxxxx",
-      SubmittedApplication: "21/06/24",
-      ApplicationStatus: "Received",
-      AdmitCardStatus: "N/A",
-      DownloadAdmitCard: "N/A",
-      InterviewDate: "N/A",
-      InterviewFeedback: "N/A",
-      SelectionLetter: "N/A",
-      ConfirmationLetter: "N/A",
-      Commants: "NIL",
-    },
-    {
-      Slno: 1,
-      ApplicationNo: "xxxxx",
-      SubmittedApplication: "21/06/24",
-      ApplicationStatus: "Approved",
-      AdmitCardStatus: "N/A",
-      DownloadAdmitCard: "N/A",
-      InterviewDate: "N/A",
-      InterviewFeedback: "N/A",
-      SelectionLetter: "N/A",
-      ConfirmationLetter: "N/A",
-      Commants: "NIL",
-    },
-    {
-      Slno: 1,
-      ApplicationNo: "xxxxx",
-      SubmittedApplication: "21/06/24",
-      ApplicationStatus: "Rejected",
-      AdmitCardStatus: "N/A",
-      DownloadAdmitCard: "N/A",
-      InterviewDate: "N/A",
-      InterviewFeedback: "N/A",
-      SelectionLetter: "N/A",
-      ConfirmationLetter: "N/A",
-      Commants: "NIL",
-    },
-    {
-      Slno: 1,
-      ApplicationNo: "xxxxx",
-      SubmittedApplication: "21/06/24",
-      ApplicationStatus: "Approved",
-      AdmitCardStatus: "N/A",
-      DownloadAdmitCard: "N/A",
-      InterviewDate: "N/A",
-      InterviewFeedback: "N/A",
-      SelectionLetter: "N/A",
-      ConfirmationLetter: "N/A",
-      Commants: "NIL",
-    },
-  ]);
+  const [data, setdata] = useState([]);
+  const handleViewDocument = (filename) => {
+    const url = `http://127.0.0.1:7001/fileById/${filename}`;
+    window.location.href = url;
+}
 
+  const Fetchdata = async () => {
+    try {
+      const user = await axios.get('http://127.0.0.1:7001/candidates')
+      setdata(user.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    Fetchdata()
+  }, [])
   return (
     <>
       <section>
-        <div className="container-for-selection-letter">
-          <img
-            src={writingImage}
-            alt="selection-letter-image"
-            className="selection-letter-image"
-          />
-          <h4 className="heading-for-selection-letter">Selection Letters</h4>
-        </div>
-        <div>
-          <table className="table table-bordered mt-4 border-dark table-container">
-            <thead>
-              <tr>
-                <th>S.no</th>
-                <th>Application No.</th>
-                <th>Submitted Application</th>
-                <th>Application Status</th>
-                <th>Admit card status</th>
-                <th>Download Admit card</th>
-                <th>Interview date</th>
-                <th>Interview Feedback</th>
-                <th>Selection letter</th>
-                <th>Confirmation letter</th>
-                <th>Comments</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((result, i) => (
+        <div style={{ margin: '150px 30px' }} className="rotate">
+          <div className="pb-3">
+            <img src={writingImage} alt="imgicon" style={{ cursor: "pointer", fontSize: "24px" }} /><span style={{ color: '#303C6C', paddingLeft: "15px" }}>Selection Letters</span>
+          </div>
+          <div>
+            <table className="table table-bordered mt-4 border-dark ">
+              <thead>
                 <tr>
-                  <td>{i + 1}</td>
-                  <td>{result.ApplicationNo}</td>
-                  <td>{result.SubmittedApplication}</td>
-                  <td>{result.ApplicationStatus}</td>
-                  <td>{result.AdmitCardStatus}</td>
-                  <td>{result.DownloadAdmitCard}</td>
-                  <td>{result.InterviewDate}</td>
-                  <td>{result.InterviewFeedback}</td>
-                  <td>{result.SelectionLetter}</td>
-                  <td>{result.ConfirmationLetter}</td>
-                  <td>{result.Commants}</td>
+                  <th>S.no</th>
+                  <th>Application No.</th>
+                  <th>Submitted Application</th>
+                  <th>Application Status</th>
+                  <th>Admit card status</th>
+                  <th>Download Admit card</th>
+                  <th>Interview date</th>
+                  <th>Interview Feedback</th>
+                  <th>Selection letter</th>
+                  <th>Confirmation letter</th>
+                  <th>Comments</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {data.map((result, i) => (
+                  <tr>
+                    <td>{i + 1}</td>
+                    <td>{result.applicationId}</td>
+                    <td>Date</td>
+                    <td>{result.applicationstatus.status}</td>
+                    <td>{result.admitcard.status}</td>
+                    <td onClick={() => handleViewDocument(result.passport)}><button className="btn" >{result?.downloadAdmitCard} download</button></td>
+                    <td>{result.admitcard.date}</td>
+                    <td>{result.interviewoutcome.interviewFeedback}</td>
+                    <td>{result.selectionletter.status}</td>
+                    <td>{result.confirmationletter.status}</td>
+                    <td>{result.Commants}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
     </>

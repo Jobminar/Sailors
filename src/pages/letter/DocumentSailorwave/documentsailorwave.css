@@ -4,3 +4,15 @@
 .documentsailorwavebody  td{
     align-content: center;
 }
+
+@media only screen and (orientation: portrait){
+    .rotate{
+        transform: rotate(90deg);
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 120vh;
+        width: 80%;
+    }
+}

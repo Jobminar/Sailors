@@ -51,27 +51,30 @@
 .headerr{
     display: none;
 }
-@media(max-width:1020px){
+@media (min-width: 769px) and (max-width:1020px){
     .headerw{
         font-size: .9rem;
     }
+    .headerr{
+        display: none;
+    }
    
 }
-@media(max-width:768px){
+@media (min-width: 0px) and (max-width:768px){
     .headerr{
         margin: 2% 2% ;
         /* height:5vh ; */
         display: grid;
         grid-template-columns: 6fr 6fr;
         align-items: center;
-         font-size: 25px;
+        font-size: 25px;
     }
     .headerw{
         display: none;
     }
     .btnapply{
-        padding-left: 14%;
-        padding-right: 14%;
+        padding-left: 10%;
+        padding-right: 10%;
     }
     .dropdown-item:hover {
         background-color: #F88035;

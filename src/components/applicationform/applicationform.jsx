@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Grid, TextField, MenuItem, Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
+import './applicationfrom.css'
 
 const ApplicationForm = () => {
   const [files, setFiles] = useState({
@@ -117,7 +118,7 @@ const ApplicationForm = () => {
   return (
     <>
       <div className="p-3 p-sm-0 d-flex justify-content-center">
-        <div className=" w-75 px-5 p-sm-0">
+        <div className="responce">
           <div className="p-4 mb-3 fs-2 text-center">
             <div>Application Form for Merchant Navy</div>
             <div>Application for Admission in Marine Training</div>

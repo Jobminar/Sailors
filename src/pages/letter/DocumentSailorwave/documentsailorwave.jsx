@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import './documentsailorwave.css'
 import axios from "axios";
 
@@ -18,6 +18,19 @@ const Documentsailorwave = () => {
             uploadDocuments: "Upload"
         }
     ]);
+
+    const Fetchdata = async()=>{
+        try{
+          const user = await axios.get('http://127.0.0.1:7001/candidates')
+          setApplicationData(user.data)
+        }catch(error){
+          console.log(error)
+        }
+      }
+      useEffect(()=>{
+        Fetchdata()
+      },[])
+
     const [file,  setFile] = useState(null);
     const fileInputRef = useRef(null);
 
@@ -50,26 +63,15 @@ const Documentsailorwave = () => {
         }
     };
 
-    const handleViewDocument = async (filename) => {
-        try {
-            const response = await axios.get(`http://localhost:2024/file/${filename}`, {
-                responseType: 'blob' 
-            });
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', filename); 
-            document.body.appendChild(link);
-            link.click();
-        } catch (error) {
-            console.error('Error fetching document:', error);
-        }
+    const handleViewDocument = (filename) => {
+        const url = `http://127.0.0.1:7001/fileById/${filename}`;
+        window.location.href = url;
     };
 
     return (
         <>
-            <div style={{ margin: '200px 30px' }}>
-                <div className="container">
+            <div style={{ margin: '200px 30px' }} className="rotate">
+                <div>
                     <table className="table table-bordered ">
                         <thead>
                             <tr className="documentsailorwavehead" >
@@ -91,21 +93,19 @@ const Documentsailorwave = () => {
                                 applicationData.map((val, index) =>
                                     <tr className="text-center documentsailorwavebody" key={index}>
                                         <td >{index + 1}</td>
-                                        <td >{val.applicationNumber}</td>
-                                        <td >{val.submittedApplication}</td>
+                                        <td >{val?.applicationId}</td>
+                                        <td >Date</td>
                                         <td >
-                                            {val.applicationStatus}
+                                            {val?.applicationstatus?.status}
                                             <span className="bi bi-check-circle-fill text-success ms-4"></span>
                                         </td>
-                                        <td >{val.admitCardStatus}</td>
-                                        <td
-
-                                            onClick={() => handleViewDocument("d5446928d824751baa25ad6dd045ec57.png")} // Pass the filename
-                                        ><button className="btn " >{val.downloadAdmitCard}</button></td>
-                                        <td >{val.interviewDate}</td>
-                                        <td >{val.interviewFeedback}</td>
-                                        <td >{val.outcome}</td>
-                                        <td >{val.comments}</td>
+                                        <td >{val?.admitcard?.status}</td>
+                                        <td onClick={() => handleViewDocument(val.passport)} // Pass the filename
+                                        ><button className="btn" >{val?.downloadAdmitCard} download</button></td>
+                                        <td >{val?.admitcard?.date}</td>
+                                        <td >{val?.interviewoutcome?.interviewFeedback}</td>
+                                        <td >{val?.interviewoutcome?.interviewFeedback}</td>
+                                        <td >{val?.comments} No Comments</td>
                                         <td>
                                             {val.uploadDocuments}
                                             <span
