@@ -99,15 +99,6 @@ export function InterviewLetterHead3(param) {
                 </div>
               </div>
             </div>
-            {/* <div>
-            <div className="footer w-75 footer-container text-white px-4 ">
-              <i className="bi bi-telephone p-2"></i>
-              <p className="p-2">+91 7994703181</p>
-              <i class="bi bi-envelope p-2"></i>
-              <span className="p-2">sailorswaveshipmanagement@gmail.com</span>
-            </div>
-            <div className="footer-container-2 ">sdvsdv</div>
-          </div> */}
             <div className="footerBg">
               <div className="shape1 p-2 d-flex ">
                 <span className="d-flex">

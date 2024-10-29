@@ -1,45 +1,23 @@
+
 import "./header.css";
 import logo from "../../assets/Images/logo.png";
 import dp from "../../assets/Images/dp-dummy.png";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Logout } from "@mui/icons-material";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState("home");
   const [displayStyleLogin, setDisplayStyleLogin] = useState("d-none");
-  const [cookies,setCookie, removeCookie] = useCookies();
+  const [cookies, removecookie] = useCookies(["user"]);
   const [dropdownVisible, setDropdownVisible] = useState(false); // Desktop dropdown
   const [dropdownmobile, setDropdownMobile] = useState(false); // Mobile dropdown
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768); // Detect mobile view
-  const [formData, setFormData] = useState({});
-  
+
   let navigate = useNavigate();
 
-  const Getuserdata = async () => {
-    try {
-      const values = await axios.get('http://127.0.0.1:7001/candidates');
-      console.log(values.data);
-      const userdata = values.data
-      const finduser = userdata.find((user) => (user.mobileNumber) == parseInt(cookies.usernumber));
-      console.log(finduser);
-      
-      if (finduser) {
-        setFormData(finduser);
-    } else {
-        console.log("User  not found");
-    }
-    } catch (error) {
-      console.log(error)
-    }
-  }
   useEffect(() => {
-    Getuserdata();
-  },[cookies])
-  useEffect(() => {
-    if (cookies.usernumber) {
+    if (cookies.user) {
       setDisplayStyleLogin("d-none");
     } else {
       setDisplayStyleLogin("d-block");
@@ -87,40 +65,14 @@ export function Header() {
     setDropdownMobile(!dropdownmobile);
   };
 
-  function myApplicationclick(applicationNo) {
-    if(applicationNo){
-    navigate(`/myapplicationform/${applicationNo}`);
-
-    }
-  }
-  function Applynowclick(){
-   navigate('/application')
-
-   }
-
-  function myResultclick() {
-    navigate("/myresult");
-  }
-
   const confirmationLetterclick = () => {
     navigate("/confirmationlatter");
 
   };
-function mainlogoclicked(){
-  navigate("/")
-  setIsMenuOpen("home");
-}
-function loginbtnclick(){
-  if(!cookies.usernumber){
-    navigate('/login')
+  function mainlogoclicked() {
+    navigate("/")
+    setIsMenuOpen("home");
   }
-}
-function signoutclick(){
-  if(cookies){
-    removeCookie(["usernumber"])
-    navigate('/')
-  }
-}
   return (
     <div>
       <header className="headerw">
@@ -161,7 +113,7 @@ function signoutclick(){
             Contact us
           </span>
         </nav>
-        <div className="d-flex justify-content-end" onClick={loginbtnclick}>
+        <div className="d-flex justify-content-end" onClick={() => cookies.user ? '' : navigate('/login')}>
           <span
             className={`${displayStyleLogin} d-flex login-button btn ms-4`}
             style={{ backgroundColor: "#F97D3D", borderRadius: "2rem" }}
@@ -169,11 +121,11 @@ function signoutclick(){
             <span>
               <button className="bi bi-person-fill text-light border rounded-circle bg-dark"></button>
             </span>
-            <span className="text-light" style={{ marginLeft: "10px" }} >
+            <span className="text-light" style={{ marginLeft: "10px" }}>
               Login
             </span>
           </span>
-          {cookies.usernumber && (
+          {cookies.user && (
             <div className="dropdown ms-4">
               <button
                 className="btn d-flex align-items-center"
@@ -189,7 +141,7 @@ function signoutclick(){
                   />
                 </span>
                 <span className="loginbtn text-light ms-2">
-                  {formData.candidateName}
+                  {cookies.user}
                   <span className="ms-2 bi bi-chevron-down"></span>
                 </span>
               </button>
@@ -205,25 +157,26 @@ function signoutclick(){
                       />
                     </span>
                     <span>
-                      <div>{formData.candidateName}</div>
-                      <div className="text-secondary">{cookies.usernumber}</div>
+                      <div>{cookies.user}</div>
+                      <div className="text-secondary">9390373702</div>
                     </span>
                   </div>
                   <div className="dropdown-divider"></div>
-                  <div className="dropdown-item" onClick={()=>navigate("/application")}>Apply Now</div>
-                  <div className="dropdown-item" onClick={()=>navigate('/applicationletter')} >My Application</div>
-                  <div className="dropdown-item" onClick={()=>navigate('/myadmitcard')}>My Admit Cards</div>
-                  <div className="dropdown-item" onClick={()=>navigate('/myresult')}>My Results</div>
-                  <div className="dropdown-item" onClick={()=>navigate('/selectionletter')}>Selection Letters</div>
-                  <div className="dropdown-item" onClick={()=>navigate('/documentsailorwave')} >Upload Docx</div>
+                  <div className="dropdown-item" onClick={() => navigate("/application")}>Apply Now</div>
+                  <div className="dropdown-item" onClick={() => navigate('/applicationletter')} >My Application</div>
+                  <div className="dropdown-item" onClick={() => navigate('/myadmitcard')}>My Admit Cards</div>
+                  <div className="dropdown-item" onClick={() => navigate('/myresult')}>My Results</div>
+                  <div className="dropdown-item">Selection Letters</div>
+                  <div className="dropdown-item" onClick={() => navigate('/documentsailorwave')} >Upload Docx</div>
                   <div className="dropdown-item" onClick={confirmationLetterclick}>
                     Confirmation Letters
                   </div>
                   <div className="dropdown-divider"></div>
                   <div
                     className="bi bi-box-arrow-left dropdown-item text-danger"
+                    onClick={() => removecookie("user")}
                   >
-                    <span className="ms-1" onClick={()=>signoutclick()}>Sign Out</span>
+                    <span className="ms-1">Sign Out</span>
                   </div>
                 </div>
               )}
@@ -237,16 +190,12 @@ function signoutclick(){
             <div className="dropdown">
               <span onClick={toggleMobileDropdown} className="bi bi-list"></span>
               {dropdownmobile && (
-                <div className="dropdown-menu  text-dark show mt-4" style={{width:"250px",  left: 0 }}>
-                  <div className="dropdown-item"id="home"  onClick={navitemclicked}>Home</div>
+                <div className="dropdown-menu  text-dark show mt-4" style={{ width: "250px", left: 0 }}>
+                  <div className="dropdown-item" id="home" onClick={navitemclicked}>Home</div>
                   <div className="dropdown-item" id="about" onClick={navitemclicked}>About us</div>
-                  <div className="dropdown-item" id="contact" onClick={navitemclicked}>
-                    Contact
-                  </div>
-                  <div className="dropdown-item" id="services"  onClick={navitemclicked}>Our services</div>
-                  <div className="dropdown-item" >
-                    Login/Signup
-                  </div>
+                  <div className="dropdown-item" id="contact" onClick={navitemclicked}>Contact</div>
+                  <div className="dropdown-item" id="services" onClick={navitemclicked}>Our services</div>
+                  <div className="dropdown-item" >Login/Signup</div>
                 </div>
               )}
             </div>
@@ -254,16 +203,52 @@ function signoutclick(){
               <img src={logo} width={100} alt="Logo" />
             </span>
           </div>
-          <div className="d-flex justify-content-end" onClick={()=>cookies.user?'':navigate('/login')}>
+          <div className="d-flex justify-content-end" onClick={() => cookies.user ? '' : navigate('/login')}>
             <span
               className="btnapply text-light d-flex login-button btn"
               style={{ backgroundColor: "#F97D3D", borderRadius: "2rem" }}
             >
               Apply now
             </span>
+            {dropdownmobile && (
+              <div className="dropdown-menu show mt-2">
+                <div className="dropdown-item d-flex">
+                  <span>
+                    <img
+                      src={dp}
+                      alt="Profile"
+                      className="rounded-circle me-2"
+                      style={{ width: "40px" }}
+                    />
+                  </span>
+                  <span>
+                    <div>{cookies.user}</div>
+                    <div className="text-secondary">9390373702</div>
+                  </span>
+                </div>
+                <div className="dropdown-divider"></div>
+                <div className="dropdown-item" onClick={() => navigate("/application")}>Apply Now</div>
+                <div className="dropdown-item" onClick={() => navigate('/applicationletter')} >My Application</div>
+                <div className="dropdown-item" onClick={() => navigate('/myadmitcard')}>My Admit Cards</div>
+                <div className="dropdown-item" onClick={() => navigate('/myresult')}>My Results</div>
+                <div className="dropdown-item">Selection Letters</div>
+                <div className="dropdown-item" onClick={() => navigate('/documentsailorwave')} >Upload Docx</div>
+                <div className="dropdown-item" onClick={confirmationLetterclick}>
+                  Confirmation Letters
+                </div>
+                <div className="dropdown-divider"></div>
+                <div
+                  className="bi bi-box-arrow-left dropdown-item text-danger"
+                  onClick={() => removecookie("user")}
+                >
+                  <span className="ms-1">Sign Out</span>
+                </div>
+              </div>
+            )
+            }
           </div>
         </header>
       )}
     </div>
   );
-}
+} 

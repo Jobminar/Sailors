@@ -39,8 +39,8 @@ const Routing = () => {
           <Route path='/myapplicationform/:applicationNo' element={<ShowmyapplicationForm/>} />
           <Route path="/about" element={<AboutRoute />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/selectionletterhead" element={<Selectionletterhead />} />
-          <Route path="/confirmationletterhead" element={<Confirmationletterhead />} />
+          <Route path="/selectionletterhead/:id" element={<Selectionletterhead />} />
+          <Route path="/confirmationletterhead/:id" element={<Confirmationletterhead />} />
           <Route path="/myresult" element={<Myresult />} />
           <Route path="/confirmationlatter" element={<ConfirmationLetter />} />
           <Route path="/selectionletter" element={<SelectionLetter />} />

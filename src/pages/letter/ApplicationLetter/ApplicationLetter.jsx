@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import myapplication from "../../../assets/Images/appLetterimage.png";
 import "./ApplicationLetter.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const ApplicationLetter = () => {
   const [data, setuserdata] = useState([])
+  const navigate = useNavigate('')
 
   const handleViewDocument = (filename) => {
     const url = `http://127.0.0.1:7001/fileById/${filename}`;
@@ -55,8 +57,7 @@ const ApplicationLetter = () => {
                     <td>date</td>
                     <td>{confirmLetter.applicationstatus.status}</td>
                     <td>{confirmLetter.admitcard.status}</td>
-                    <td onClick={() => handleViewDocument(confirmLetter.passport)} // Pass the filename
-                    ><button className="btn" >{confirmLetter?.downloadAdmitCard} download</button></td>
+                    <td onClick={() => navigate(`/selectionletterhead/${confirmLetter.applicationId}`)}><button className="btn" >download</button></td>
                     <td>{confirmLetter.admitcard.date}</td>
                     <td>{confirmLetter.interviewoutcome.interviewFeedback}</td>
                     <td>{confirmLetter.selectionletter.status}</td>

@@ -24,7 +24,7 @@ const Myadmitcard = () => {
   return (
     <>
       <section>
-        <div style={{ margin: '150px 30px' }} className="rotate">
+        <div style={{ margin: '0px 30px' }} className="rotate">
           <div className="pb-3">
             <img src={writingImage} alt="imgicon" style={{ cursor: "pointer", fontSize: "24px" }} /><span style={{ color: '#303C6C', paddingLeft: "15px" }}>My Admit Cards</span>
           </div>

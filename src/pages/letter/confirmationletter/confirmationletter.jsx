@@ -2,11 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import imgicons from '../../../assets/Images/Writingimage.png'
 import './confirmationletter.css'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ConfirmationLetter = () => {
     const [confirmLetters, setConfirmLetter] = useState([])
-
     const letterInputRef = useRef(null);
+    const navigate = useNavigate('')
 
     const Fetchdata = async () => {
         try {
@@ -77,8 +78,7 @@ const ConfirmationLetter = () => {
                                         <td>date</td>
                                         <td>{confirmLetter.applicationstatus.status}</td>
                                         <td>{confirmLetter.admitcard.status}</td>
-                                        <td onClick={() => handleViewDocument(confirmLetter.passport)} // Pass the filename
-                                        ><button className="btn" >{confirmLetter?.downloadAdmitCard} download</button></td>
+                                        <td onClick={() => navigate(`/confirmationletterhead/${confirmLetter.applicationId}`)}><button className="btn" >{confirmLetter?.downloadAdmitCard} download</button></td>
                                         <td>{confirmLetter.admitcard.date}</td>
                                         <td>{confirmLetter.interviewoutcome.interviewFeedback}</td>
                                         <td>{confirmLetter.selectionletter.status}</td>

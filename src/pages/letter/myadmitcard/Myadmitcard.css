@@ -9,6 +9,6 @@
         flex-direction: column; /* Stacks items vertically */
         align-items: center;
         width: 100vh;
-        height: 100vw;
+        /* height: 100vw; */
     }
 }
