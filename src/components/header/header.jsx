@@ -77,13 +77,13 @@ export function Header() {
     <div>
       <header className="headerw">
         <div>
-          <img src={logo} onClick={mainlogoclicked} alt="Sailorswave logo" style={{ width: "100%" }} />
+          <img src={logo} onClick={mainlogoclicked} alt="Sailorswave logo" style={{ width: "50%" }} />
         </div>
         <nav className="text-center headernav">
           <span
             className="fw-medium"
             id="home"
-            onClick={navitemclicked}
+            onClick={()=>navigate("/")}
             style={{ color: isMenuOpen === "home" ? "#F97D3D" : "black" }}
           >
             Home
@@ -91,7 +91,7 @@ export function Header() {
           <span
             className="fw-medium"
             id="about"
-            onClick={navitemclicked}
+            onClick={()=>navigate('/about')}
             style={{ color: isMenuOpen === "about" ? "#F97D3D" : "black" }}
           >
             About
@@ -99,7 +99,7 @@ export function Header() {
           <span
             className="fw-medium"
             id="services"
-            onClick={navitemclicked}
+            onClick={()=>navigate("/services")}
             style={{ color: isMenuOpen === "services" ? "#F97D3D" : "black" }}
           >
             Services
@@ -107,10 +107,18 @@ export function Header() {
           <span
             className="fw-medium"
             id="contact"
-            onClick={navitemclicked}
+            onClick={()=>navigate('/contact')}
             style={{ color: isMenuOpen === "contact" ? "#F97D3D" : "black" }}
           >
             Contact us
+          </span>
+          <span
+            className="fw-medium"
+            id="contact"
+            onClick={()=>navigate('/application')}
+            style={{ color: isMenuOpen === "contact" ? "#F97D3D" : "black" }}
+          >
+            ApplyNow
           </span>
         </nav>
         <div className="d-flex justify-content-end" onClick={() => cookies.user ? '' : navigate('/login')}>
@@ -191,10 +199,11 @@ export function Header() {
               <span onClick={toggleMobileDropdown} className="bi bi-list"></span>
               {dropdownmobile && (
                 <div className="dropdown-menu  text-dark show mt-4" style={{ width: "250px", left: 0 }}>
-                  <div className="dropdown-item" id="home" onClick={navitemclicked}>Home</div>
-                  <div className="dropdown-item" id="about" onClick={navitemclicked}>About us</div>
-                  <div className="dropdown-item" id="contact" onClick={navitemclicked}>Contact</div>
-                  <div className="dropdown-item" id="services" onClick={navitemclicked}>Our services</div>
+                  <div className="dropdown-item" id="home" onClick={()=>navigate("/")}>Home</div>
+                  <div className="dropdown-item" id="about" onClick={()=>navigate('/about')}>About us</div>
+                  <div className="dropdown-item" id="contact" onClick={()=>navigate('/contact')}>Contact</div>
+                  <div className="dropdown-item" id="services" onClick={()=>navigate("/services")}>Our services</div>
+                  <div className="dropdown-item" id="services" onClick={() =>navigate("/application")}>Apply Now</div>
                   <div className="dropdown-item" >Login/Signup</div>
                 </div>
               )}
@@ -233,9 +242,7 @@ export function Header() {
                 <div className="dropdown-item" onClick={() => navigate('/myresult')}>My Results</div>
                 <div className="dropdown-item">Selection Letters</div>
                 <div className="dropdown-item" onClick={() => navigate('/documentsailorwave')} >Upload Docx</div>
-                <div className="dropdown-item" onClick={confirmationLetterclick}>
-                  Confirmation Letters
-                </div>
+                <div className="dropdown-item" onClick={confirmationLetterclick}>Confirmation Letters</div>
                 <div className="dropdown-divider"></div>
                 <div
                   className="bi bi-box-arrow-left dropdown-item text-danger"

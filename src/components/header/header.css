@@ -17,9 +17,6 @@
 .headernav span:hover{
     cursor: pointer;
 }
-.headernav{
-    margin-left: 9%;
-}
 .dropdown-menu {
     position: absolute;
     background-color: white;
