@@ -24,6 +24,7 @@ import { Admitcard } from "./adminpanel/admitcard/admitcard";
 import { Dashboardadmin } from "./adminpanel/dashboardadmin/dashboardadmin";
 import { Dashboard } from "./adminpanel/dashboard/dashboard";
 import Myapplication from "./adminpanel/myapplication/myapplication";
+import ShowmyapplicationForm from "./pages/showmyapplication/showmyapplication";
 
 const Routing = () => {
   return (
@@ -35,6 +36,7 @@ const Routing = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<ContactHomepage />} />
           <Route path="/application" element={<ApplicationForm />} />
+          <Route path='/myapplicationform/:applicationNo' element={<ShowmyapplicationForm/>} />
           <Route path="/about" element={<AboutRoute />} />
           <Route path="/services" element={<Services />} />
           <Route path="/selectionletterhead" element={<Selectionletterhead />} />

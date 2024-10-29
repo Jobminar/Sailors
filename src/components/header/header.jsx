@@ -4,19 +4,42 @@ import dp from "../../assets/Images/dp-dummy.png";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Logout } from "@mui/icons-material";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState("home");
   const [displayStyleLogin, setDisplayStyleLogin] = useState("d-none");
-  const [cookies, removecookie] = useCookies(["user"]);
+  const [cookies,setCookie, removeCookie] = useCookies();
   const [dropdownVisible, setDropdownVisible] = useState(false); // Desktop dropdown
   const [dropdownmobile, setDropdownMobile] = useState(false); // Mobile dropdown
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768); // Detect mobile view
+  const [formData, setFormData] = useState({});
   
   let navigate = useNavigate();
 
+  const Getuserdata = async () => {
+    try {
+      const values = await axios.get('http://127.0.0.1:7001/candidates');
+      console.log(values.data);
+      const userdata = values.data
+      const finduser = userdata.find((user) => (user.mobileNumber) == parseInt(cookies.usernumber));
+      console.log(finduser);
+      
+      if (finduser) {
+        setFormData(finduser);
+    } else {
+        console.log("User  not found");
+    }
+    } catch (error) {
+      console.log(error)
+    }
+  }
   useEffect(() => {
-    if (cookies.user) {
+    Getuserdata();
+  },[cookies])
+  useEffect(() => {
+    if (cookies.usernumber) {
       setDisplayStyleLogin("d-none");
     } else {
       setDisplayStyleLogin("d-block");
@@ -73,8 +96,14 @@ function mainlogoclicked(){
   setIsMenuOpen("home");
 }
 function loginbtnclick(){
-  if(!cookies){
+  if(!cookies.usernumber){
     navigate('/login')
+  }
+}
+function signoutclick(){
+  if(cookies){
+    removeCookie(["usernumber"])
+    navigate('/')
   }
 }
   return (
@@ -125,11 +154,11 @@ function loginbtnclick(){
             <span>
               <button className="bi bi-person-fill text-light border rounded-circle bg-dark"></button>
             </span>
-            <span className="text-light" style={{ marginLeft: "10px" }}>
+            <span className="text-light" style={{ marginLeft: "10px" }} >
               Login
             </span>
           </span>
-          {cookies.user && (
+          {cookies.usernumber && (
             <div className="dropdown ms-4">
               <button
                 className="btn d-flex align-items-center"
@@ -145,7 +174,7 @@ function loginbtnclick(){
                   />
                 </span>
                 <span className="loginbtn text-light ms-2">
-                  {cookies.user}
+                  {formData.candidateName}
                   <span className="ms-2 bi bi-chevron-down"></span>
                 </span>
               </button>
@@ -161,8 +190,8 @@ function loginbtnclick(){
                       />
                     </span>
                     <span>
-                      <div>{cookies.user}</div>
-                      <div className="text-secondary">9390373702</div>
+                      <div>{formData.candidateName}</div>
+                      <div className="text-secondary">{cookies.usernumber}</div>
                     </span>
                   </div>
                   <div className="dropdown-divider"></div>
@@ -178,9 +207,8 @@ function loginbtnclick(){
                   <div className="dropdown-divider"></div>
                   <div
                     className="bi bi-box-arrow-left dropdown-item text-danger"
-                    onClick={() => removecookie("user")}
                   >
-                    <span className="ms-1">Sign Out</span>
+                    <span className="ms-1" onClick={()=>signoutclick()}>Sign Out</span>
                   </div>
                 </div>
               )}
