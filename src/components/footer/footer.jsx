@@ -3,7 +3,10 @@ import playstoreimg from "../../assets/Images/playstore.jpg"
 import iosstoreimg from "../../assets/Images/iosstore.jpg"
 import telegramlogo from '../../assets/Images/telegramlogo.png'
 import './footer.css'
+import {useNavigate} from 'react-router-dom'
+
 export function Footer() {
+    const navigate =  useNavigate('');
     return (
         <>
             <footer style={{ borderTop: "2px solid gray" }} >
@@ -26,16 +29,16 @@ export function Footer() {
                     </div>
                     <div className="d-flex justify-content-between" style={{ marginTop: "8vh", marginBottom: "8vh" }}>
                         <div style={{ width: "30%" }}>
-                            <h5>Sailorswave</h5>
+                            <h5>Loids Marins</h5>
                             <div className="text-justify" >
                                 Our team comprises seasoned professionals with extensive experience in the maritime industry. We bring deep insights and practical knowledge to every project we undertake.
                             </div>
                         </div>
                         <div className="footeritem">
-                            <div>About us</div>
-                            <div>Reviews</div>
-                            <div>Contact Us</div>
-                            <div>Careers</div>
+                            <div onClick={()=>navigate('/about')}>About us</div>
+                            <div onClick={()=>navigate('/services')}>Reviews</div>
+                            <div onClick={()=>navigate('/contact')}>Contact Us</div>
+                            <div onClick={()=>navigate('/application')} >Careers</div>
                         </div>
                         <div className="footeritem">
                             <div>On shore Joining</div>
@@ -43,22 +46,11 @@ export function Footer() {
                             <div>Training</div>
                             <div>Placements</div>
                         </div>
-                        <div >
-                            <div>Download our App</div>
-                            <div style={{ paddingRight: "6vh" }}>
-                                <span className="me-2">
-                                    <img src={playstoreimg} width={{ height: "5vh" }}></img>
-                                </span>
-                                <span>
-                                    <img src={iosstoreimg} width={{ height: "5vh" }}></img>
-                                </span>
-                            </div>
-                        </div>
                     </div>
                     <hr></hr>
                     <div className="d-flex justify-content-between" style={{ padding: "2rem 0rem 2rem 0rem " }}>
                         <div>Copyright © 2024 Sailorswaves.com™. All rights reserved</div>
-
+                        <div>Made with ❤️ Love</div>
                         <div>
                             <span className="mx-4">Terms & Conditions</span>
                             <span>Privacy Policy</span>

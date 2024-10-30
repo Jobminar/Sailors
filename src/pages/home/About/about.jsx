@@ -4,15 +4,10 @@ import underlineabout from '../../../assets/Images/arrow-underline.png'
 const About = () => (
   <div className="py-5  justify-content-center about-container " >
     <div className="first-container">
-      <h1 className="heading ">About sailorswave</h1>
+      <h1 className="heading ">About Loids Marins</h1>
       <img src={underlineabout}></img>
       <p  className=" heading my-4">
-        Welcome to Sailors wave Shipment Management Pvt Ltd, your trusted
-        partner in comprehensive maritime solutions. Established in 2022,
-        Sailors wave is dedicated to delivering top-tier services in onshore
-        
-        industry by providing innovative and reliable solutions tailored to meet
-        the unique needs of our clients.
+      Welcome to Loids Marins Shipment Management Pvt Ltd, your trusted partner in comprehensive maritime solutions. Established in 2022, Loids Marins is dedicated to delivering top-tier services in the onshore industry by providing innovative and reliable solutions tailored to meet the unique needs of our clients.
         <br />
         <br />
         we offer comprehensive services including crew management, ship

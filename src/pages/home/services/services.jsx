@@ -25,8 +25,7 @@ const OurServices = () => {
               <p className="card-title title1">On Shore Joining's</p>
               <div className="card-body services-block">
                 <p className="card-text text11">
-                  At Sailors wave , we understand the importance of efficient
-                  onshore operations
+                At Loids Marins, we understand the importance of efficient onshore operations.
                 </p>
               </div>
             </div>
@@ -40,8 +39,7 @@ const OurServices = () => {
               <p className="card-title title">Off Shore Joining's</p>
               <div className="card-body services-block">
                 <p className="card-text text1">
-                  Our offshore resource management services are designed to
-                  support the complex needs of offshore operations
+                Our offshore resource management services are designed to support the complex needs of offshore operations.
                 </p>
               </div>
             </div>
@@ -55,8 +53,7 @@ const OurServices = () => {
               <p className="card-title title">Training Services</p>
               <div className="card-body services-block">
                 <p className="card-text text1">
-                  We believe that the key to a successful maritime career is
-                  continuous learning and development
+                We believe that the key to a successful maritime career is continuous learning and development.
                 </p>
               </div>
             </div>

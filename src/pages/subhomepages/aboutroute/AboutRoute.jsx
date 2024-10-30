@@ -27,13 +27,7 @@ const AboutRoute = () => (
             <div>
               <h3 className="d-md-none">About us</h3>
               <p className="para-about-sailors1">
-                Welcome to Sailors wave Shipment Management Pvt Ltd, your trusted
-                partner in comprehensive maritime solutions. Established in 2022,
-                Sailors wave is dedicated to delivering top-tier services in onshore
-                resource management, offshore resource management, training, and
-                placements. Our mission is to support and enhance the global
-                maritime industry by providing innovative and reliable solutions
-                tailored to meet the unique needs of our clients.
+              Welcome to Loids Marins Shipment Management Pvt Ltd, your trusted partner in comprehensive maritime solutions. Established in 2022, Loids Marins is dedicated to delivering top-tier services in the onshore industry by providing innovative and reliable solutions tailored to meet the unique needs of our clients.
               </p>
             </div>
             <div>
@@ -41,13 +35,7 @@ const AboutRoute = () => (
             </div>
           </div>
           <p className="para-about-sailors2">
-            we offer comprehensive services including crew management, ship
-            management, and maritime training. We prioritize the safety of our
-            crew and vessels, adhering to the highest standards of
-            professionalism and integrity. With a global network and a
-            commitment to innovation, SailorsWave is at the forefront of the
-            Merchant Navy sector, ready to navigate the seas and chart a course
-            for success. Join us and experience unparalleled maritime service.
+          We offer comprehensive services, including crew management, ship management, and maritime training. We prioritize the safety of our crew and vessels, adhering to the highest standards of professionalism and integrity. With a global network and a commitment to innovation, Loids Marins is at the forefront of the Merchant Navy sector, ready to navigate the seas and chart a course for success. Join us and experience unparalleled maritime service.
           </p>
         </div>
       </div>

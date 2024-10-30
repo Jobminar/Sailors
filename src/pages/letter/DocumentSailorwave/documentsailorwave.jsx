@@ -1,35 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import './documentsailorwave.css'
 import axios from "axios";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Documentsailorwave = () => {
 
-    const [applicationData, setApplicationData] = useState([
-        {
-            applicationNumber: "xxxxxxxx",
-            submittedApplication: "21/06/24",
-            applicationStatus: "Approved",
-            admitCardStatus: "Generated",
-            downloadAdmitCard: "Download",
-            interviewDate: "xx-xx-xxxx",
-            interviewFeedback: "Selected",
-            outcome: "Selected",
-            comments: "Documents shared",
-            uploadDocuments: "Upload"
-        }
-    ]);
-
-    const Fetchdata = async()=>{
-        try{
-          const user = await axios.get('http://127.0.0.1:7001/candidates')
-          setApplicationData(user.data)
-        }catch(error){
-          console.log(error)
-        }
-      }
-      useEffect(()=>{
-        Fetchdata()
-      },[])
+    const [applicationData, setApplicationData] = useState([]);
+    const [cookies, setcookie, removecookie] = useCookies(["user"]);
+    const navigate = useNavigate('')
 
     const [file,  setFile] = useState(null);
     const fileInputRef = useRef(null);
@@ -68,6 +47,20 @@ const Documentsailorwave = () => {
         window.location.href = url;
     };
 
+    const Fetchdata = async () => {
+        try {
+          const alluser = await axios.get('http://127.0.0.1:7001/candidates')
+          const user = alluser.data;
+          const finduser = user.filter((usernumber) => parseInt(usernumber.mobileNumber) === cookies.user)
+          setApplicationData(finduser)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      useEffect(() => {
+        Fetchdata()
+      }, [])
+
     return (
         <>
             <div style={{ margin: '200px 30px' }} className="rotate">
@@ -100,8 +93,7 @@ const Documentsailorwave = () => {
                                             <span className="bi bi-check-circle-fill text-success ms-4"></span>
                                         </td>
                                         <td >{val?.admitcard?.status}</td>
-                                        <td onClick={() => handleViewDocument(val.passport)} // Pass the filename
-                                        ><button className="btn" >{val?.downloadAdmitCard} download</button></td>
+                                        <td onClick={() => navigate(`/interviewletterhead3`)}><button className="btn" >download</button></td>
                                         <td >{val?.admitcard?.date}</td>
                                         <td >{val?.interviewoutcome?.interviewFeedback}</td>
                                         <td >{val?.interviewoutcome?.interviewFeedback}</td>

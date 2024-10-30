@@ -22,11 +22,7 @@ export function Services() {
                         </h2>
                         <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                <p className='text-secondary'>At Sailorswave, we understand the importance of efficient onshore operations
-                                    Onshore joining refers to employees being hired to work within the country where the
-                                    company's headquarters or main operations are located. This process often involves
-                                    relocation for the new hires and is common in industries like IT, consulting, and finance,
-                                    where proximity to the main office or client sites is essential</p>
+                                <p className='text-secondary'>At Sailorswave, we understand the importance of efficient onshore operations</p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +36,7 @@ export function Services() {
                         </h2>
                         <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                             <div className="accordion-body text-secondary">
-                                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classNamees that we use to style each element. These classNamees control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                Our offshore resource management services are designed to support the complex needs of offshore operations
                             </div>
                         </div>
                     </div>
@@ -53,8 +49,8 @@ export function Services() {
                             </button>
                         </h2>
                         <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
-                                <p className='text-secondary'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae qui facere corrupti inventore rem quas aliquid, animi repudiandae quo amet id nobis illo illum iure consequatur, similique nostrum magni enim?</p>
+                            <div className="accordion-body text-secondary">
+                                We believe that the key to a successful maritime career is continuous learning and development
                             </div>
                         </div>
                     </div>
@@ -67,8 +63,8 @@ export function Services() {
                             </button>
                         </h2>
                         <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
-                                <p className='text-secondary'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae qui facere corrupti inventore rem quas aliquid, animi repudiandae quo amet id nobis illo illum iure consequatur, similique nostrum magni enim?</p>
+                            <div className="accordion-body text-secondary">
+                                Connecting talent with opportunity is at the heart of what we do. Our placement services are designed to help maritime
                             </div>
                         </div>
                     </div>
@@ -76,13 +72,15 @@ export function Services() {
                         <h2 className="accordion-header" id="headingFive">
                             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                 <span className=" btn-services-count">05/</span>
-                                <span className='carousel-title'>Placement services</span>
+                                <span className='carousel-title'>Cruise Services</span>
                                 <span><img src={pic5} alt='pic5'></img></span>
                             </button>
                         </h2>
                         <div id="collapseFive" className="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
-                                <p className='text-secondary'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae qui facere corrupti inventore rem quas aliquid, animi repudiandae quo amet id nobis illo illum iure consequatur, similique nostrum magni enim?</p>
+                            <div className="accordion-body text-secondary">
+                                1. Carnival Corporation & plc <br />
+                                2.Royal Caribbean Group <br />
+                                3.Norwegian Cruise Line Holdings Ltd.
                             </div>
                         </div>
                     </div>

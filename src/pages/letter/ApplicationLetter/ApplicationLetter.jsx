@@ -3,9 +3,13 @@ import myapplication from "../../../assets/Images/appLetterimage.png";
 import "./ApplicationLetter.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import moment from 'moment'
+
 const ApplicationLetter = () => {
   const [data, setuserdata] = useState([])
   const navigate = useNavigate('')
+  const [cookies,setcookie,removecookie]=useCookies(["user"])
 
   const handleViewDocument = (filename) => {
     const url = `http://127.0.0.1:7001/fileById/${filename}`;
@@ -15,8 +19,11 @@ const ApplicationLetter = () => {
 
   const Fetchdata = async () => {
     try {
-      const user = await axios.get('http://127.0.0.1:7001/candidates')
-      setuserdata(user.data)
+      const alluser = await axios.get('http://127.0.0.1:7001/candidates')
+      const user = alluser.data;
+      const finduser = user.filter((usernumber)=> parseInt(usernumber.mobileNumber)  === cookies.user)
+      // console.log(cookies.user,'finlter')
+      setuserdata(finduser)
     } catch (error) {
       console.log(error)
     }
@@ -54,10 +61,10 @@ const ApplicationLetter = () => {
                   <tr>
                     <td>{i + 1}</td>
                     <td>{confirmLetter.applicationId}</td>
-                    <td>date</td>
+                    <td>{moment(confirmLetter.updatedAt).format('YYYY-MM-DD')}</td>
                     <td>{confirmLetter.applicationstatus.status}</td>
                     <td>{confirmLetter.admitcard.status}</td>
-                    <td onClick={() => navigate(`/selectionletterhead/${confirmLetter.applicationId}`)}><button className="btn" >download</button></td>
+                    <td onClick={() => navigate(`/interviewletterhead3`)}><button className="btn" >download</button></td>
                     <td>{confirmLetter.admitcard.date}</td>
                     <td>{confirmLetter.interviewoutcome.interviewFeedback}</td>
                     <td>{confirmLetter.selectionletter.status}</td>

@@ -40,7 +40,7 @@ const BecomeASailor = () => {
     <section id="contact-us">
     <div className="become-main">
         <div className="become-content">
-          <h1>Become a Sailor</h1>
+          <h1>Become a Loids Marins</h1>
           <br />
           <p>Used and supported in over the countries around the globe.<br />
             We’ll work with you to open more doors and close more sales across all verticals.</p>

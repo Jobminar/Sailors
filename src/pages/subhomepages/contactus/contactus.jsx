@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup'
 import axios from 'axios'
-
+import logo from '../../../assets/Images/logo.png'
 import './contact.css'
 
 const ContactHomepage = () => {
@@ -94,8 +94,8 @@ const ContactHomepage = () => {
                             </div>
 
                         </div>
-                        <div className="subGettouch bg-dark-subtle">
-
+                        <div className="subGettouch d-flex justify-content-center align-content-center p-4 bg-light rounded-3">
+                                <img src={logo} className="m-3" />
                         </div>
                     </div>
                 </div>

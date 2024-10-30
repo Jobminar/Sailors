@@ -10,13 +10,20 @@ import success from '../../assets/Images/image3.png';
 import loginimg from '../../assets/Images/loginimgsm.png';
 import indiaimg from '../../assets/Images/india.png'
 import { useCookies } from 'react-cookie';
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 const Login = () => {
     const [timer, setTimer] = useState(30);
     const [showLogin, setShowLogin] = useState(false);
     const [isSuccessful, setIsSuccessful] = useState(false);
     const otpRefs = useRef([null, null, null, null]);
-    const [cookies,setcookie,removecookie]=useCookies(["usernumber"])
+    const [users,setusers] = useState(null)
+    const [otps,setuserotp] = useState(null)
+    const [cookies,setcookie,removecookie]=useCookies(["user"]);
+    const navigate =  useNavigate();
+
+
 //////////////////////////////we have to make a api call on basic of their gmail and on basis of mail id we will get user application number
     useEffect(() => {
         let interval;
@@ -52,12 +59,27 @@ const Login = () => {
                     <Formik
                         initialValues={{ userNumber: '' }}
                         validationSchema={yup.object({
-                            userNumber: yup.string().matches(/^\d{10}$/, 'Must be exactly 10 digits')
+                            userNumber: yup.string().matches(/^\d{10}$/, 'Must be exactly 10 digits').required('User Number Must Required')
                         })}
-                        onSubmit={(values) => {
-                            alert('User Number is: ' + values.userNumber);
-                            setcookie("usernumber",values.userNumber)
-                            toggleLoginView();
+                        onSubmit={async(values) => {
+                            console.log(values.userNumber,'user Number')
+                            try{
+                                await axios.post('http://localhost:7001/userNumber', { userPhone: values.userNumber })
+                                .then(response => {
+                                    const otp = (response.data.otp).toString();
+                                    console.log('OTP:', otp);
+                                    setuserotp(otp);
+                                    setShowLogin(true)
+                                    alert('OTP received: ' + otp);
+                                    setusers(values.userNumber)
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    alert('Error: ' + error);
+                                });
+                            }catch(error){
+
+                            }
                         }}
                     >
                         {form => (
@@ -102,8 +124,16 @@ const Login = () => {
                             otp4: yup.string().required().max(1),
                         })}
                         onSubmit={(values) => {
-                            alert('OTP is: ' + Object.values(values).join(''));
-                            setIsSuccessful(true);
+                            if(otps == Object.values(values).join('')){
+                                try{
+                                    setIsSuccessful(true);
+                                    setcookie("user",users)
+                                }catch(error){
+
+                                }
+                            }else{
+                                alert('Enter Valid OTP')
+                            }
                         }}
                     >
                         {form => (
@@ -140,7 +170,7 @@ const Login = () => {
                 </div>
             </div>
             <div className={` ${isSuccessful ? 'd-flex justify-content-center align-content-center' : 'd-none'} `}>
-                <img src={success} alt='Success' height='700px' />
+                <img src={success} alt='Success' height='700px' style={{cursor:'pointer'}}  onClick={()=>navigate('/')}/>
             </div>
         </>
     );

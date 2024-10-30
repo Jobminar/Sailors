@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import './myresult.css'
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const Myresult = () => {
   const [data, setuserdata] = useState([]);
+  const [cookies,setcookie,removecookie]=useCookies(["user"])
 
   const handleViewDocument = (filename) => {
     const url = `http://127.0.0.1:7001/fileById/${filename}`;
@@ -12,8 +14,10 @@ const Myresult = () => {
 
   const Fetchdata = async () => {
     try {
-      const user = await axios.get('http://127.0.0.1:7001/candidates')
-      setuserdata(user.data)
+      const alluser = await axios.get('http://127.0.0.1:7001/candidates')
+      const user = alluser.data;
+      const finduser = user.filter((usernumber) => parseInt(usernumber.mobileNumber) === cookies.user)
+      setuserdata(finduser)
     } catch (error) {
       console.log(error)
     }
@@ -21,6 +25,7 @@ const Myresult = () => {
   useEffect(() => {
     Fetchdata()
   }, [])
+
 
   return (
     <>

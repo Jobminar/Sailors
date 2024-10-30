@@ -173,12 +173,9 @@ export function Header() {
                   <div className="dropdown-item" onClick={() => navigate("/application")}>Apply Now</div>
                   <div className="dropdown-item" onClick={() => navigate('/applicationletter')} >My Application</div>
                   <div className="dropdown-item" onClick={() => navigate('/myadmitcard')}>My Admit Cards</div>
-                  <div className="dropdown-item" onClick={() => navigate('/myresult')}>My Results</div>
-                  <div className="dropdown-item">Selection Letters</div>
-                  <div className="dropdown-item" onClick={() => navigate('/documentsailorwave')} >Upload Docx</div>
-                  <div className="dropdown-item" onClick={confirmationLetterclick}>
-                    Confirmation Letters
-                  </div>
+                  <div className="dropdown-item" onClick={()=>navigate('/selectionletterhead')}>Selection Letters</div>
+                <div className="dropdown-item" onClick={() => navigate('/documentsailorwave')} >Upload Docx</div>
+                <div className="dropdown-item" onClick={()=>navigate('/confirmationletterhead')}>Confirmation Letters</div>
                   <div className="dropdown-divider"></div>
                   <div
                     className="bi bi-box-arrow-left dropdown-item text-danger"
@@ -239,10 +236,9 @@ export function Header() {
                 <div className="dropdown-item" onClick={() => navigate("/application")}>Apply Now</div>
                 <div className="dropdown-item" onClick={() => navigate('/applicationletter')} >My Application</div>
                 <div className="dropdown-item" onClick={() => navigate('/myadmitcard')}>My Admit Cards</div>
-                <div className="dropdown-item" onClick={() => navigate('/myresult')}>My Results</div>
-                <div className="dropdown-item">Selection Letters</div>
+                <div className="dropdown-item" onClick={()=>navigate('/selectionletterhead')}>Selection Letters</div>
                 <div className="dropdown-item" onClick={() => navigate('/documentsailorwave')} >Upload Docx</div>
-                <div className="dropdown-item" onClick={confirmationLetterclick}>Confirmation Letters</div>
+                <div className="dropdown-item" onClick={()=>navigate('/confirmationletterhead')}>Confirmation Letters</div>
                 <div className="dropdown-divider"></div>
                 <div
                   className="bi bi-box-arrow-left dropdown-item text-danger"
