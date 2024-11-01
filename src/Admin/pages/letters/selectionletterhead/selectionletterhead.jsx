@@ -4,30 +4,26 @@ import "./selectionletterhead.css";
 import {useEffect, useRef, useState} from "react";
 import { useReactToPrint } from "react-to-print";
 import { useParams } from "react-router-dom";
-import { useCookies } from "react-cookie";
 
-export function UserSelectionletter(param) {
+export function Selectionletterhead(param) {
   const contentRef = useRef(null);
   const reactToPrintFn = useReactToPrint({ contentRef });
   const [user,setusers] = useState({})
-  const params = useParams();
-  const [cookies, setcookie, removecookie] = useCookies(["user"]);
-
-const Fetchdata = async () => {
-  try {
-    const alluser = await axios.get('http://127.0.0.1:7001/candidates')
-    const user = alluser.data;
-    const finduser = user.find((usernumber) => parseInt(usernumber.mobileNumber) === cookies.user)
-    setusers(finduser)
-  } catch (error) {
-    console.log(error)
-  }
+  const params = useParams()
+  
+  const fetchdata = async () => {
+    try {
+        const usedata = await axios.get('http://127.0.0.1:7001/candidates')
+        const users = usedata.data;
+        const filteredUsers = users.find((user) => user.applicationId === parseInt(params.id));
+        setusers(filteredUsers)
+    } catch (error) {
+        console.error(error, 'catch error');
+    }
 }
-console.log(user,'user details')
-useEffect(() => {
-  Fetchdata()
-}, [])
-
+  useEffect(()=>{
+    fetchdata()
+  },[])
   return (
     <div className="d-flex justify-content-center">
       <div className="modalfade" id="selectionlettermodal">
@@ -45,10 +41,10 @@ useEffect(() => {
             <div>
               <h5 className="text-center leterheadtitle">SELECTION LETTER</h5>
               <p>
-                Ref no: <strong>{user?.applicationId}</strong>
+                Ref no: <strong>{user.applicationId}</strong>
               </p>
               <p>
-                Name: <strong>{user?.candidateName}</strong>
+                Name: <strong>{user.candidateName}</strong>
               </p>
               <p>
                 Welcome to <strong>SAILORSWAVE-SHIP MANAGEMENT PVT LTD</strong>{" "}

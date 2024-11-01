@@ -3,11 +3,11 @@ import Login from "./components/login/login";
 import Home from "./pages/home/home";
 import { Header } from "./components/header/header";
 import { Footer } from "./components/footer/footer";
-import ApplicationForm from "./components/applicationform/applicationform";
+import UserApplication from "./components/applicationform/applicationform";
 import ContactHomepage from "./pages/subhomepages/contactus/contactus";
 import { Services } from "./pages/subhomepages/services/services";
 import AboutRoute from "./pages/subhomepages/aboutroute/AboutRoute";
-import { Selectionletterhead } from "./pages/letters/selectionletterhead/selectionletterhead";
+import { UserSelectionletter } from "./pages/letters/selectionletterhead/selectionletterhead";
 import Myresult from "./pages/letter/myresult/myresult";
 import ConfirmationLetter from "./pages/letter/confirmationletter/confirmationletter";
 import SelectionLetter from "./pages/letter/selectionLetter/SelectionLetter";
@@ -15,50 +15,108 @@ import ApplicationLetter from "./pages/letter/ApplicationLetter/ApplicationLette
 import Myadmitcard from "./pages/letter/myadmitcard/Myadmitcard";
 import { InterviewLetterHead3 } from "./pages/letters/interviewletterhead3/interviewletterhead3";
 import Documentsailorwave from "./pages/letter/DocumentSailorwave/documentsailorwave";
-import { Confirmationletterhead } from "./pages/letters/confirmationletterhead/confirmationletterhead";
+import { UserConfirmationletter } from "./pages/letters/confirmationletterhead/confirmationletterhead";
 import UpladDocument from "./pages/letter/uploadDocument/uploadDocument";
-import InterviewSchedule from "./adminpanel/interviewfeadback/interviewfeadback";
-import { Applicantprofile } from "./adminpanel/applicantprofile/applicantprofile";
-import { Applicantprofileapplication } from "./adminpanel/applicantprofileapplications/applicantprofileapplication";
-import { Admitcard } from "./adminpanel/admitcard/admitcard";
-import { Dashboardadmin } from "./adminpanel/dashboardadmin/dashboardadmin";
-import { Dashboard } from "./adminpanel/dashboard/dashboard";
-import Myapplication from "./adminpanel/myapplication/myapplication";
 import ShowmyapplicationForm from "./pages/showmyapplication/showmyapplication";
+// ......admin routes 
+import InterviewSchedule from "./Admin/pages/interviewfeadback/interviewfeadback";
+import { Applicantprofile } from "./Admin/pages/applicantprofile/applicantprofile";
+import { Applicantprofileapplication } from "./Admin/pages/applicantprofileapplications/applicantprofileapplication";
+import { Admitcard } from "./Admin/pages/admitcard/admitcard";
+import { Dashboardadmin } from "./Admin/pages/dashboardadmin/dashboardadmin";
+import Myapplication from "./Admin/pages/myapplication/myapplication";
+import { Headeradmin } from "./Admin/components/headeradmin/headeradmin";
+import Selectionpage from "./Admin/pages/selectionletter/selection";
+import SelectionProfile from "./Admin/pages/selectionprofile/selectionprofile";
+import { Selectionletterhead } from "./Admin/pages/letters/selectionletterhead/selectionletterhead";
+import Enquires from "./Admin/pages/Enquires/enquires";
+import { Applicantfinance } from "./Admin/pages/Financials/financials";
+import Admitcarddashboard from "./Admin/pages/admitcard/admitcarddashboard";
+import Confirmationdashboard from "./Admin/pages/confirmation/confirmationdashboard";
+import { Confirmationprofile } from "./Admin/pages/confirmation/confirmationprofile";
+import { Confirmationletterhead } from "./Admin/pages/confirmation/confirmationletter";
+import { Admitcardletterhead } from "./Admin/pages/admitcard/admitcardletter";
+import ApplicationForm from "./Admin/pages/myapplication/applicationform/applicationform";
+import Subadmin from "./Admin/pages/subadmin/subadmin";
+import Addsubadmin from "./Admin/pages/subabmin/addsubadmin/addsubadmin";
+import Interoutcome from "./Admin/pages/interviewfeadback/interviewoutcome";
+import Adminprofile from "./Admin/pages/subadmin/adminprofile/adminprofile";
+import Documentuser from "./Admin/components/documentsuser/documentuser";
+import { Usercomments } from "./Admin/pages/usercomment/usercomments";
+import Adminlogin from "./Admin/pages/adminLogin/login/adminlogin";
+import { useCookies } from "react-cookie";
 
 const Routing = () => {
+  const [adminCookie, setcookie] = useCookies(["useradmin"]);
   return (
     <>
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/contact" element={<ContactHomepage />} />
-          <Route path="/application" element={<ApplicationForm />} />
-          <Route path='/myapplicationform/:applicationNo' element={<ShowmyapplicationForm/>} />
-          <Route path="/about" element={<AboutRoute />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/selectionletterhead" element={<Selectionletterhead />} />
-          <Route path="/confirmationletterhead" element={<Confirmationletterhead />} />
-          <Route path="/myresult" element={<Myresult />} />
-          <Route path="/confirmationlatter" element={<ConfirmationLetter />} />
-          <Route path="/selectionletter" element={<SelectionLetter />} />
-          <Route path="/applicationletter" element={<ApplicationLetter />} />
-          <Route path="/myadmitcard" element={<Myadmitcard />} />
-          <Route path="/interviewletterhead3" element={<InterviewLetterHead3 />} />
-          <Route path="/documentsailorwave" element={<Documentsailorwave />} />
-          <Route path="/uploadDocument" element={<UpladDocument />} />
-          <Route path="/interviewSchedule" element={<InterviewSchedule />} />
-          <Route path="/dashboardadmin" element={<Dashboardadmin />}>
-            <Route path="applicantprofile" element={<Myapplication />} />
-            <Route path="admitcard" element={<Admitcard />} />
-            <Route path="interviewSchedule" element={<InterviewSchedule />} />
-            <Route path="applicantprofileapplication" element={<Applicantprofileapplication />} />
-            <Route path="applicantprofile" element={<Applicantprofile />} />
-          </Route>
-        </Routes>
-        <Footer />
+        {/*......................user Routes.......................... applicationstatus */}
+        <div className={`${(adminCookie.useradmin)?'d-none':'d-block'}`}>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/contact" element={<ContactHomepage />} />
+            <Route path="/application" element={<UserApplication />} />
+            <Route path='/myapplicationform/:applicationNo' element={<ShowmyapplicationForm />} />
+            <Route path="/about" element={<AboutRoute />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/selectionletterhead" element={<UserSelectionletter />} />
+            <Route path="/confirmationletterhead" element={<UserConfirmationletter />} />
+            <Route path="/myresult" element={<Myresult />} />
+            <Route path="/confirmationlatter" element={<ConfirmationLetter />} />
+            <Route path="/selectionletter" element={<SelectionLetter />} />
+            <Route path="/applicationletter" element={<ApplicationLetter />} />
+            <Route path="/myadmitcard" element={<Myadmitcard />} />
+            <Route path="/interviewletterhead3" element={<InterviewLetterHead3 />} />
+            <Route path="/documentsailorwave" element={<Documentsailorwave />} />
+            <Route path="/adminlogin" element={<Adminlogin />} />
+          </Routes>
+          <Footer />
+        </div>
+        {/*........................Admin Routes......................... */}
+        <div>
+          {
+            (adminCookie.useradmin) ?
+              <div>
+                <Headeradmin />
+                <Routes>
+                  <Route path="/dashboardadmin" element={<Dashboardadmin />}>
+                    <Route path="myapplication" element={<Myapplication />} />
+                    <Route path="admitcard/:applicationNo" element={<Admitcard />} />
+                    <Route path="admitcardletter/:applicationNo" element={<Admitcardletterhead />} />
+                    <Route path="admitcarddashboard" element={<Admitcarddashboard />} />
+                    <Route path="interviewSchedule" element={<InterviewSchedule />} />
+                    <Route path="applicationstatus/:id" element={<ApplicationForm />} />
+                    <Route path="applicantprofile" element={<Applicantprofile />} />
+                    <Route path="applicantprofile/:applicationNo" element={<Applicantprofile />} >
+                      <Route path="applicantprofileapplication" element={<Applicantprofileapplication />} />
+                      <Route path="applicantfinance" element={<Applicantfinance />} />
+                      <Route path="applicantcomment" element={<Usercomments />} />
+                    </Route>
+                    <Route path="selectionletter" element={<Selectionpage />} />
+                    <Route path="selectionletter/:id" element={<SelectionProfile />} />
+                    <Route path="selectionletter/:id/letter" element={<Selectionletterhead />} />
+                    <Route path="confirmationdashboard" element={<Confirmationdashboard />} />
+                    <Route path="confirmationprofile/:applicationNo" element={<Confirmationprofile />} />
+                    <Route path="confirmationletter/:applicationNo" element={<Confirmationletterhead />} />
+                    <Route path="enquires" element={<Enquires />} />
+                    <Route path="adminprofile/:id" element={<Subadmin />} />
+                    <Route path="subadmin/addadmin/:adminId" element={<Addsubadmin />} />
+                    <Route path="subadmin/addadmin/" element={<Addsubadmin />} />
+                    <Route path="interviewSchedule/:id" element={<Interoutcome />} />
+                    <Route path="subadmin" element={<Adminprofile />} />
+                  </Route>
+                  <Route path="/documentuser" element={<Documentuser />} />
+                </Routes>
+              </div> : <div>
+                {/* <Routes>
+                  <Route path="/adminlogin" element={<Adminlogin />} />
+                </Routes> */}
+              </div>
+          }
+        </div>
       </BrowserRouter>
     </>
   );

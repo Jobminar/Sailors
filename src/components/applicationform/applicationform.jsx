@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import './applicationfrom.css'
 
-const ApplicationForm = () => {
+const UserApplication = () => {
   const [files, setFiles] = useState({
     passport: null,
     class10th: null,
@@ -525,4 +525,4 @@ const ApplicationForm = () => {
     </>
   );
 };
-export default ApplicationForm;
+export default UserApplication;

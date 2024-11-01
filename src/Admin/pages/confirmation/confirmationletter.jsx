@@ -1,34 +1,19 @@
 import { useParams } from "react-router-dom";
-import leterheadheader from "../../../assets/Images/leterheadheader.png";
-import "./confirmationletterhead.css";
-import { useEffect, useRef, useState } from "react";
+import leterheadheader from "../../assets/Images/letterheadheader.png";
+import "./confirmationletter.css";
+import {useRef} from "react";
+import useUserById from '../../Hook/finduser/findalluser'
 import { useReactToPrint } from "react-to-print";
-import axios from "axios";
-import { useCookies } from "react-cookie";
 
-export function UserConfirmationletter() {
-    const { id } = useParams();
-    const [user, setusers] = useState({})
+export function Confirmationletterhead() {
+    const param = useParams();
+    const {user, loading, error} =  useUserById('http://127.0.0.1:7001/candidates',param.applicationNo);
+
     const contentRef = useRef(null);
     const reactToPrintFn = useReactToPrint({ contentRef });
-    const [cookies, setcookie, removecookie] = useCookies(["user"]);
-
-    const Fetchdata = async () => {
-        try {
-          const alluser = await axios.get('http://127.0.0.1:7001/candidates')
-          const user = alluser.data;
-          const finduser = user.find((usernumber) => parseInt(usernumber.mobileNumber) === cookies.user)
-          setusers(finduser)
-        } catch (error) {
-          console.log(error)
-        }
-      }
-      useEffect(() => {
-        Fetchdata()
-      }, [])
     return (
         <div className="d-flex justify-content-center">
-            <div className="modalfade border border-1 " style={{ height: "145vh" }} id="confirmationlettermodal">
+            <div className="modalfade border border-1 " style={{height:"145vh"}}  id="confirmationlettermodal">
                 <button onClick={reactToPrintFn} className="btn btn-warning">Print</button>
                 <div className="p-2" ref={contentRef}>
                     <div className="modal-head">
@@ -52,13 +37,13 @@ export function UserConfirmationletter() {
                                 </div>
                             </p>
                             <p>
-                                <strong>REF NO:{user?.applicationId}</strong>
+                                <strong>REF NO:{user.applicationId}</strong>
                             </p>
                             <p>
-                                <strong>  NAME: MR.{user?.candidateName} </strong>
+                                <strong>  NAME: MR.{user.candidateName} </strong>
                             </p>
                             <p>
-                                <strong>   S/O: Mr.{user?.fatherName} </strong>
+                                <strong>   S/O: Mr.{user.fatherName} </strong>
                             </p>
                             <p>
                                 <strong>Congratulations,</strong>
@@ -79,7 +64,7 @@ export function UserConfirmationletter() {
                                 <div className="mb-4">
                                     <div className="mb-3">2nd Installment date: <strong>Rs.{user?.confirmationletter?.InstalmentAmount2}/- {user?.confirmationletter?.InstalmentDate2}</strong> </div>
                                     <div>
-                                        3rd Installment date: <strong>Rs.{user?.confirmationletter?.InstalmentAmount3}/- {user?.confirmationletter?.InstalmentDate3}</strong>
+                                        3rd Installment date: <strong>Rs.{user?.confirmationletter?.InstalmentAmount3}/- {user.confirmationletter?.InstalmentDate3}</strong>
 
                                     </div>
                                 </div>
@@ -105,4 +90,3 @@ export function UserConfirmationletter() {
         </div>
     );
 }
-
