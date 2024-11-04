@@ -1,8 +1,9 @@
-.divCut~span:hover{
+.divCut~span:hover {
     color: #F88035;
     cursor: pointer;
 }
-.headerw{
+
+.headerw {
     /* font-family: Poppins; */
     display: grid;
     grid-template-columns: 2fr 7fr 3fr;
@@ -11,12 +12,15 @@
     align-items: center;
     font-size: 1.3rem;
 }
-.headernav span{
-    margin:0rem 5% 0rem 5%;
+
+.headernav span {
+    margin: 0rem 5% 0rem 5%;
 }
-.headernav span:hover{
+
+.headernav span:hover {
     cursor: pointer;
 }
+
 .dropdown-menu {
     position: absolute;
     background-color: white;
@@ -39,40 +43,64 @@
     border-top: 1px solid #e0e0e0;
     margin: 0.5rem 0;
 }
-.link{
+
+.link {
     text-decoration: none;
 }
-.loginbtn{
+
+.loginbtn {
     font-size: 1em;
 }
-.headerr{
+
+.headerr {
     display: none;
 }
-@media (min-width: 769px) and (max-width:1020px){
-    .headerw{
+
+.image-containers {
+    width: 200px;/* Adjust width as needed */
+    height: 100px;/* Adjust height as needed */
+    overflow: hidden;/* Hides any overflow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-containers img {
+    width: 100%;/* Ensures image covers the container width */
+    height:80%;/* Ensures image covers the container height */
+    object-fit: cover;/* Zooms and crops the image to fill the container */
+    object-position: center;/* Centers the image within the container */
+}
+
+@media (min-width: 769px) and (max-width:1020px) {
+    .headerw {
         font-size: .9rem;
     }
-    .headerr{
+
+    .headerr {
         display: none;
     }
-   
+
 }
-@media (min-width: 0px) and (max-width:768px){
-    .headerr{
-        margin: 2% 2% ;
+
+@media (min-width: 0px) and (max-width:768px) {
+    .headerr {
+        margin: 2% 2%;
         /* height:5vh ; */
         display: grid;
         grid-template-columns: 6fr 6fr;
         align-items: center;
         font-size: 25px;
     }
-    .headerw{
+
+    .headerw {
         display: none;
     }
-    .btnapply{
+
+    .btnapply {
         padding-left: 10%;
         padding-right: 10%;
     }
+
     .dropdown-item:hover {
         background-color: #F88035;
     }

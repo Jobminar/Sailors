@@ -20,10 +20,10 @@ export function Footer() {
                             <div className="d-flex mt-3 ">
                                 <input className="form-control me-2 " placeholder="Enter your name"></input>
                                 <input className="form-control me-2" placeholder="Enter your e-mail "></input>
-                                <button className=" btn" style={{ backgroundColor: "#D96009" }}> <img src={telegramlogo}></img></button>
+                                <button className=" btn" style={{ backgroundColor: "#D96009" }}> <img src={telegramlogo} ></img></button>
                             </div>
                         </div>
-                        <div>
+                        <div className="image-container">
                             <img id="logo" src={logo} className="py-2" style={{ width: "100%" }}></img>
                         </div>
                     </div>

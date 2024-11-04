@@ -77,8 +77,8 @@ export function Header() {
   return (
     <div>
       <header className="headerw">
-        <div>
-          <img src={logo} onClick={mainlogoclicked} alt="Sailorswave logo" style={{ width: "50%" }} />
+        <div className="image-containers">
+          <img src={logo} onClick={mainlogoclicked} alt="Sailorswave logo"/>
         </div>
         <nav className="text-center headernav">
           <span

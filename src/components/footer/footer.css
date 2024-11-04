@@ -9,6 +9,20 @@ footer{
     margin-top: 4rem;
     font-size: 14px;
 }
+.image-container{
+    width: 200px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+  overflow: hidden; /* Hides any overflow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-container img {
+    width: 100%; /* Ensures image covers the container width */
+    height: 100%; /* Ensures image covers the container height */
+    object-fit:cover; /* Zooms and crops the image to fill the container */
+    object-position: center; /* Centers the image within the container */
+  }
 @media(max-width:768px){
     footer{
         display: none;
