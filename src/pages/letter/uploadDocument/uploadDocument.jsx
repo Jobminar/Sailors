@@ -1,20 +1,7 @@
 import React, { useState, useRef } from "react";
 
 const UpladDocument = () => {
-    const [documents, setdocument] = useState([
-        {
-            applicationNo: "xxxxxxxxxx",
-            submittedApplication: "21/06/24",
-            applicationStatus: "Approved",
-            admitCardStatus: "Generated",
-            downloadAdmitCard: "Download",
-            interviewDate: "xx-xx-xxxx",
-            interviewFeedback: "Selected",
-            selectionLetter: "Download",
-            confirmationLetter: "Pending",
-            uploadDocuments: "Upload docx"
-        }
-    ])
+    const [documents, setdocument] = useState([])
     const fileInputRef = useRef(null);
     const letterInputRef = useRef(null);
 

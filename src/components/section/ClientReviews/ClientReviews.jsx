@@ -16,17 +16,6 @@ export function ClientReviews() {
                         <div className='clientreviewh2' style={{ marginBottom: "5vh", textAlign: "center", color:"#001E6C"}}>Here is what our Clients are saying About us</div>
                         <div className='p-4 bg-light d-flex justify-content-center'>
                             <img className="d-block w-100" src={bgimg} alt="first slide" />
-                            <div className='row w-50'>
-                                <div className='col-4'>
-                                    {/* <img src={men1} style={{width:'100px',height:'100px',borderRadius:'50%'}} /> */}
-                                    <div style={{width:'100px',height:'100px',borderRadius:'50%',backgroundColor:'blue'}}>
-
-                                    </div>
-                                </div>
-                                <div className='col'>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur sunt voluptates tempore dolore architecto corrupti ea repellat iure minus ut voluptatibus quae provident, atque unde iste beatae debitis. Consequatur, vero.
-                                </div>
-                            </div>
                         </div>
                     </div>
                 );

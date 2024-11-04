@@ -18,10 +18,11 @@ const Myappication = () => {
     const today = new Date().toISOString().split("T")[0];
     const [usersdata, setusersdata] = useState([])
     const [adminCookie,removeadminCookie] = useCookies(["user"]);
+    const apiKey = process.env.BASE_URL
 
     const fetchdata = async () => {
         try {
-            const values = await axios.get('http://127.0.0.1:7001/candidates')
+            const values = await axios.get(`${apiKey}/candidates`)
             setusersdata(values.data)
         } catch (error) {
             console.log(error)

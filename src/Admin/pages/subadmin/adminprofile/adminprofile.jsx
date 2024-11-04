@@ -5,7 +5,8 @@ import axios from 'axios';
 import { useCookies } from "react-cookie";
 
 const Adminprofile = () => {
-    const { data, error, isLoading } = useFetchData('http://localhost:7001/subadmin');
+     const apiKey = process.env.BASE_URL
+    const { data, error, isLoading } = useFetchData(`${apiKey}/subadmin`);
     const [adminCookie, setcookie, removeCookie] = useCookies(["useradmin"]);
     const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ const Adminprofile = () => {
         const confirmDelete = window.confirm("Are you sure you want to delete this subadmin?");
         if (confirmDelete) {
             try {
-                const response = await axios.delete(`http://localhost:7001/subadmin/${id}`);
+                const response = await axios.delete(`${apiKey}/subadmin/${id}`);
                 alert(response.data.message);
                 // Reload to fetch updated data
                 window.location.reload();
@@ -68,7 +69,7 @@ const Adminprofile = () => {
                                 <td onClick={() => Handilenavigate(admin.number)}>
                                     {admin.photoId ? (
                                         <img
-                                            src={`http://localhost:7001/fileById/${admin.photoId}`}
+                                            src={`${apiKey}/fileById/${admin.photoId}`}
                                             alt={admin.name}
                                             style={{ width: '50px', height: '50px', borderRadius: '50%' }}
                                         />

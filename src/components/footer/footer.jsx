@@ -29,7 +29,7 @@ export function Footer() {
                     </div>
                     <div className="d-flex justify-content-between" style={{ marginTop: "8vh", marginBottom: "8vh" }}>
                         <div style={{ width: "30%" }}>
-                            <h5>Loids Marins</h5>
+                            <h5>Loids Marine Services Pvt Ltd</h5>
                             <div className="text-justify" >
                                 Our team comprises seasoned professionals with extensive experience in the maritime industry. We bring deep insights and practical knowledge to every project we undertake.
                             </div>
@@ -50,7 +50,7 @@ export function Footer() {
                     <hr></hr>
                     <div className="d-flex justify-content-between" style={{ padding: "2rem 0rem 2rem 0rem " }}>
                         <div>Copyright © 2024 Sailorswaves.com™. All rights reserved</div>
-                        <div>Made with ❤️ Love</div>
+                        <a href="https://jobminar.com/" target='_blank' style={{color:'black',textDecoration:'none'}}><div>with ❤️ Jobminar</div></a>
                         <div>
                             <span className="mx-4">Terms & Conditions</span>
                             <span>Privacy Policy</span>

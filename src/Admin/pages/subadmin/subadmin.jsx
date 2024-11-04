@@ -9,10 +9,12 @@ const Subadmin = () => {
     const [file, setFile] = useState(null);
     const [error, setError] = useState(null);
     const navigate = useNavigate('')
+  const apiKey = process.env.BASE_URL
+
 
     const fetchData = async () => {
         try {
-            const { data: users } = await axios.get('http://127.0.0.1:7001/subadmin');
+            const { data: users } = await axios.get(`${apiKey}/subadmin`);
             const filteredUser = users.find((user) => user.number === id);
             setAllSubadmins(users);
             setUserDetail(filteredUser);
@@ -27,7 +29,7 @@ const Subadmin = () => {
         if (!photoId) return; // Avoid unnecessary calls if no photoId
 
         try {
-            const response = await axios.get(`http://localhost:7001/fileById/${photoId}`, {
+            const response = await axios.get(`${apiKey}/fileById/${photoId}`, {
                 responseType: 'blob',
             });
             const fileURL = URL.createObjectURL(new Blob([response.data]));

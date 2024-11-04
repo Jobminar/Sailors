@@ -12,13 +12,15 @@ import axios from 'axios'
 export function Confirmationprofile() {
     const navigate=useNavigate();
     const {applicationNo:id}= useParams();
-    const {user:applicantdetails, loading, error} =  useUserById('http://127.0.0.1:7001/candidates',id);
+    const {user:applicantdetails, loading, error} =  useUserById(`${apiKey}/candidates`,id);
     const [JoiningDate,SetJoiningDate] = useState('')
     const [Instalment2amt,setInstalment2amt] = useState('')
     const [Instalment3amt,setInstalment3amt] = useState('')
     const [Instalment2dat,setInstalment2dat] = useState('')
     const [Instalment3dat,setInstalment3dat] = useState('')
     const [adminCookie,removeadminCookie] = useCookies(["user"]);
+  const apiKey = process.env.BASE_URL
+
 
     const btncnfrmletter= async()=>{
         const userdata = {
@@ -56,7 +58,7 @@ export function Confirmationprofile() {
           };
         console.log(userdata,'userd data in conformationletter')
           try {
-            const response = await axios.patch(`http://localhost:7001/candidate/${id}`, userdata);
+            const response = await axios.patch(`${apiKey}/candidate/${id}`, userdata);
             alert('Response updated successfully');
             console.log(response);
             navigate(`/dashboardadmin/confirmationletter/${id}`) 

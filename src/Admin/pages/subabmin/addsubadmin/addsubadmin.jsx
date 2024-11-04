@@ -11,6 +11,7 @@ const Addsubadmin = () => {
     const isEditing = location.state && location.state.admin;
     const [files, setFile] = useState(isEditing ? isEditing.photoId : null);
     const fileInputRef = useRef(null);
+    const apiKey = process.env.BASE_URL
     
     // Validation schema using Yup
     const validationSchema = Yup.object().shape({
@@ -75,11 +76,11 @@ const Addsubadmin = () => {
         try {
             let response;
             if (isEditing) {
-                response = await axios.put(`http://localhost:7001/subadmin/${isEditing._id}`, formData, {
+                response = await axios.put(`${apiKey}/subadmin/${isEditing._id}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
             } else {
-                response = await axios.post('http://localhost:7001/subadmincreate', formData, {
+                response = await axios.post(`${apiKey}/subadmincreate`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
             }
@@ -158,13 +159,13 @@ const Addsubadmin = () => {
                             <div className="img-box fs-6 d-flex align-items-center justify-content-center" style={{ cursor: "pointer", backgroundColor: "#f0f0f0" }} onClick={handleClick}>
                                 {isEditing && !files instanceof File ? (
                                     <img
-                                        src={`http://localhost:7001/fileById/${isEditing.photoId}`}
+                                        src={`${apiKey}/fileById/${isEditing.photoId}`}
                                         alt="Admin"
                                         style={{ width: "100%", height: "100%", borderRadius: "10px" }}
                                     />
                                 ) : files ? (
                                     <img
-                                        src={files instanceof File ? URL.createObjectURL(files) : `http://localhost:7001/fileById/${files}`}
+                                        src={files instanceof File ? URL.createObjectURL(files) : `${apiKey}/fileById/${files}`}
                                         alt="Selected"
                                         style={{ width: "100%", height: "100%", borderRadius: "10px" }}
                                     />

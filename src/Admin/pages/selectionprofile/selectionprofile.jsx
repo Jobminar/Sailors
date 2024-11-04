@@ -17,10 +17,11 @@ const SelectionProfile = () => {
     const {id} = useParams()
     const navigate = useNavigate('')
     const [adminCookie,removeadminCookie] = useCookies(["user"]);
+  const apiKey = process.env.BASE_URL
 
     const fetchdata = async () => {
         try {
-            const usedata = await axios.get('http://127.0.0.1:7001/candidates')
+            const usedata = await axios.get(`${apiKey}/candidates`)
             const users = usedata.data;
             const filteredUsers = users.find((user) => user.applicationId === parseInt(id));
             setApplicantDetails(filteredUsers)
@@ -72,7 +73,7 @@ const SelectionProfile = () => {
             confirmationletterofficer:  applicantdetails?.confirmationletter?.status,
           };
           try {
-            const response = await axios.patch(`http://localhost:7001/candidate/${id}`, userdata);
+            const response = await axios.patch(`${apiKey}/candidate/${id}`, userdata);
             alert('Response updated successfully');
             navigate(`/dashboardadmin/selectionletter/${applicantdetails.applicationId}/letter`)
           } catch (error) {

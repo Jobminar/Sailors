@@ -13,10 +13,11 @@ export function Admitcard() {
   const [time, settime] = useState('')
   const [date, setdate] = useState('')
   const [adminCookie,removeadminCookie] = useCookies(["user"]);
+  const apiKey = process.env.BASE_URL
 
   const fetchdata = async () => {
     try {
-      const usedata = await axios.get('http://127.0.0.1:7001/candidates')
+      const usedata = await axios.get(`${apiKey}/candidates`)
       const users = usedata.data;
       const filteredUsers = users.find((user) => user.applicationId == param.applicationNo);
       setadmitcarddetails(filteredUsers)
@@ -59,7 +60,7 @@ export function Admitcard() {
     
 
     try {
-      const response = await axios.patch(`http://localhost:7001/candidate/${id}`, applicationstatus);
+      const response = await axios.patch(`${apiKey}/candidate/${id}`, applicationstatus);
       alert('response updated sucessfull')
       navigate(`/dashboardadmin/admitcardletter/${admitcarddetails.applicationId}`)
     } catch (error) {

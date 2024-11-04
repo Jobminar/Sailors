@@ -22,6 +22,8 @@ const Login = () => {
     const [otps,setuserotp] = useState(null)
     const [cookies,setcookie,removecookie]=useCookies(["user"]);
     const navigate =  useNavigate();
+    const apiKey = process.env.BASE_URL;
+    console.log("API Key:", apiKey);
 
 
 //////////////////////////////we have to make a api call on basic of their gmail and on basis of mail id we will get user application number
@@ -64,7 +66,7 @@ const Login = () => {
                         onSubmit={async(values) => {
                             console.log(values.userNumber,'user Number')
                             try{
-                                await axios.post('http://localhost:7001/userNumber', { userPhone: values.userNumber })
+                                await axios.post(`${apiKey}/userNumber`, { userPhone: values.userNumber })
                                 .then(response => {
                                     const otp = (response.data.otp).toString();
                                     console.log('OTP:', otp);

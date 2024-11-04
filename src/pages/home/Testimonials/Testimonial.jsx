@@ -10,7 +10,7 @@ const Testimonial = () => (
     <div className="heading1">Trusted By Companies including</div>
 
     <p className="para1">
-    At Loids Marins Shipment Management Pvt Ltd, our clients are at the heart of everything we do. Established in 2022, we have built a strong reputation for delivering exceptional service and value to a diverse clientele worldwide.
+    At Loids Marine Services Pvt Ltd, our clients are at the heart of everything we do. Established in 2022, we have built a strong reputation for delivering exceptional service and value to a diverse clientele worldwide.
     </p>
 
     <div className="icons-container">

@@ -2,10 +2,9 @@ import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import image1 from "../../assets/Images/carousel1.jpg";
+import image1 from '../../assets/Images/carousel1.png'
 import image2 from "../../assets/Images/carouselimg2.png";
 import image3 from "../../assets/Images/carouselimg3.png";
-import image4 from "../../assets/Images/carouselimg4.png";
 import "./carosel.css";
 // import sidebar from "../../assets/Images/sidebar.jpg";
 
@@ -21,17 +20,12 @@ const Carousel = () => {
     <div className="main-container">
       <div className="slider-container">
         <Slider {...settings}>
-          <div className="logo" id="mainbanner">
-            <img
-              src={image1}
-              alt=""
-              className="image3"
-              style={{ width: "100%" }}
-            />
-          </div>
-          <div>
-            <h1>2</h1>
-          </div>
+            <div className="carousel-item active rounded-4">
+              <img src={image1} className="d-block w-100 rounded" alt="img2" />
+            </div>
+            <div className="carousel-item rounded-4">
+              <img src={image2} className="d-block w-100" style={{height:'120%'}} alt="img3" />
+            </div>
         </Slider>
       </div>
       <div className="mblcarousel">
@@ -47,9 +41,6 @@ const Carousel = () => {
             </div>
             <div className="carousel-item">
               <img src={image2} className="d-block w-100" alt="img2" />
-            </div>
-            <div className="carousel-item">
-              <img src={image3} className="d-block w-100" alt="img3" />
             </div>
           </div>
           <button className="carousel-control-prev " type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

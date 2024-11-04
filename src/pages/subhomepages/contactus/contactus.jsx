@@ -86,16 +86,14 @@ const ContactHomepage = () => {
                             </Formik>
                             <div className="contexts">
                                 <div className="d-flex align-items-center mt-5">
-                                    <div className="bi-telephone-outbound fs-3 "></div>
-                                    <div className=" ms-2 fw-medium">PHONE <br />1230456789</div>
-                                    <div className="bi-envelope ms-3 fs-3"></div>
-                                    <div className=" ms-2 fw-medium">EMAIL <br /> email@gmail.com </div>
+                                    <div className="bi-telephone-outbound fw-normal "> PHONE <br />87906 95737</div>
+                                    <div className="bi-envelope ms-3 fw-normal"> EMAIL <br /> info@loidsmarineservices.com</div>
                                 </div>
                             </div>
 
                         </div>
                         <div className="subGettouch d-flex justify-content-center align-content-center p-4 bg-light rounded-3">
-                                <img src={logo} className="m-3" />
+                            <img src={logo} className="m-3" />
                         </div>
                     </div>
                 </div>

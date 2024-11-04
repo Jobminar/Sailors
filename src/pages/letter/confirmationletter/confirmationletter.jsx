@@ -7,11 +7,12 @@ import { useNavigate } from "react-router-dom";
 const ConfirmationLetter = () => {
     const [confirmLetters, setConfirmLetter] = useState([])
     const letterInputRef = useRef(null);
-    const navigate = useNavigate('')
+    const navigate = useNavigate('');
+    const apiKey = process.env.BASE_URL
 
     const Fetchdata = async () => {
         try {
-            const user = await axios.get('http://127.0.0.1:7001/candidates')
+            const user = await axios.get(`${apiKey}/candidates`)
             setConfirmLetter(user.data)
         } catch (error) {
             console.log(error)
@@ -34,7 +35,7 @@ const ConfirmationLetter = () => {
     };
 
     const handleViewDocument = (filename) => {
-        const url = `http://127.0.0.1:7001/fileById/${filename}`;
+        const url = `${apiKey}}/fileById/${filename}`;
         window.location.href = url;
     };
 

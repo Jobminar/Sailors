@@ -91,11 +91,11 @@ const UserApplication = () => {
     formData.append('class10th', files.class10th);
     formData.append('aadhar', files.aadhar);
     try {
-      const response = await fetch('http://localhost:7001/userformsubmit', {
+      const apiKey = process.env.BASE_URL;
+      const response = await fetch(`${apiKey}/userformsubmit`, {
         method: 'POST',
         body: formData,
       });
-
       const result = await response.json();
 
       if (response.ok) {
@@ -468,7 +468,7 @@ const UserApplication = () => {
                 UPLOAD PICTURE (*Select image of less than 2mb)
               </Typography>
               <div className='row my-4' style={{ alignContent: "center" }}>
-                <dt className='col-6 ms-4 '>Upload your passport size picture (.jpg)</dt>
+                <dt className='col-6 text-dark-subtle fw-medium '>Upload your passport size picture (.jpg)</dt>
                 <dd className='col-5 '>
                   <input
                     type="file"
@@ -481,7 +481,7 @@ const UserApplication = () => {
               </div>
               <hr />
               <div className='row my-4' style={{ alignContent: "center" }}>
-                <dt className='col-6 ms-4 '>Upload your class 10th certificate (.jpg)</dt>
+                <dt className='col-6 text-dark-subtle fw-medium'>Upload your class 10th certificate (.jpg)</dt>
                 <dd className='col-5'>
                   <input
                     type="file"
@@ -494,7 +494,7 @@ const UserApplication = () => {
               </div>
               <hr />
               <div className='row my-4' style={{ alignContent: "center" }}>
-                <dt className='col-6 ms-4 '>Upload your Aadhar card (.jpg)</dt>
+                <dt className='col-6 text-dark-subtle fw-medium '>Upload your Aadhar card (.jpg)</dt>
                 <dd className='col-5'>
                   <input
                     type="file"
@@ -508,7 +508,7 @@ const UserApplication = () => {
               <hr />
               <div>
                 <dt className='fs-4 my-3'>Declaration:</dt>
-                <dd className='fs-5' style={{ letterSpacing: ".6px" }}>I declare that the particular furnished above are true to the best of my knowledge and belief and whenever called for the records shall be furnished.</dd>
+                <dd className='fs-5'>I declare that the particular furnished above are true to the best of my knowledge and belief and whenever called for the records shall be furnished.</dd>
               </div>
               <div className='text-center' >
                 <button

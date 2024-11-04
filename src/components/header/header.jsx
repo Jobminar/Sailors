@@ -1,6 +1,7 @@
 
 import "./header.css";
 import logo from "../../assets/Images/logo.png";
+// import logo from "../../assets/Images/logo2.svg"
 import dp from "../../assets/Images/dp-dummy.png";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
@@ -12,6 +13,7 @@ export function Header() {
   const [cookies, removecookie] = useCookies(["user"]);
   const [dropdownVisible, setDropdownVisible] = useState(false); // Desktop dropdown
   const [dropdownmobile, setDropdownMobile] = useState(false); // Mobile dropdown
+  const [applydropdown,setapplydropdown] = useState(false)
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768); // Detect mobile view
 
   let navigate = useNavigate();
@@ -60,7 +62,6 @@ export function Header() {
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
-
   const toggleMobileDropdown = () => {
     setDropdownMobile(!dropdownmobile);
   };
@@ -164,9 +165,8 @@ export function Header() {
                         style={{ width: "40px" }}
                       />
                     </span>
-                    <span>
+                    <span className="align-content-center">
                       <div>{cookies.user}</div>
-                      <div className="text-secondary">9390373702</div>
                     </span>
                   </div>
                   <div className="dropdown-divider"></div>
@@ -192,8 +192,8 @@ export function Header() {
       {isMobileView && (
         <header className="headerr ">
           <div className="d-flex h-100 align-content-center">
-            <div className="dropdown">
-              <span onClick={toggleMobileDropdown} className="bi bi-list"></span>
+            <div className="dropdown align-content-center">
+              <span onClick={()=>[setDropdownMobile(!dropdownmobile),setapplydropdown(false)]} className="bi bi-list text-secondary"></span>
               {dropdownmobile && (
                 <div className="dropdown-menu  text-dark show mt-4" style={{ width: "250px", left: 0 }}>
                   <div className="dropdown-item" id="home" onClick={()=>navigate("/")}>Home</div>
@@ -209,15 +209,15 @@ export function Header() {
               <img src={logo} width={100} alt="Logo" />
             </span>
           </div>
-          <div className="d-flex justify-content-end" onClick={() => cookies.user ? '' : navigate('/login')}>
+          <div className="d-flex justify-content-end" onClick={() => cookies.user ? [setapplydropdown(!applydropdown),setDropdownMobile(false)] : navigate('/login')}>
             <span
               className="btnapply text-light d-flex login-button btn"
               style={{ backgroundColor: "#F97D3D", borderRadius: "2rem" }}
             >
-              Apply now
+              {(cookies.user)?cookies.user:'Apply now'}
             </span>
-            {dropdownmobile && (
-              <div className="dropdown-menu show mt-2">
+            {cookies.user && applydropdown && (
+              <div className="dropdown-menu show mt-5">
                 <div className="dropdown-item d-flex">
                   <span>
                     <img
@@ -227,9 +227,8 @@ export function Header() {
                       style={{ width: "40px" }}
                     />
                   </span>
-                  <span>
+                  <span className="align-content-center">
                     <div>{cookies.user}</div>
-                    <div className="text-secondary">9390373702</div>
                   </span>
                 </div>
                 <div className="dropdown-divider"></div>

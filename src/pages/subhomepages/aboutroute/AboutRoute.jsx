@@ -7,7 +7,7 @@ const AboutRoute = () => (
     <section>
       <div className="main-container-aboutroute">
         <div className="workwithus-container">
-          <div className='imgtext'>
+          {/* <div className='imgtext'>
             <h1>Work with us</h1>
             <p>
               We're constantly trying to express ourselves and actualize your
@@ -20,13 +20,13 @@ const AboutRoute = () => (
               <i className="bi bi-instagram mx-2"></i>
               <i className="bi bi-twitter mx-2"></i>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="container-for-paras">
           <div className="d-flex justify-content-center mt-4" >
             <div>
               <h3 className="d-md-none">About us</h3>
-              <p className="para-about-sailors1">
+              <p className="para-about-sailors1" style={{fontFamily: 'Roboto'}}>
               Welcome to Loids Marins Shipment Management Pvt Ltd, your trusted partner in comprehensive maritime solutions. Established in 2022, Loids Marins is dedicated to delivering top-tier services in the onshore industry by providing innovative and reliable solutions tailored to meet the unique needs of our clients.
               </p>
             </div>
@@ -34,7 +34,7 @@ const AboutRoute = () => (
               <img src={aboutusres} className="responsiveimg" alt="aboutuse img" />
             </div>
           </div>
-          <p className="para-about-sailors2">
+          <p className="para-about-sailors2" style={{fontFamily: 'Roboto'}}>
           We offer comprehensive services, including crew management, ship management, and maritime training. We prioritize the safety of our crew and vessels, adhering to the highest standards of professionalism and integrity. With a global network and a commitment to innovation, Loids Marins is at the forefront of the Merchant Navy sector, ready to navigate the seas and chart a course for success. Join us and experience unparalleled maritime service.
           </p>
         </div>

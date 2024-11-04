@@ -13,9 +13,11 @@ const Admitcarddashboard = () => {
     const navigate=useNavigate();
     const [userdata,setuserdata] = useState([])
     const [adminCookie,removeadminCookie] = useCookies(["user"]);
+    const apiKey = process.env.BASE_URL
+
     const featchdata  = async ()=>{
         try{
-            const values = await axios.get('http://127.0.0.1:7001/candidates')
+            const values = await axios.get(`${apiKey}/candidates`)
             setuserdata(values.data)(values.data)
 
         }catch(error){

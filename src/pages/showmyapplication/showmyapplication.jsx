@@ -14,7 +14,8 @@ const ShowmyapplicationForm = () => {
   const [error, setError] = useState(null);
   const params = useParams()
   const[cookies,setcookie,removecookie]=useCookies()
-  console.log(formData.passport);
+  const apiKey = process.env.BASE_URL
+
   const Getuserdata = async () => {
     try {
       const values = await axios.get('http://127.0.0.1:7001/candidates');
@@ -33,7 +34,7 @@ const ShowmyapplicationForm = () => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:7001/fileById/${id}`, {
+      const response = await axios.get(`${apiKey}/fileById/${id}`, {
         responseType: 'blob',
       });
       const fileURL = URL.createObjectURL(new Blob([response.data]));
