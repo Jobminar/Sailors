@@ -80,6 +80,9 @@
     .bgcontactus {
         width: 95%;
     }
+    .fw-medium{
+        padding: 0px 10%;
+    }
 
     .contactuscard {
         width: 100%;

@@ -58,7 +58,7 @@ const ContactHomepage = () => {
                                 }}
                             >
                                 {
-                                    form => <Form className="mt-4">
+                                    form => <Form className="mt-4 p-4">
                                         <div className="mb-3">
                                             <Field name='userName' type='text' placeholder='Your Name' className="form-control w-100" />
                                             <ErrorMessage name="userName" />
