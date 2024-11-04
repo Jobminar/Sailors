@@ -37,10 +37,6 @@ const Login = () => {
         return () => clearInterval(interval);
     }, [showLogin, timer,cookies]);
 
-    const toggleLoginView = () => {
-        setShowLogin(!showLogin);
-    };
-
     const handleOtpInput = (event, index) => {
         const value = event.target.value;
         if (value.length === 1 && index < otpRefs.current.length - 1) {
@@ -66,7 +62,8 @@ const Login = () => {
                         onSubmit={async(values) => {
                             console.log(values.userNumber,'user Number')
                             try{
-                                await axios.post(`${apiKey}/userNumber`, { userPhone: values.userNumber })
+                                // await axios.post(`${apiKey}/userNumber`, { userPhone: values.userNumber })
+                                await axios.post(`http://localhost:7001/userNumber`, { userPhone: values.userNumber })
                                 .then(response => {
                                     const otp = (response.data.otp).toString();
                                     console.log('OTP:', otp);
@@ -106,6 +103,9 @@ const Login = () => {
                             </Form>
                         )}
                     </Formik>
+                    <div className='text-end align-content-end' style={{height:'200px'}}>
+                        <button className='btn btn-warning bi-shield-fill-check' onClick={()=>navigate('/adminlogin')}> Admin Login</button>
+                    </div>
                 </div>
             </div>
 

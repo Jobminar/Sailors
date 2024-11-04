@@ -21,10 +21,10 @@ const Carousel = () => {
       <div className="slider-container">
         <Slider {...settings}>
             <div className="carousel-item active rounded-4">
-              <img src={image1} className="d-block w-100 rounded" alt="img2" />
+              <img src={image1} className="d-block w-100 rounded" style={{height:'80vh'}} alt="img2" />
             </div>
             <div className="carousel-item rounded-4">
-              <img src={image2} className="d-block w-100" style={{height:'120%'}} alt="img3" />
+              <img src={image2} className="d-block w-100" style={{height:'80vh'}} alt="img3" />
             </div>
         </Slider>
       </div>
@@ -33,7 +33,6 @@ const Carousel = () => {
           <div className="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
           <div className="carousel-inner">
             <div className="carousel-item active">

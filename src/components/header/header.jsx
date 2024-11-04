@@ -10,10 +10,10 @@ import { useNavigate } from "react-router-dom";
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState("home");
   const [displayStyleLogin, setDisplayStyleLogin] = useState("d-none");
-  const [cookies, removecookie] = useCookies(["user"]);
+  const [cookies, setcookie, removecookie] = useCookies(["user"]);
   const [dropdownVisible, setDropdownVisible] = useState(false); // Desktop dropdown
   const [dropdownmobile, setDropdownMobile] = useState(false); // Mobile dropdown
-  const [applydropdown,setapplydropdown] = useState(false)
+  const [applydropdown, setapplydropdown] = useState(false)
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768); // Detect mobile view
 
   let navigate = useNavigate();
@@ -78,13 +78,13 @@ export function Header() {
     <div>
       <header className="headerw">
         <div className="image-containers">
-          <img src={logo} onClick={mainlogoclicked} alt="Sailorswave logo"/>
+          <img src={logo} onClick={mainlogoclicked} alt="Sailorswave logo" />
         </div>
         <nav className="text-center headernav">
           <span
             className="fw-medium"
             id="home"
-            onClick={()=>navigate("/")}
+            onClick={() => navigate("/")}
             style={{ color: isMenuOpen === "home" ? "#F97D3D" : "black" }}
           >
             Home
@@ -92,7 +92,7 @@ export function Header() {
           <span
             className="fw-medium"
             id="about"
-            onClick={()=>navigate('/about')}
+            onClick={() => navigate('/about')}
             style={{ color: isMenuOpen === "about" ? "#F97D3D" : "black" }}
           >
             About
@@ -100,7 +100,7 @@ export function Header() {
           <span
             className="fw-medium"
             id="services"
-            onClick={()=>navigate("/services")}
+            onClick={() => navigate("/services")}
             style={{ color: isMenuOpen === "services" ? "#F97D3D" : "black" }}
           >
             Services
@@ -108,7 +108,7 @@ export function Header() {
           <span
             className="fw-medium"
             id="contact"
-            onClick={()=>navigate('/contact')}
+            onClick={() => navigate('/contact')}
             style={{ color: isMenuOpen === "contact" ? "#F97D3D" : "black" }}
           >
             Contact us
@@ -116,7 +116,7 @@ export function Header() {
           <span
             className="fw-medium"
             id="contact"
-            onClick={()=>navigate('/application')}
+            onClick={() => cookies.user ? navigate('/application') : navigate('/login')}
             style={{ color: isMenuOpen === "contact" ? "#F97D3D" : "black" }}
           >
             ApplyNow
@@ -155,7 +155,7 @@ export function Header() {
                 </span>
               </button>
               {!isMobileView && dropdownVisible && (
-                <div className="dropdown-menu show mt-2">
+                <div className="dropdown-menu show mt-2" onClick={()=>setDropdownVisible(false)}>
                   <div className="dropdown-item d-flex">
                     <span>
                       <img
@@ -173,13 +173,13 @@ export function Header() {
                   <div className="dropdown-item" onClick={() => navigate("/application")}>Apply Now</div>
                   <div className="dropdown-item" onClick={() => navigate('/applicationletter')} >My Application</div>
                   <div className="dropdown-item" onClick={() => navigate('/myadmitcard')}>My Admit Cards</div>
-                  <div className="dropdown-item" onClick={()=>navigate('/selectionletterhead')}>Selection Letters</div>
-                <div className="dropdown-item" onClick={() => navigate('/documentsailorwave')} >Upload Docx</div>
-                <div className="dropdown-item" onClick={()=>navigate('/confirmationletterhead')}>Confirmation Letters</div>
+                  <div className="dropdown-item" onClick={() => navigate('/selectionletterhead')}>Selection Letters</div>
+                  <div className="dropdown-item" onClick={() => navigate('/documentsailorwave')} >Upload Docx</div>
+                  <div className="dropdown-item" onClick={() => navigate('/confirmationletterhead')}>Confirmation Letters</div>
                   <div className="dropdown-divider"></div>
                   <div
                     className="bi bi-box-arrow-left dropdown-item text-danger"
-                    onClick={() => removecookie("user")}
+                    onClick={() => removecookie('user')}
                   >
                     <span className="ms-1">Sign Out</span>
                   </div>
@@ -192,15 +192,15 @@ export function Header() {
       {isMobileView && (
         <header className="headerr ">
           <div className="d-flex h-100 align-content-center">
-            <div className="dropdown align-content-center">
-              <span onClick={()=>[setDropdownMobile(!dropdownmobile),setapplydropdown(false)]} className="bi bi-list text-secondary"></span>
+            <div className="dropdown align-content-center" onClick={() => [setDropdownMobile(!dropdownmobile), setapplydropdown(false)]}>
+              <span className="bi bi-list text-secondary"></span>
               {dropdownmobile && (
                 <div className="dropdown-menu  text-dark show mt-4" style={{ width: "250px", left: 0 }}>
-                  <div className="dropdown-item" id="home" onClick={()=>navigate("/")}>Home</div>
-                  <div className="dropdown-item" id="about" onClick={()=>navigate('/about')}>About us</div>
-                  <div className="dropdown-item" id="contact" onClick={()=>navigate('/contact')}>Contact</div>
-                  <div className="dropdown-item" id="services" onClick={()=>navigate("/services")}>Our services</div>
-                  <div className="dropdown-item" id="services" onClick={() =>navigate("/application")}>Apply Now</div>
+                  <div className="dropdown-item" id="home" onClick={() => navigate("/")}>Home</div>
+                  <div className="dropdown-item" id="about" onClick={() => navigate('/about')}>About us</div>
+                  <div className="dropdown-item" id="contact" onClick={() => navigate('/contact')}>Contact</div>
+                  <div className="dropdown-item" id="services" onClick={() => navigate("/services")}>Our services</div>
+                  <div className="dropdown-item" id="services" onClick={() => navigate("/application")}>Apply Now</div>
                   <div className="dropdown-item" >Login/Signup</div>
                 </div>
               )}
@@ -209,12 +209,12 @@ export function Header() {
               <img src={logo} width={100} alt="Logo" />
             </span>
           </div>
-          <div className="d-flex justify-content-end" onClick={() => cookies.user ? [setapplydropdown(!applydropdown),setDropdownMobile(false)] : navigate('/login')}>
+          <div className="d-flex justify-content-end" onClick={() => cookies.user ? [setapplydropdown(!applydropdown), setDropdownMobile(false)] : navigate('/login')}>
             <span
               className="btnapply text-light d-flex login-button btn"
               style={{ backgroundColor: "#F97D3D", borderRadius: "2rem" }}
             >
-              {(cookies.user)?cookies.user:'Apply now'}
+              {(cookies.user) ? cookies.user : 'Apply now'}
             </span>
             {cookies.user && applydropdown && (
               <div className="dropdown-menu show mt-5">
@@ -235,9 +235,9 @@ export function Header() {
                 <div className="dropdown-item" onClick={() => navigate("/application")}>Apply Now</div>
                 <div className="dropdown-item" onClick={() => navigate('/applicationletter')} >My Application</div>
                 <div className="dropdown-item" onClick={() => navigate('/myadmitcard')}>My Admit Cards</div>
-                <div className="dropdown-item" onClick={()=>navigate('/selectionletterhead')}>Selection Letters</div>
+                <div className="dropdown-item" onClick={() => navigate('/selectionletterhead')}>Selection Letters</div>
                 <div className="dropdown-item" onClick={() => navigate('/documentsailorwave')} >Upload Docx</div>
-                <div className="dropdown-item" onClick={()=>navigate('/confirmationletterhead')}>Confirmation Letters</div>
+                <div className="dropdown-item" onClick={() => navigate('/confirmationletterhead')}>Confirmation Letters</div>
                 <div className="dropdown-divider"></div>
                 <div
                   className="bi bi-box-arrow-left dropdown-item text-danger"

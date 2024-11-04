@@ -36,6 +36,7 @@
     padding-top: 30px;
 }
 
+/* contactus */
 @media only screen and (orientation: portrait) {
     .Gettotuch {
         display: flex;
@@ -70,7 +71,7 @@
         text-align: center;
         padding: 1% 6%;
         margin-top: 10px;
-        height: 85vh;
+        height: 110vh;
     }
 
     .contactIcon {

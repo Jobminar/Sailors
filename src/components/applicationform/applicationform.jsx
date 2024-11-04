@@ -3,6 +3,7 @@ import { Grid, TextField, MenuItem, Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import './applicationfrom.css'
+import { useCookies } from 'react-cookie';
 
 const UserApplication = () => {
   const [files, setFiles] = useState({
@@ -10,13 +11,14 @@ const UserApplication = () => {
     class10th: null,
     aadhar: null
   });
+  const [cookies,setcookie,removecookie]=useCookies(["user"]);
   const [formDatauser, setFormDatauser] = useState({
     applyFor: '',
     candidateName: '',
     fatherName: '',
     dob: '',
     gender: 'Male',
-    mobileNumber: '',
+    mobileNumber: cookies.user,
     email: '',
     houseNo: '',
     postOffice: '',
@@ -215,9 +217,12 @@ const UserApplication = () => {
                     fullWidth
                     label="Mobile number"
                     name="mobileNumber"
-                    value={formDatauser.mobileNumber}
+                    value={(cookies.user)}
                     onChange={handleInputChange}
                     variant="outlined"
+                    InputProps={{
+                      readOnly: true,
+                    }}
                   />
                 </Grid>
 
