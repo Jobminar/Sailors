@@ -62,8 +62,7 @@ const Login = () => {
                         onSubmit={async(values) => {
                             console.log(values.userNumber,'user Number')
                             try{
-                                // await axios.post(`${apiKey}/userNumber`, { userPhone: values.userNumber })
-                                await axios.post(`http://localhost:7001/userNumber`, { userPhone: values.userNumber })
+                                await axios.post(`${apiKey}/userNumber`, { userPhone: values.userNumber })
                                 .then(response => {
                                     const otp = (response.data.otp).toString();
                                     console.log('OTP:', otp);
