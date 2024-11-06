@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import moment from 'moment';
 const Profile = ({ applicantdetail }) => {
   const [photo, setPhoto] = useState(null);
+  const apiKey = process.env.REACT_APP_BASE_URL;
 
     const fetchFileById = async (id, setFileState) => {
         if (!id) {
@@ -12,7 +13,7 @@ const Profile = ({ applicantdetail }) => {
         }
     
         try {
-          const response = await axios.get(`http://localhost:7001/fileById/${id}`, {
+          const response = await axios.get(`http://localhost:7000/fileById/${id}`, {
             responseType: 'blob',
           });
           const fileURL = URL.createObjectURL(new Blob([response.data]));

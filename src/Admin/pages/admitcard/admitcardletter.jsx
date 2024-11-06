@@ -10,11 +10,11 @@ export function Admitcardletterhead() {
   const reactToPrintFn = useReactToPrint({ contentRef });
   const [user, setUser] = useState({})
   const param = useParams()
-  const apiKey = process.env.BASE_URL
+  const apiKey = process.env.REACT_APP_BASE_URL
 
   const fetchdata = async () => {
     try {
-      const usedata = await axios.get(`${apiKey}/candidates`)
+      const usedata = await axios.get(`http://localhost:7000/candidates`)
       const users = usedata.data;
       const filteredUsers = users.find((user) => user.applicationId == param.applicationNo);
       setUser(filteredUsers)

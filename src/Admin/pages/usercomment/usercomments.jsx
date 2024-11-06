@@ -7,9 +7,9 @@ import { useParams } from 'react-router-dom';
 export function Usercomments(){
     const {applicationNo} = useParams()
     const [user,setuser] = useState({})
-    const apiKey = process.env.BASE_URL
+    const apiKey = process.env.REACT_APP_BASE_URL
     const GetComments = async()=>{
-        const usedata= await axios.get(`${apiKey}/candidate/${applicationNo}`)
+        const usedata= await axios.get(`http://localhost:7000/candidate/${applicationNo}`)
         setuser(usedata.data)
     }
     useEffect(()=>{

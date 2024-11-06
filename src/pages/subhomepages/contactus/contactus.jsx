@@ -49,14 +49,13 @@ const ContactHomepage = () => {
                                 })}
                                 onSubmit={async (userData) => {
                                     try {
-                                        await axios.post('http://localhost:7000/gettotuchuser', userData)
+                                        await axios.post('http://localhost:7001/gettotuchuser', userData)
                                         alert(userData.userName + ' User Detials is updated successfull')
                                         console.log(userData);
                                     } catch (error) {
                                         console.log(error);
                                     }
-                                }}
-                            >
+                                }}>
                                 {
                                     form => <Form className="mt-4 p-4">
                                         <div className="mb-3">
@@ -85,9 +84,15 @@ const ContactHomepage = () => {
                                 }
                             </Formik>
                             <div className="contexts">
-                                <div className="d-flex align-items-center mt-5">
-                                    <div className="bi-telephone-outbound fw-normal "> PHONE <br />87906 95737</div>
-                                    <div className="bi-envelope ms-3 fw-normal"> EMAIL <br /> info@loidsmarineservices.com</div>
+                                <div className="d-flex">
+                                    <div>
+                                        <div className="bi-telephone-outbound fw-normal"> PHONE</div>
+                                        <div className="fw-normal">8790695737</div>
+                                    </div>
+                                    <div className="ms-2">
+                                        <div className="bi-envelope fw-normal"> EMAIL <br /> </div>
+                                        <div className="fw-normal">info@loidsmarineservices.com</div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -97,7 +102,7 @@ const ContactHomepage = () => {
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </>
     )
 }

@@ -14,7 +14,7 @@ const ShowmyapplicationForm = () => {
   const [error, setError] = useState(null);
   const params = useParams()
   const[cookies,setcookie,removecookie]=useCookies()
-  const apiKey = process.env.BASE_URL
+  const apiKey = process.env.REACT_APP_BASE_URL
 
   const Getuserdata = async () => {
     try {
@@ -34,7 +34,7 @@ const ShowmyapplicationForm = () => {
     }
 
     try {
-      const response = await axios.get(`${apiKey}/fileById/${id}`, {
+      const response = await axios.get(`http://localhost:7000/fileById/${id}`, {
         responseType: 'blob',
       });
       const fileURL = URL.createObjectURL(new Blob([response.data]));

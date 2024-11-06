@@ -93,8 +93,8 @@ const UserApplication = () => {
     formData.append('class10th', files.class10th);
     formData.append('aadhar', files.aadhar);
     try {
-      const apiKey = process.env.BASE_URL;
-      const response = await fetch(`${apiKey}/userformsubmit`, {
+      const apiKey = process.env.REACT_APP_BASE_URL;
+      const response = await fetch(`http://localhost:7000/userformsubmit`, {
         method: 'POST',
         body: formData,
       });

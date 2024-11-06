@@ -7,6 +7,7 @@ const Documentuser = ({ userdetails }) => {
   const [photo, setPhoto] = useState(null);
   const [class10photo, setclass10Photo] = useState(null);
   const [aadharphoto, setaadharPhoto] = useState(null);
+  const apiKey = process.env.REACT_APP_BASE_URL;
 
   const fetchFileById = async (id, setFileState) => {
     if (!id) {
@@ -14,7 +15,7 @@ const Documentuser = ({ userdetails }) => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:7001/fileById/${id}`, {
+      const response = await axios.get(`http://localhost:7000/fileById/${id}`, {
         responseType: 'blob',
       });
       const fileURL = URL.createObjectURL(new Blob([response.data]));

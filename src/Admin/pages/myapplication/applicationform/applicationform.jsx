@@ -15,11 +15,11 @@ const AdminApplicationForm = () => {
   const [error, setError] = useState(null);
   const params = useParams()
   const [adminCookie,removeadminCookie] = useCookies(["user"]);
-  const apiKey = process.env.BASE_URL
+  const apiKey = process.env.REACT_APP_BASE_URL
 
   const Getuserdata = async () => {
     try {
-      const values = await axios.get(`${apiKey}/candidates`);
+      const values = await axios.get(`http://localhost:7000/candidates`);
       const userdata = values.data
       const finduser = userdata.find((user) => user.applicationId === parseInt(params.id));
       setFormData(finduser)
@@ -35,7 +35,7 @@ const AdminApplicationForm = () => {
     }
 
     try {
-      const response = await axios.get(`${apiKey}/fileById/${id}`, {
+      const response = await axios.get(`http://localhost:7000/fileById/${id}`, {
         responseType: 'blob',
       });
       const fileURL = URL.createObjectURL(new Blob([response.data]));
@@ -97,7 +97,7 @@ const AdminApplicationForm = () => {
     };
   
     try {
-      const response = await axios.patch(`${apiKey}/candidate/${id}`, applicationStatus);
+      const response = await axios.patch(`http://localhost:7000/candidate/${id}`, applicationStatus);
       alert('Response updated successfully');
       console.log(response);
       navigate('/dashboardadmin/myapplication');

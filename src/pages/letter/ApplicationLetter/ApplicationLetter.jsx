@@ -10,7 +10,7 @@ const ApplicationLetter = () => {
   const [data, setuserdata] = useState([])
   const navigate = useNavigate('')
   const [cookies, setcookie, removecookie] = useCookies(["user"])
-  const apiKey = process.env.BASE_URL;
+  const apiKey = process.env.REACT_APP_BASE_URL;
   
   const handleViewDocument = (filename) => {
     const url = `http://127.0.0.1:7001/fileById/${filename}`;
@@ -20,7 +20,7 @@ const ApplicationLetter = () => {
 
   const Fetchdata = async () => {
     try {
-      const alluser = await axios.get(`${apiKey}/candidates`)
+      const alluser = await axios.get(`http://localhost:7000/candidates`)
       const user = alluser.data;
       const finduser = user.filter((usernumber) => parseInt(usernumber.mobileNumber) === cookies.user)
       // console.log(cookies.user,'finlter')

@@ -10,11 +10,11 @@ export function InterviewLetterHead3() {
   const reactToPrintFn = useReactToPrint({ contentRef });
   const [user, setUser] = useState({});
   const [cookies, setcookie, removecookie] = useCookies(["user"]);
-  const apiKey = process.env.BASE_URL
+  const apiKey = process.env.REACT_APP_BASE_URL
 
   const Fetchdata = async () => {
     try {
-      const alluser = await axios.get(`${apiKey}/candidates`)
+      const alluser = await axios.get(`http://localhost:7000/candidates`)
       const user = alluser.data;
       const finduser = user.find((usernumber) => parseInt(usernumber.mobileNumber) === cookies.user)
       setUser(finduser)

@@ -8,11 +8,11 @@ const ConfirmationLetter = () => {
     const [confirmLetters, setConfirmLetter] = useState([])
     const letterInputRef = useRef(null);
     const navigate = useNavigate('');
-    const apiKey = process.env.BASE_URL
+    const apiKey = process.env.REACT_APP_BASE_URL
 
     const Fetchdata = async () => {
         try {
-            const user = await axios.get(`${apiKey}/candidates`)
+            const user = await axios.get(`http://localhost:7000/candidates`)
             setConfirmLetter(user.data)
         } catch (error) {
             console.log(error)
@@ -35,7 +35,7 @@ const ConfirmationLetter = () => {
     };
 
     const handleViewDocument = (filename) => {
-        const url = `${apiKey}}/fileById/${filename}`;
+        const url = `http://localhost:7000}/fileById/${filename}`;
         window.location.href = url;
     };
 

@@ -7,11 +7,11 @@ import axios from "axios";
 
 const Interoutcome = () => {
     const {id} = useParams()
-    const { user, loading, error } = useUserById(`${apiKey}/candidates`, id)
+    const { user, loading, error } = useUserById(`http://localhost:7000/candidates`, id)
     const [adminCookie,removeadminCookie] = useCookies(["user"]);
     const [feedback,setfeedback] = useState('')
     const navigate = useNavigate('')
-    const apiKey = process.env.BASE_URL
+    const apiKey = process.env.REACT_APP_BASE_URL
 
     const HandileUpdate = async(id,status)=>{
         const userdata = {
@@ -47,7 +47,7 @@ const Interoutcome = () => {
             confirmationletterofficer:  user?.confirmationletter.status,
           };
           try {
-            const response = await axios.patch(`${apiKey}/candidate/${id}`, userdata);
+            const response = await axios.patch(`http://localhost:7000/candidate/${id}`, userdata);
             alert('Response updated successfully');
             console.log(response);
             navigate('/dashboardadmin/myapplication');

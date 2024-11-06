@@ -6,16 +6,16 @@ import { useCookies } from "react-cookie";
 const Myresult = () => {
   const [data, setuserdata] = useState([]);
   const [cookies,setcookie,removecookie]=useCookies(["user"])
-  const apiKey = process.env.BASE_URL
+  const apiKey = process.env.REACT_APP_BASE_URL
 
   const handleViewDocument = (filename) => {
-    const url = `${apiKey}/fileById/${filename}`;
+    const url = `http://localhost:7000/fileById/${filename}`;
     window.location.href = url;
 };
 
   const Fetchdata = async () => {
     try {
-      const alluser = await axios.get(`${apiKey}/candidates`)
+      const alluser = await axios.get(`http://localhost:7000/candidates`)
       const user = alluser.data;
       const finduser = user.filter((usernumber) => parseInt(usernumber.mobileNumber) === cookies.user)
       setuserdata(finduser)

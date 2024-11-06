@@ -15,11 +15,11 @@ const Selectionpage = () => {
     const navigate = useNavigate('')
     const [adminCookie, removeadminCookie] = useCookies(["user"]);
     const [realdata, setRealdata] = useState([])
-    const apiKey = process.env.BASE_URL
+    const apiKey = process.env.REACT_APP_BASE_URL
 
     const featchdata = async () => {
         try {
-            const users = await axios.get(`${apiKey}/candidates`)
+            const users = await axios.get(`http://localhost:7000/candidates`)
             setRealdata(users.data)
         } catch (error) {
             console.error(error, 'catch error');
