@@ -49,7 +49,7 @@ const ContactHomepage = () => {
                                 })}
                                 onSubmit={async (userData) => {
                                     try {
-                                        await axios.post('http://localhost:7001/gettotuchuser', userData)
+                                        await axios.post('http://localhost:7000/gettotuchuser', userData)
                                         alert(userData.userName + ' User Detials is updated successfull')
                                         console.log(userData);
                                     } catch (error) {
