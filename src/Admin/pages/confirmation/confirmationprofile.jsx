@@ -12,7 +12,7 @@ import axios from 'axios'
 export function Confirmationprofile() {
     const navigate=useNavigate();
     const {applicationNo:id}= useParams();
-    const {user:applicantdetails, loading, error} =  useUserById(`http://localhost:7000/candidates`,id);
+    const {user:applicantdetails, loading, error} =  useUserById(`https://sailorswaveadmins-backend.onrender.com/candidates`,id);
     const [JoiningDate,SetJoiningDate] = useState('')
     const [Instalment2amt,setInstalment2amt] = useState('')
     const [Instalment3amt,setInstalment3amt] = useState('')
@@ -58,7 +58,7 @@ export function Confirmationprofile() {
           };
         console.log(userdata,'userd data in conformationletter')
           try {
-            const response = await axios.patch(`http://localhost:7000/candidate/${id}`, userdata);
+            const response = await axios.patch(`https://sailorswaveadmins-backend.onrender.com/candidate/${id}`, userdata);
             alert('Response updated successfully');
             console.log(response);
             navigate(`/dashboardadmin/confirmationletter/${id}`) 

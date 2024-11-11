@@ -11,13 +11,13 @@ const SelectionLetter = () => {
   const apiKey = process.env.REACT_APP_BASE_URL
 
   const handleViewDocument = (filename) => {
-    const url = `http://localhost:7000/fileById/${filename}`;
+    const url = `https://sailorswaveadmins-backend.onrender.com/fileById/${filename}`;
     window.location.href = url;
   }
 
   const Fetchdata = async () => {
     try {
-      const alluser = await axios.get(`http://localhost:7000/candidates`)
+      const alluser = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
       const user = alluser.data;
       const finduser = user.filter((usernumber) => parseInt(usernumber.mobileNumber) === cookies.user)
       setdata(finduser)

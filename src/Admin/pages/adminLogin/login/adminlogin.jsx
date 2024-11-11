@@ -23,7 +23,7 @@ const Adminlogin  = () => {
                         })}
                         onSubmit={async(values, { setSubmitting }) => {
                             try{
-                                await axios.post(`http://localhost:7000/loginmainsubadmin`,values)
+                                await axios.post(`https://sailorswaveadmins-backend.onrender.com/loginmainsubadmin`,values)
                                 alert('Admin logged in successfully')
                                 setCookie('useradmin', values.adminEmail);
                                 navigate('/dashboardadmin/myapplication')

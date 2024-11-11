@@ -1,4 +1,3 @@
-
 import "./header.css";
 import logo from "../../assets/Images/logo.png";
 // import logo from "../../assets/Images/logo2.svg"
@@ -8,7 +7,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState("home");
+  const [isMenuOpen, setIsMenuOpen] = useState('home');
   const [displayStyleLogin, setDisplayStyleLogin] = useState("d-none");
   const [cookies, setcookie, removecookie] = useCookies(["user"]);
   const [dropdownVisible, setDropdownVisible] = useState(false); // Desktop dropdown
@@ -70,29 +69,26 @@ export function Header() {
     navigate("/confirmationlatter");
 
   };
-  function mainlogoclicked() {
-    navigate("/")
-    setIsMenuOpen("home");
-  }
   return (
     <div>
       <header className="headerw">
         <div className="image-containers">
-          <img src={logo} onClick={mainlogoclicked} alt="Sailorswave logo" />
+          <img src={logo} onClick={() =>navigate("/")} alt="Sailorswave logo" />
         </div>
         <nav className="text-center headernav">
           <span
             className="fw-medium"
             id="home"
-            onClick={() => navigate("/")}
+            onClick={() => [navigate("/"),setIsMenuOpen('home')]}
             style={{ color: isMenuOpen === "home" ? "#F97D3D" : "black" }}
+
           >
             Home
           </span>
           <span
             className="fw-medium"
             id="about"
-            onClick={() => navigate('/about')}
+            onClick={() => [navigate('/about'),setIsMenuOpen('about')]}
             style={{ color: isMenuOpen === "about" ? "#F97D3D" : "black" }}
           >
             About
@@ -100,7 +96,7 @@ export function Header() {
           <span
             className="fw-medium"
             id="services"
-            onClick={() => navigate("/services")}
+            onClick={() => [navigate("/services"),setIsMenuOpen('services')]}
             style={{ color: isMenuOpen === "services" ? "#F97D3D" : "black" }}
           >
             Services
@@ -108,7 +104,7 @@ export function Header() {
           <span
             className="fw-medium"
             id="contact"
-            onClick={() => navigate('/contact')}
+            onClick={() => [navigate('/contact'),setIsMenuOpen('contact')]}
             style={{ color: isMenuOpen === "contact" ? "#F97D3D" : "black" }}
           >
             Contact us
@@ -116,8 +112,8 @@ export function Header() {
           <span
             className="fw-medium"
             id="contact"
-            onClick={() => cookies.user ? navigate('/application') : navigate('/login')}
-            style={{ color: isMenuOpen === "contact" ? "#F97D3D" : "black" }}
+            onClick={() => [cookies.user ? navigate('/application') : navigate('/login'),setIsMenuOpen('applynow')]}
+            style={{ color: isMenuOpen === "applynow" ? "#F97D3D" : "black" }}
           >
             ApplyNow
           </span>
@@ -254,3 +250,4 @@ export function Header() {
     </div>
   );
 } 
+

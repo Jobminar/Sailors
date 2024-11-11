@@ -19,7 +19,7 @@ const Selectionpage = () => {
 
     const featchdata = async () => {
         try {
-            const users = await axios.get(`http://localhost:7000/candidates`)
+            const users = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
             setRealdata(users.data)
         } catch (error) {
             console.error(error, 'catch error');

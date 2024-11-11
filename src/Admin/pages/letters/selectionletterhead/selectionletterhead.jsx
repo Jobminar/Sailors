@@ -13,7 +13,7 @@ export function Selectionletterhead(param) {
 
   const fetchdata = async () => {
     try {
-      const usedata = await axios.get('http://127.0.0.1:7001/candidates')
+      const usedata = await axios.get('https://sailorswaveadmins-backend.onrender.com/candidates')
       const users = usedata.data;
       const filteredUsers = users.find((user) => user.applicationId === parseInt(params.id));
       setusers(filteredUsers)

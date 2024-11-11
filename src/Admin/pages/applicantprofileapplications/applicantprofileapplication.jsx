@@ -10,7 +10,7 @@ export function Applicantprofileapplication() {
     const navigate = useNavigate('')
     const fetchdata = async () => {
         try {
-            const usedata = await axios.get('http://127.0.0.1:7001/candidates')
+            const usedata = await axios.get('https://sailorswaveadmins-backend.onrender.com/candidates')
             const users = usedata.data;
             const finduser = users.find((user) => user.applicationId === parseInt(param.applicationNo));
             const filteruser = users.filter((user) => user.applicationId === parseInt(param.applicationNo));

@@ -15,7 +15,7 @@ export function UserSelectionletter(param) {
   const apiKey = process.env.REACT_APP_BASE_URL
   const Fetchdata = async () => {
     try {
-      const alluser = await axios.get(`http://localhost:7000/candidates`)
+      const alluser = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
       const user = alluser.data;
       const finduser = user.find((usernumber) => parseInt(usernumber.mobileNumber) === cookies.user)
       setusers(finduser)

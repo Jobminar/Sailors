@@ -1,68 +1,94 @@
-.clientreview-container{
-    background-image: url("../../../assets/Images/img-group-18.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    margin: 1% 5% 1% 5%;
-    display: flex;
-    justify-content: center;
+.clientreview-container {
+  background-image: url("../../../assets/Images/img-group-18.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 1% 5% 1% 5%;
+  display: flex;
+  justify-content: center;
 
-    border-radius: 2vh;
+  border-radius: 2vh;
 }
 
 .clientreview-container {
-    background-color: #f5f9ff;
-    padding: 1vh 0;
+  background-color: #f5f9ff;
+  padding: 1vh 0;
+}
+
+.CommentsText {
+  font-size: 1rem;
+  /* Default font size for smaller screens */
+  margin-top: 0.2rem;
+  /* Small top margin for spacing */
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-image: url('../../../assets//Images/men1.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .clientreviewh2 {
-    font-size: 2rem;
-    color: #1F284F;
-    font-weight: bold;
-    /* margin-bottom: 2rem; */
+  font-size: 2rem;
+  color: #1F284F;
+  font-weight: bold;
+  /* margin-bottom: 2rem; */
 }
-.bi-chevron-left{
+
+.bi-chevron-left {
   font-size: 140%;
 }
-.bi-chevron-right{
- font-size: 140%;
+
+.bi-chevron-right {
+  font-size: 140%;
 }
-  .page-dot{
-    margin-left: 3rem;
+
+.page-dot {
+  margin-left: 3rem;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #f5f9ff;
+}
+
+.page-dot:hover {
+  cursor: pointer;
+}
+
+.bi-chevron-left,
+.bi-chevron-right {
+  cursor: pointer;
+}
+
+@media(max-width:768px) {
+  .page-dot {
+    margin-left: 2rem;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1rem;
     color: #f5f9ff;
   }
-  .page-dot:hover{
-    cursor: pointer;
-  }
-  .bi-chevron-left,
-  .bi-chevron-right {
-    cursor: pointer;
-  }
-  @media(max-width:768px){
-    .page-dot{
-      margin-left: 2rem;
-      font-weight: bold;
-      font-size: 1rem;
-      color: #f5f9ff;
-    }
-    .clientreviewh2{
-      font-size: 1rem;
+
+  .clientreviewh2 {
+    font-size: 1rem;
     /* margin-bottom: 0rem; */
 
-    }
-    .bi-chevron-left{
-      font-size: 90%;
-    }
-    .bi-chevron-right{
-     font-size: 90%;
-    }
-.clientreview-container{
-  margin: 1% 2% 1% 2%;
+  }
+
+  .bi-chevron-left {
+    font-size: 90%;
+  }
+
+  .bi-chevron-right {
+    font-size: 90%;
+  }
+
+  .clientreview-container {
+    margin: 1% 2% 1% 2%;
 
   }
 
 }
-  
-  
-

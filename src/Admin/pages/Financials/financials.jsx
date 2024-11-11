@@ -33,7 +33,7 @@ export function Applicantfinance() {
                 Date: Transactiondetails.Date,
                 TransactionID: Transactiondetails.TransactionID
             };
-            await axios.post('http://127.0.0.1:7001/Transaction', transactionData);
+            await axios.post('https://sailorswaveadmins-backend.onrender.com/Transaction', transactionData);
             alert('Transaction details updated successfully');
             setTransactionsdetails({ Amount: '', Date: '', TransactionID: '' });
         } catch (error) {
@@ -43,7 +43,7 @@ export function Applicantfinance() {
     }
     const finduser = async () => {
         try {
-            const usedata = await axios.get(`http://127.0.0.1:7001/Transaction/${applicationNo}`)
+            const usedata = await axios.get(`https://sailorswaveadmins-backend.onrender.com/Transaction/${applicationNo}`)
             settransactions(usedata.data)
         } catch (error) {
             console.log(error,'error while uploading transcationdetails')

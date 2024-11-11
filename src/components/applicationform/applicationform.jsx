@@ -94,7 +94,7 @@ const UserApplication = () => {
     formData.append('aadhar', files.aadhar);
     try {
       const apiKey = process.env.REACT_APP_BASE_URL;
-      const response = await fetch(`http://localhost:7000/userformsubmit`, {
+      const response = await fetch(`https://sailorswaveadmins-backend.onrender.com/userformsubmit`, {
         method: 'POST',
         body: formData,
       });

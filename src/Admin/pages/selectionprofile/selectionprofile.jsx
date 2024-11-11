@@ -21,7 +21,7 @@ const SelectionProfile = () => {
 
     const fetchdata = async () => {
         try {
-            const usedata = await axios.get(`http://localhost:7000/candidates`)
+            const usedata = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
             const users = usedata.data;
             const filteredUsers = users.find((user) => user.applicationId === parseInt(id));
             setApplicantDetails(filteredUsers)
@@ -73,7 +73,7 @@ const SelectionProfile = () => {
             confirmationletterofficer:  applicantdetails?.confirmationletter?.status,
           };
           try {
-            const response = await axios.patch(`http://localhost:7000/candidate/${id}`, userdata);
+            const response = await axios.patch(`https://sailorswaveadmins-backend.onrender.com/candidate/${id}`, userdata);
             alert('Response updated successfully');
             navigate(`/dashboardadmin/selectionletter/${applicantdetails.applicationId}/letter`)
           } catch (error) {

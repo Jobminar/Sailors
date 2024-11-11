@@ -13,7 +13,7 @@ const Profile = ({ applicantdetail }) => {
         }
     
         try {
-          const response = await axios.get(`http://localhost:7000/fileById/${id}`, {
+          const response = await axios.get(`https://sailorswaveadmins-backend.onrender.com/fileById/${id}`, {
             responseType: 'blob',
           });
           const fileURL = URL.createObjectURL(new Blob([response.data]));

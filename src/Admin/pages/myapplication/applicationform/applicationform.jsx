@@ -19,7 +19,7 @@ const AdminApplicationForm = () => {
 
   const Getuserdata = async () => {
     try {
-      const values = await axios.get(`http://localhost:7000/candidates`);
+      const values = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`);
       const userdata = values.data
       const finduser = userdata.find((user) => user.applicationId === parseInt(params.id));
       setFormData(finduser)
@@ -35,7 +35,7 @@ const AdminApplicationForm = () => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:7000/fileById/${id}`, {
+      const response = await axios.get(`https://sailorswaveadmins-backend.onrender.com/fileById/${id}`, {
         responseType: 'blob',
       });
       const fileURL = URL.createObjectURL(new Blob([response.data]));
@@ -97,7 +97,7 @@ const AdminApplicationForm = () => {
     };
   
     try {
-      const response = await axios.patch(`http://localhost:7000/candidate/${id}`, applicationStatus);
+      const response = await axios.patch(`https://sailorswaveadmins-backend.onrender.com/candidate/${id}`, applicationStatus);
       alert('Response updated successfully');
       console.log(response);
       navigate('/dashboardadmin/myapplication');

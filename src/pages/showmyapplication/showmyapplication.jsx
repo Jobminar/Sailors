@@ -18,7 +18,7 @@ const ShowmyapplicationForm = () => {
 
   const Getuserdata = async () => {
     try {
-      const values = await axios.get('http://127.0.0.1:7001/candidates');
+      const values = await axios.get('https://sailorswaveadmins-backend.onrender.com/candidates');
       const userdata = values.data
       const finduser = userdata.find((user) => user.applicationId === parseInt(params.applicationNo));
       setFormData(finduser)
@@ -34,7 +34,7 @@ const ShowmyapplicationForm = () => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:7000/fileById/${id}`, {
+      const response = await axios.get(`https://sailorswaveadmins-backend.onrender.com/fileById/${id}`, {
         responseType: 'blob',
       });
       const fileURL = URL.createObjectURL(new Blob([response.data]));
