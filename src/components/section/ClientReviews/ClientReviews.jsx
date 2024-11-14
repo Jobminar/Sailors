@@ -107,7 +107,7 @@ export function ClientReviews() {
                 return (
                     <div className=" p-4">
                         <div className='clientreviewh2' style={{ marginBottom: "5vh", textAlign: "center", color: "#001E6C" }}>Here is what our Clients are saying About us</div>
-                        <div className='d-flex justify-content-center'>
+                        {/* <div className='d-flex justify-content-center'>
                             <div className='p-4 bg-light d-flex justify-content-center w-sm-auto'>
                                 <div className='row '>
                                     <div className='col-sm-2 p-2 d-flex justify-content-center align-items-center'>
@@ -122,6 +122,9 @@ export function ClientReviews() {
                                     </div>
                                 </div>
                             </div>
+                        </div> */}
+                        <div className=' p-4 bg-light rounded'>
+                            <img className="d-block w-100" src={bgimg} alt="third slide" />
                         </div>
                     </div>
                 );

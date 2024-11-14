@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 export function Admitcardletterhead() {
   const contentRef = useRef(null);
@@ -11,6 +12,7 @@ export function Admitcardletterhead() {
   const [user, setUser] = useState({})
   const param = useParams()
   const apiKey = process.env.REACT_APP_BASE_URL
+  const [adminCookie, setadminCookie, removeadminCookie] = useCookies(["useradmin", "admin"]);
 
   const fetchdata = async () => {
     try {
@@ -31,32 +33,33 @@ export function Admitcardletterhead() {
         <div className="px-4 w-75 border border-2 ">
           <button onClick={reactToPrintFn} className="btn btn-warning">Print</button>
           <div ref={contentRef}>
-            <div className="Header row">
+            <div className="Header row my-3">
               <div className="col-3 text-center align-content-center">
                 <img src={lettericons} alt="lettericon" style={{ width: '80%' }} />
               </div>
-              <div className="col text-center">
+              <div className="col ms-5 ps-2">
                 <h2 style={{ letterSpacing: '20px', fontSize: '80px' }}>LOIDS</h2>
-                <div className="fw-medium">-- Marine Services PVT LTD --</div>
+                <div className="fw-medium ms-5">-- Marine Services PVT LTD --</div>
               </div>
             </div>
-            <div className="Body mt-3">
+            <hr />
+            <div className="Body my-5 px-5 mx-4">
               <div>
-                <div className="text-center h2">INTERVIEW INVITATION</div>
+                <div className="text-center h2 mt-1 mb-5 ">INTERVIEW INVITATION</div>
                 <div>
                   <div className="row">
-                    <div className="col-4">Application No</div>
+                    <div className="col-3">Application No</div>
                     <div className="col">:<strong> LY {user?.applicationId}</strong></div>
                   </div>
                   <div className="row">
-                    <div className="col-4">Name of Candidate</div>
+                    <div className="col-3">Name of Candidate</div>
                     <div className="col">:<strong> {user?.candidateName}</strong></div>
                   </div>
                   <div className="row">
-                    <div className="col-4">Father Name</div>
+                    <div className="col-3">Father Name</div>
                     <div className="col">:<strong> {user?.fatherName}</strong></div>
                   </div>
-                  <div className="fw-medium my-3">Dear candidate,</div>
+                  <div className="fw-medium my-4 fw-bolder">Dear candidate,</div>
                   <p>
                     Your qualifications have impressed us, and we would like to have a discussion with you.
                   </p>
@@ -68,20 +71,20 @@ export function Admitcardletterhead() {
                   </p>
                 </div>
               </div>
-              <div style={{ textIndent: '30px' }}>
-                <div className="row my-3">
+              <div className="mt-4 py-2">
+                <div className="row">
                   <div className="col-4">Interview Scheduled Date</div>
                   <div className="col">:<strong>{user?.admitcard?.date}</strong></div>
                 </div>
                 <div className="row">
                   <div className="col-4">Time</div>
-                  <div className="col">:<strong> {user?.admitcard?.time}</strong></div>
+                  <div className="col">:<strong>{user?.admitcard?.time}</strong></div>
                 </div>
                 <div className="row">
                   <div className="col-4">Venue Details</div>
-                  <div className="col">:<strong> LOIDS MARINE SERVICES PVT LTD, KSK COMPLEX, 2nd Street, Ramanuja Nagar, Coimbatore, Tamilnadu - 641015</strong></div>
+                  <div className="col">:<strong >{user?.interviewoutcome?.address} </strong></div>
                 </div>
-                <div className="fw-medium mt-3">Interview Instructions</div>
+                <div className="fw-medium my-3 pt-2">Interview Instructions</div>
                 <ul>
                   <li>It is mandatory for candidates to carry their educational certificates and CVs.</li>
                   <li>Interview letters should be carried by candidates during the interview.</li>
@@ -90,16 +93,23 @@ export function Admitcardletterhead() {
               </div>
             </div>
 
-            <div className="Footer bg-secondary text-light">
+            <div className="Footer bg-secondary text-light my-5">
               <div>
-                <div className="text-center mt-3">
+                <div className="text-center">
                   <div>
                     CIN: U78300TZ2024PTC032226
                   </div>
                   <div>
                     LOIDS MARINE SERVICES Pvt Ltd
+                  </div> 
+                  <div>
+                    <div>
+                     Branch - I, 6-1, Jothi Nagar, 2nd Street, Ramanuja Nagar, Coimbatore, Tamilnadu - 641015
+                    </div>
+                    <div>
+                      Branch - II, 508,5th floor, prajay princton towers, saroornagar, lb nagar, hyd - 500035
+                    </div>
                   </div>
-                  <div>6-1, Jothi Nagar, 2nd Street, Ramanuja Nagar, Coimbatore, Tamilnadu - 641015</div>
                 </div>
               </div>
             </div>

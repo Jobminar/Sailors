@@ -127,8 +127,6 @@ const Selectionpage = () => {
                                     <th className="no-wrap">Officer Name</th>
                                     <th className="no-wrap">Interview feedback</th>
                                     <th className="no-wrap">Officer Name</th>
-                                    <th className="no-wrap">Selection letter</th>
-                                    <th className="no-wrap">Officer Name</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -145,9 +143,6 @@ const Selectionpage = () => {
                                         {/* Interview Outcome */}
                                         <td>{(item.admitcard.status) ? item.interviewoutcome.status : 'Not checked'}</td>
                                         <td className="no-wrap">{item.interviewoutcome.OfficerName}</td>
-                                        {/* selection Letter updates */}
-                                        <td>{(item.interviewoutcome.status) ? item.selectionletter.status : 'Not checked'}</td>
-                                        <td className="no-wrap">{item.selectionletter.OfficerName}</td>
                                     </tr>
                                 ))}
                             </tbody>

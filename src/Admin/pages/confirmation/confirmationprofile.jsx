@@ -18,7 +18,7 @@ export function Confirmationprofile() {
     const [Instalment3amt,setInstalment3amt] = useState('')
     const [Instalment2dat,setInstalment2dat] = useState('')
     const [Instalment3dat,setInstalment3dat] = useState('')
-    const [adminCookie,removeadminCookie] = useCookies(["user"]);
+    const [adminCookie,removeadminCookie] = useCookies(["admin","useradmin"]);
   const apiKey = process.env.REACT_APP_BASE_URL
 
 
@@ -37,6 +37,7 @@ export function Confirmationprofile() {
             // Update interview outcome details
             interviewfeedback: applicantdetails?.interviewoutcome?.interviewFeedback,
             interviewstatus:applicantdetails?.interviewoutcome?.status,
+            interviewAddresh: applicantdetails?.interviewoutcome?.address,
             interviewofficer: applicantdetails?.interviewoutcome?.OfficerName,
         
             // Update selection letter details
@@ -53,7 +54,7 @@ export function Confirmationprofile() {
             instalment3amt:(applicantdetails?.confirmationletter?.InstalmentAmount3)?applicantdetails?.confirmationletter?.InstalmentAmount3:Instalment3amt,
             instalment2dat:(applicantdetails.confirmationletter?.InstalmentDate2)?applicantdetails.confirmationletter?.InstalmentDate2:Instalment2dat,
             instalment3dat:(applicantdetails.confirmationletter?.InstalmentDate3)?applicantdetails.confirmationletter?.InstalmentDate3:Instalment3dat,
-            confirmationletterofficer: adminCookie.user,
+            confirmationletterofficer: adminCookie.admin || adminCookie.useradmin,
 
           };
         console.log(userdata,'userd data in conformationletter')
@@ -106,7 +107,6 @@ export function Confirmationprofile() {
                         <div className='row py-1 mb-3 bg-light'>
                             <dt className='col-3'>Joining Date</dt>
                             <dd className='col-3'><input type="date" onChange={(e)=>SetJoiningDate(e.target.value)} className='form-control' /></dd>
-                            
                         </div>
                         <div className='row py-1 mb-3 bg-light'>
                             <dt className='col-3'>TotalAmount</dt>

@@ -8,7 +8,7 @@ import axios from "axios";
 const Interoutcome = () => {
     const {id} = useParams()
     const { user, loading, error } = useUserById(`https://sailorswaveadmins-backend.onrender.com/candidates`, id)
-    const [adminCookie,removeadminCookie] = useCookies(["user"]);
+    const [adminCookie,removeadminCookie] = useCookies(["useradmin","admin"]);
     const [feedback,setfeedback] = useState('')
     const navigate = useNavigate('')
     const apiKey = process.env.REACT_APP_BASE_URL
@@ -28,7 +28,7 @@ const Interoutcome = () => {
             // Update interview outcome details
             interviewfeedback:feedback, // Include interview feedback
             interviewstatus:status,
-            interviewofficer: adminCookie.user,
+            interviewofficer: adminCookie.admin || adminCookie.useradmin,
         
             // Update selection letter details
             selectionletterstatus: user?.selectionletter.status,

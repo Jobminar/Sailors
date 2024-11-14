@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const Subadmin = () => {
     const [userDetail, setUserDetail] = useState({});
@@ -9,7 +10,8 @@ const Subadmin = () => {
     const [file, setFile] = useState(null);
     const [error, setError] = useState(null);
     const navigate = useNavigate('')
-  const apiKey = process.env.REACT_APP_BASE_URL
+    const apiKey = process.env.REACT_APP_BASE_URL
+    const [adminCookie, setCookie, removeCookie] = useCookies(["useradmin", "admin"]);
 
 
     const fetchData = async () => {
@@ -39,8 +41,8 @@ const Subadmin = () => {
             setError('Failed to fetch the file.');
         }
     };
-    const Handilechange= (e)=>{
-        const adminnumbver =  e.target.value;
+    const Handilechange = (e) => {
+        const adminnumbver = e.target.value;
         navigate(`/dashboardadmin/adminprofile/${adminnumbver}`)
     }
 
@@ -80,18 +82,23 @@ const Subadmin = () => {
                         </dl>
                     </div>
                     <div className="text-end col-5">
-                        <Link className="btn btn-outline-primary" to='/dashboardadmin/subadmin/addadmin'>Add New Sub Admin</Link>
+                        <div>{(adminCookie.admin ? <button className="btn btn-outline-danger me-2" onClick={() => [removeCookie("admin"), navigate('/')]}>Log out</button> :
+                            <div>
+                                <div><button className="btn btn-outline-primary" onClick={() => navigate('/dashboardadmin/subadmin/addadmin')}>Add New Sub Admin</button></div>
+                                <div className="btn-group mt-4 border border-1">
+                                    <button className="btn btn-outline-light bi-funnel text-dark p-3 border border-1"></button>
+                                    <button className="btn btn-outline-light text-dark border border-1">Filter BY</button>
+                                    <select className="btn border-0" onChange={(e) => Handilechange(e)}>
+                                        <option value="-1">Sub Admin</option>
+                                        {allSubadmins.map((subadmin, i) => (
+                                            <option key={i} value={subadmin.number} className="text-start">{subadmin.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
+                        )}</div>
                         <br />
-                        <div className="btn-group mt-4 border border-1">
-                            <button className="btn btn-outline-light bi-funnel text-dark p-3 border border-1"></button>
-                            <button className="btn btn-outline-light text-dark border border-1">Filter BY</button>
-                            <select className="btn border-0" onChange={(e)=>Handilechange(e)}>
-                                <option value="-1">Sub Admin</option>
-                                {allSubadmins.map((subadmin, i) => (
-                                    <option key={i} value={subadmin.number} className="text-start">{subadmin.name}</option>
-                                ))}
-                            </select>
-                        </div>
+
                     </div>
                 </div>
             </div>

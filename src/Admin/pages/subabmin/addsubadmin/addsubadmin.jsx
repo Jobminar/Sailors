@@ -21,7 +21,11 @@ const Addsubadmin = () => {
             .matches(/^\d{10}$/, 'Mobile number must be exactly 10 digits'),
         email: Yup.string().email('Invalid email format').required('Email is required'),
         password: Yup.string().required('Password is required'),
-        photo: Yup.mixed().required('A file is required'),
+        photo: Yup.mixed().when([], {
+            is: () => !isEditing,
+            then: (schema) => schema.required('A file is required'),
+            otherwise: (schema) => schema.notRequired(),
+        }),
     });
 
     // Initial values for the form

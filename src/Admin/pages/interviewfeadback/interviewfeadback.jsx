@@ -142,16 +142,16 @@ const InterviewSchedule = () => {
                                     <tr key={index} onClick={() => rollNoClicked(item.applicationId)} style={{ cursor: 'pointer' }}>
                                         <td>{index + 1}</td>
                                         <td className="no-wrap">{item.candidateName}</td>
-                                        <td>{item.applicationId}</td>
+                                        <td className="no-wrap">{item.applicationId}</td>
                                         
-                                        <td style={{ cursor: 'pointer' }}>{item.applicationstatus.status}</td>
+                                        <td style={{ cursor: 'pointer' }} className="no-wrap">{item.applicationstatus.status}</td>
                                         <td className="no-wrap">{item.applicationstatus.OfficerName}</td>
                                         
-                                        <td>{(item.applicationstatus.status === 'Approved')?item.admitcard.status:'Not Checked'}</td>
-                                        <td>{item.admitcard.date}</td>
+                                        <td className="no-wrap">{(item.applicationstatus.status === 'Approved')?item.admitcard.status:'Not Checked'}</td>
+                                        <td className="no-wrap">{item.admitcard.date}</td>
                                         <td className="no-wrap">{item.admitcard.OfficerName}</td>
                                         
-                                        <td>{(item.admitcard.status === 'Approved')?item.interviewoutcome.status:'Not Checked'}</td>
+                                        <td className="no-wrap">{(item.admitcard.status === 'Approved')?item.interviewoutcome.status:'Not Checked'}</td>
                                         <td className="no-wrap">{item.interviewoutcome.OfficerName}</td>
                                     </tr>
                                 ))}

@@ -11,19 +11,21 @@ import loginimg from '../../assets/Images/loginimgsm.png';
 import indiaimg from '../../assets/Images/india.png'
 import { useCookies } from 'react-cookie';
 import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import loadgif from '../../assets/Images/loading.gif'
 
 const Login = () => {
     const [timer, setTimer] = useState(30);
     const [showLogin, setShowLogin] = useState(false);
     const [isSuccessful, setIsSuccessful] = useState(false);
     const otpRefs = useRef([null, null, null, null]);
-    const [users,setusers] = useState(null)
-    const [otps,setuserotp] = useState(null)
-    const [cookies,setcookie,removecookie]=useCookies(["user"]);
-    const navigate =  useNavigate();
+    const [users, setusers] = useState(null)
+    const [otps, setuserotp] = useState(null)
+    const [cookies, setcookie, removecookie] = useCookies(["user"]);
+    const navigate = useNavigate();
     const apiKey = process.env.REACT_APP_BASE_URL;
-    
+    const [Loading, SetLoading] = useState(false)
+
     useEffect(() => {
         let interval;
         if (showLogin && timer > 0) {
@@ -32,13 +34,13 @@ const Login = () => {
             }, 1000);
         }
         return () => clearInterval(interval);
-    }, [showLogin, timer,cookies]);
+    }, [showLogin, timer, cookies]);
 
     const handleOtpInput = (event, index) => {
         const value = event.target.value;
         if (value.length === 1 && index < otpRefs.current.length - 1) {
             otpRefs.current[index + 1].focus(); // Move to the next input field
-            
+
         }
     };
 
@@ -48,64 +50,76 @@ const Login = () => {
                 <div className='loginimg'>
                     <img src={img1} className='img' alt="Login Image" />
                 </div>
-                <div className='py-4 p-4 numberLogin'>
-                    <h2 style={{ color: '#0486AA' }} className='logingHeading'>Welcome to SAILORSWAVE</h2>
-                    <div><img src={loginimg} className='loginimgsm'/></div>
-                    <Formik
-                        initialValues={{ userNumber: '' }}
-                        validationSchema={yup.object({
-                            userNumber: yup.string().matches(/^\d{10}$/, 'Must be exactly 10 digits').required('User Number Must Required')
-                        })}
-                        onSubmit={async(values) => {
-                            console.log(values.userNumber,'user Number')
-                            try{
-                                await axios.post('https://sailorswaveadmins-backend.onrender.com/userNumber', { userPhone: values.userNumber })
-                                .then(response => {
-                                    const otp = (response.data.otp).toString();
-                                    console.log('OTP:', otp);
-                                    setuserotp(otp);
-                                    setShowLogin(true)
-                                    alert('OTP received: ' + otp);
-                                    setusers(values.userNumber)
-                                })
-                                .catch(error => {
-                                    console.error('Error:', error);
-                                    alert('Error: ' + error);
-                                });
-                            }catch(error){
+                <div>
+                    <div>
+                        {Loading ? (
+                            <div> <img src={loadgif} /> </div> // Loading indicator
+                        ) : (
+                            <div className='py-4 p-4 numberLogin'>
+                                <h2 style={{ color: '#0486AA' }} className='logingHeading'>Welcome to SAILORSWAVE</h2>
+                                <div><img src={loginimg} className='loginimgsm' /></div>
+                                <Formik
+                                    initialValues={{ userNumber: '' }}
+                                    validationSchema={yup.object({
+                                        userNumber: yup.string().matches(/^\d{10}$/, 'Must be exactly 10 digits').required('User Number Must Required')
+                                    })}
+                                    onSubmit={async (values) => {
+                                        console.log(values.userNumber, 'user Number')
+                                        SetLoading(true)
+                                        try {
+                                            await axios.post('https://sailorswaveadmins-backend.onrender.com/userNumber', { userPhone: values.userNumber })
+                                                .then(response => {
+                                                    const otp = (response.data.otp).toString();
+                                                    console.log('OTP:', otp);
+                                                    setuserotp(otp);
+                                                    setShowLogin(true)
+                                                    alert('OTP received: ' + otp);
+                                                    setusers(values.userNumber)
+                                                })
+                                                .catch(error => {
+                                                    console.error('Error:', error);
+                                                    alert('Error: ' + error);
+                                                })
+                                        } catch (error) {
 
-                            }
-                        }}
-                    >
-                        {form => (
-                            <Form>
-                                <div className='mt-5 pt-5 w-100'>
-                                    <label>Phone Number<span className='text-danger badge ps-1 mb-3'>*</span></label>
-                                    <div className='d-flex align-items-center border border-1 rounded-3'>
-                                         <img src={indiaimg} className='showcountry ' />
-                                        <span className='showcountry '>+91</span>
-                                        <Field
-                                        type='text'
-                                        className='form-control border-0 p-3'
-                                        name='userNumber'
-                                        placeholder='Enter Your Phone Number'
-                                    />
-                                    </div>
-                                    <ErrorMessage name='userNumber' component='div' className='text-danger' />
-                                    <div className='text-center'>
-                                        <button type="submit" className="btn btn-primary px-5 py-2 mt-4">GET OTP</button>
-                                    </div>
+                                        } finally {
+                                            SetLoading(false)
+                                        }
+                                    }}
+                                >
+                                    {form => (
+                                        <Form>
+                                            <div className='mt-5 pt-5 w-100'>
+                                                <label>Phone Number<span className='text-danger badge ps-1 mb-3'>*</span></label>
+                                                <div className='d-flex align-items-center border border-1 rounded-3'>
+                                                    <img src={indiaimg} className='showcountry ' />
+                                                    <span className='showcountry '>+91</span>
+                                                    <Field
+                                                        type='text'
+                                                        className='form-control border-0 p-3'
+                                                        name='userNumber'
+                                                        placeholder='Enter Your Phone Number'
+                                                    />
+                                                </div>
+                                                <ErrorMessage name='userNumber' component='div' className='text-danger' />
+                                                <div className='text-center'>
+                                                    <button type="submit" className="btn btn-primary px-5 py-2 mt-4">GET OTP</button>
+                                                </div>
+                                            </div>
+                                        </Form>
+                                    )}
+                                </Formik>
+                                <div className='text-end align-content-end' style={{ height: '200px' }}>
+                                    <button className='btn btn-warning bi-shield-fill-check' onClick={() => navigate('/adminlogin')}> Admin Login</button>
                                 </div>
-                            </Form>
+                            </div> // Data display
                         )}
-                    </Formik>
-                    <div className='text-end align-content-end' style={{height:'200px'}}>
-                        <button className='btn btn-warning bi-shield-fill-check' onClick={()=>navigate('/adminlogin')}> Admin Login</button>
                     </div>
+
                 </div>
             </div>
 
-            <div className={`verifiloginPage  ${showLogin ? (isSuccessful ? 'd-none':'d-grid'): 'd-none'}`}>
+            <div className={`verifiloginPage  ${showLogin ? (isSuccessful ? 'd-none' : 'd-grid') : 'd-none'}`}>
                 <div className='loginimg'>
                     <img src={img2} className='img' alt="Verification Image" />
                 </div>
@@ -122,14 +136,14 @@ const Login = () => {
                             otp4: yup.string().required().max(1),
                         })}
                         onSubmit={(values) => {
-                            if(otps == Object.values(values).join('')){
-                                try{
+                            if (otps == Object.values(values).join('')) {
+                                try {
                                     setIsSuccessful(true);
-                                    setcookie("user",users)
-                                }catch(error){
+                                    setcookie("user", users)
+                                } catch (error) {
 
                                 }
-                            }else{
+                            } else {
                                 alert('Enter Valid OTP')
                             }
                         }}
@@ -168,7 +182,7 @@ const Login = () => {
                 </div>
             </div>
             <div className={` ${isSuccessful ? 'd-flex justify-content-center align-content-center' : 'd-none'} `}>
-                <img src={success} alt='Success' height='700px' style={{cursor:'pointer'}}  onClick={()=>navigate('/')}/>
+                <img src={success} alt='Success' height='700px' style={{ cursor: 'pointer' }} onClick={() => navigate('/')} />
             </div>
         </>
     );

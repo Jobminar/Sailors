@@ -3,13 +3,13 @@ import playstoreimg from "../../assets/Images/playstore.jpg"
 import iosstoreimg from "../../assets/Images/iosstore.jpg"
 import telegramlogo from '../../assets/Images/telegramlogo.png'
 import './footer.css'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export function Footer() {
-    const navigate =  useNavigate('');
+    const navigate = useNavigate('');
     return (
         <>
-            <footer style={{ borderTop: "2px solid gray" }} >
+            <footer >
                 <div style={{ marginTop: "2%" }}>
                     <div className="d-flex justify-content-between align-items-center">
                         <div>
@@ -35,10 +35,10 @@ export function Footer() {
                             </div>
                         </div>
                         <div className="footeritem">
-                            <div onClick={()=>navigate('/about')}>About us</div>
-                            <div onClick={()=>navigate('/services')}>Reviews</div>
-                            <div onClick={()=>navigate('/contact')}>Contact Us</div>
-                            <div onClick={()=>navigate('/application')} >Careers</div>
+                            <div onClick={() => navigate('/about')}>About us</div>
+                            <div onClick={() => navigate('/services')}>Reviews</div>
+                            <div onClick={() => navigate('/contact')}>Contact Us</div>
+                            <div onClick={() => navigate('/application')} >Careers</div>
                         </div>
                         <div className="footeritem">
                             <div>On shore Joining</div>
@@ -47,10 +47,20 @@ export function Footer() {
                             <div>Placements</div>
                         </div>
                     </div>
+                    <div className="text-center">
+                        <div>
+                            Coiambatoor Branch 1: 6-1, jothi nagar, 2nd street, ramanuja nagar, coimbatore, tamil nadu - 641015
+                            ph no. 96006-30942
+                        </div>
+                        <div>
+                            Hyderabad Branch 2: 508, 5th floor, prajay princeton towers, saroornagar, lb nagar, hyderabad, telangana - 508247
+                            ph no. 76739-82065
+                        </div>
+                    </div>
                     <hr></hr>
                     <div className="d-flex justify-content-between" style={{ padding: "2rem 0rem 2rem 0rem " }}>
-                        <div>Copyright © 2024 Sailorswaves.com™. All rights reserved</div>
-                        <a href="https://jobminar.com/" target='_blank' style={{color:'black',textDecoration:'none'}}><div>with ❤️ Jobminar</div></a>
+                        <div>Copyright © 2024 loidsmarineservices.com™. All rights reserved</div>
+                        <a href="https://jobminar.com/" target='_blank' style={{ color: 'black', textDecoration: 'none' }}><div>With ❤️ Jobminar</div></a>
                         <div>
                             <span className="mx-4">Terms & Conditions</span>
                             <span>Privacy Policy</span>

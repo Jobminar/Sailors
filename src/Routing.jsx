@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Login from "./components/login/login";
 import Home from "./pages/home/home";
 import { Header } from "./components/header/header";
@@ -45,79 +45,111 @@ import Documentuser from "./Admin/components/documentsuser/documentuser";
 import { Usercomments } from "./Admin/pages/usercomment/usercomments";
 import Adminlogin from "./Admin/pages/adminLogin/login/adminlogin";
 import { useCookies } from "react-cookie";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Routing = () => {
-  const [adminCookie, setcookie] = useCookies(["useradmin"]);
+  const [adminCookie, setcookie,removeCookie] = useCookies(["useradmin","admin"]);
+  const navigate = useNavigate('')
+
+  // const validateMainSubadmin = async () => {
+  //   try {
+  //     const response = await axios.get(`https://sailorswaveadmins-backend.onrender.com/mainsubadmin/${adminCookie.useradmin}`);
+  //     return response.data.present;
+  //   } catch (error) {
+  //     console.log(error, 'error while fetching admin');
+  //     return false;
+  //   }
+  // };
+  // useEffect(() => {
+  //   const checkAdmin = async () => {
+  //     const isAdmin = await validateMainSubadmin();
+  //     if (isAdmin) {
+  //       navigate('/dashboardadmin');
+  //     }else{
+  //       removeCookie('useradmin')
+  //       navigate('/')
+  //     }
+  //   };
+  //   if (adminCookie.useradmin) { 
+  //     checkAdmin();
+  //   }
+  // }, [adminCookie.useradmin]);
+  useEffect(() => {
+      if ((adminCookie.useradmin) || (adminCookie.admin)) { 
+        navigate('/dashboardadmin');
+      }
+    }, [adminCookie.useradmin]);
+
+
   return (
     <>
-      <BrowserRouter>
-        {/*......................user Routes.......................... applicationstatus */}
-        <div className={`${(adminCookie.useradmin)?'d-none':'d-block'}`}>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/contact" element={<ContactHomepage />} />
-            <Route path="/application" element={<UserApplication />} />
-            <Route path='/myapplicationform/:applicationNo' element={<ShowmyapplicationForm />} />
-            <Route path="/about" element={<AboutRoute />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/selectionletterhead" element={<UserSelectionletter />} />
-            <Route path="/confirmationletterhead" element={<UserConfirmationletter />} />
-            <Route path="/myresult" element={<Myresult />} />
-            <Route path="/confirmationlatter" element={<ConfirmationLetter />} />
-            <Route path="/selectionletter" element={<SelectionLetter />} />
-            <Route path="/applicationletter" element={<ApplicationLetter />} />
-            <Route path="/myadmitcard" element={<Myadmitcard />} />
-            <Route path="/interviewletterhead3" element={<InterviewLetterHead3 />} />
-            <Route path="/documentsailorwave" element={<Documentsailorwave />} />
-            <Route path="/adminlogin" element={<Adminlogin />} />
-          </Routes>
-          <Footer />
-        </div>
-        {/*........................Admin Routes......................... */}
-        <div>
-          {
-            (adminCookie.useradmin) ?
-              <div>
-                <Headeradmin />
-                <Routes>
-                  <Route path="/dashboardadmin" element={<Dashboardadmin />}>
-                    <Route path="myapplication" element={<Myapplication />} />
-                    <Route path="admitcard/:applicationNo" element={<Admitcard />} />
-                    <Route path="admitcardletter/:applicationNo" element={<Admitcardletterhead />} />
-                    <Route path="admitcarddashboard" element={<Admitcarddashboard />} />
-                    <Route path="interviewSchedule" element={<InterviewSchedule />} />
-                    <Route path="applicationstatus/:id" element={<ApplicationForm />} />
-                    <Route path="applicantprofile" element={<Applicantprofile />} />
-                    <Route path="applicantprofile/:applicationNo" element={<Applicantprofile />} >
-                      <Route path="applicantprofileapplication" element={<Applicantprofileapplication />} />
-                      <Route path="applicantfinance" element={<Applicantfinance />} />
-                      <Route path="applicantcomment" element={<Usercomments />} />
-                    </Route>
-                    <Route path="selectionletter" element={<Selectionpage />} />
-                    <Route path="selectionletter/:id" element={<SelectionProfile />} />
-                    <Route path="selectionletter/:id/letter" element={<Selectionletterhead />} />
-                    <Route path="confirmationdashboard" element={<Confirmationdashboard />} />
-                    <Route path="confirmationprofile/:applicationNo" element={<Confirmationprofile />} />
-                    <Route path="confirmationletter/:applicationNo" element={<Confirmationletterhead />} />
-                    <Route path="enquires" element={<Enquires />} />
-                    <Route path="adminprofile/:id" element={<Subadmin />} />
-                    <Route path="subadmin/addadmin/:adminId" element={<Addsubadmin />} />
-                    <Route path="subadmin/addadmin/" element={<Addsubadmin />} />
-                    <Route path="interviewSchedule/:id" element={<Interoutcome />} />
-                    <Route path="subadmin" element={<Adminprofile />} />
+      {/*......................user Routes.......................... applicationstatus */}
+      <div className={`${((adminCookie.useradmin) || (adminCookie.admin)) ? 'd-none' : 'd-block'}`}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/contact" element={<ContactHomepage />} />
+          <Route path="/application" element={<UserApplication />} />
+          <Route path='/myapplicationform/:applicationNo' element={<ShowmyapplicationForm />} />
+          <Route path="/about" element={<AboutRoute />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/selectionletterhead" element={<UserSelectionletter />} />
+          <Route path="/confirmationletterhead" element={<UserConfirmationletter />} />
+          <Route path="/myresult" element={<Myresult />} />
+          <Route path="/confirmationlatter" element={<ConfirmationLetter />} />
+          <Route path="/selectionletter" element={<SelectionLetter />} />
+          <Route path="/applicationletter" element={<ApplicationLetter />} />
+          <Route path="/myadmitcard" element={<Myadmitcard />} />
+          <Route path="/interviewletterhead3" element={<InterviewLetterHead3/>} />
+          <Route path="/documentsailorwave" element={<Documentsailorwave />} />
+          <Route path="/adminlogin" element={<Adminlogin />} />
+        </Routes>
+        <Footer />
+      </div>
+      {/*........................Admin Routes......................... */}
+      <div>
+        {
+          ((adminCookie.useradmin) || (adminCookie.admin)) ?
+            <div>
+              <Headeradmin />
+              <Routes>
+                <Route path="/dashboardadmin" element={<Dashboardadmin />}>
+                  <Route path="myapplication" element={<Myapplication />} />
+                  <Route path="admitcard/:applicationNo" element={<Admitcard />} />
+                  <Route path="admitcardletter/:applicationNo" element={<Admitcardletterhead />} />
+                  <Route path="admitcarddashboard" element={<Admitcarddashboard />} />
+                  <Route path="interviewSchedule" element={<InterviewSchedule />} />
+                  <Route path="applicationstatus/:id" element={<ApplicationForm />} />
+                  <Route path="applicantprofile" element={<Applicantprofile />} />
+                  <Route path="applicantprofile/:applicationNo" element={<Applicantprofile />} >
+                    <Route path="applicantprofileapplication" element={<Applicantprofileapplication />} />
+                    <Route path="applicantfinance" element={<Applicantfinance />} />
+                    <Route path="applicantcomment" element={<Usercomments />} />
                   </Route>
-                  <Route path="/documentuser" element={<Documentuser />} />
-                </Routes>
-              </div> : <div>
-                {/* <Routes>
+                  <Route path="selectionletter" element={<Selectionpage />} />
+                  <Route path="selectionletter/:id" element={<SelectionProfile />} />
+                  <Route path="selectionletter/:id/letter" element={<Selectionletterhead />} />
+                  <Route path="confirmationdashboard" element={<Confirmationdashboard />} />
+                  <Route path="confirmationprofile/:applicationNo" element={<Confirmationprofile />} />
+                  <Route path="confirmationletter/:applicationNo" element={<Confirmationletterhead />} />
+                  <Route path="enquires" element={<Enquires />} />
+                  <Route path="adminprofile/:id" element={<Subadmin />} />
+                  <Route path="subadmin/addadmin/:adminId" element={<Addsubadmin />} />
+                  <Route path="subadmin/addadmin/" element={<Addsubadmin />} />
+                  <Route path="interviewSchedule/:id" element={<Interoutcome />} />
+                  <Route path="subadmin" element={<Adminprofile />} />
+                </Route>
+                <Route path="/documentuser" element={<Documentuser />} />
+              </Routes>
+            </div> : <div>
+              {/* <Routes>
                   <Route path="/adminlogin" element={<Adminlogin />} />
                 </Routes> */}
-              </div>
-          }
-        </div>
-      </BrowserRouter>
+            </div>
+        }
+      </div>
     </>
   );
 };

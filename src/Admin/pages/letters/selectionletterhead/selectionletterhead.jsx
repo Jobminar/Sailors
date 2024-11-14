@@ -13,10 +13,8 @@ export function Selectionletterhead(param) {
 
   const fetchdata = async () => {
     try {
-      const usedata = await axios.get('https://sailorswaveadmins-backend.onrender.com/candidates')
-      const users = usedata.data;
-      const filteredUsers = users.find((user) => user.applicationId === parseInt(params.id));
-      setusers(filteredUsers)
+      const usedata = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidate/${params.id}`)
+      setusers(usedata.data)
     } catch (error) {
       console.error(error, 'catch error');
     }
@@ -26,20 +24,21 @@ export function Selectionletterhead(param) {
   }, [])
   return (
     <>
-      <button onClick={reactToPrintFn} className="btn btn-warning">Print</button>
       <div className="mainbody">
         <div className="px-4 w-75 border border-2 ">
-          <div  ref={contentRef}>
+          <button onClick={reactToPrintFn} className="btn btn-warning">Print</button>
+          <div ref={contentRef}>
             <div className="Header row">
               <div className="col-3 text-center align-content-center">
                 <img src={lettericons} alt="lettericon" style={{ width: '80%' }} />
               </div>
-              <div className="col text-center">
+              <div className="col ms-5 ps-2">
                 <h2 style={{ letterSpacing: '20px', fontSize: '80px' }}>LOIDS</h2>
-                <div className="fw-medium">-- Marine Services PVT LTD --</div>
+                <div className="fw-medium ms-5">-- Marine Services PVT LTD --</div>
               </div>
             </div>
-            <div className="Body mt-3">
+            <hr />
+            <div className="Body mx-3 px-5 py-0" style={{ fontSize: '15px' }}>
               <div>
                 <div className="text-center h2" >SELECTION LETTER</div>
                 <div>
@@ -80,13 +79,13 @@ export function Selectionletterhead(param) {
                 <p className="fw-medium">Further query call on . 9600630942</p>
               </div>
             </div>
-            <div className="Footer">
+            <div className="Footer px-5 mx-3" style={{ fontSize: '14px' }}>
               <div>
                 <div className="d-flex justify-content-between">
-                  <div>
+                  <div className="ps-3">
                     WISH YOU A BRIGHT FUTURE...
                   </div>
-                  <strong>
+                  <strong className="pe-3">
                     LOIDS MARINE SERVICES PVT .LTD.
                   </strong>
                 </div>
@@ -97,7 +96,12 @@ export function Selectionletterhead(param) {
                   <div>
                     LOIDS MARINE SERVICES Pvt Ltd
                   </div>
-                  <div>6-1, Jothi Nagar, 2nd Street, Ramanuja Nagar, Coimbatore, Tamilnadu - 641015</div>
+                  <div>
+                    Branch - I, 6-1, Jothi Nagar, 2nd Street, Ramanuja Nagar, Coimbatore, Tamilnadu - 641015
+                  </div>
+                  <div>
+                    Branch - II, 508,5th floor, prajay princton towers, saroornagar, lb nagar, hyd - 500035
+                  </div>
                 </div>
               </div>
             </div>

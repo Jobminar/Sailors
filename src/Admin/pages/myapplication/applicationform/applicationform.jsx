@@ -14,7 +14,7 @@ const AdminApplicationForm = () => {
   const [aadharphoto, setaadharPhoto] = useState(null);
   const [error, setError] = useState(null);
   const params = useParams()
-  const [adminCookie,removeadminCookie] = useCookies(["user"]);
+  const [adminCookie,removeadminCookie] = useCookies(["useradmin","admin"]);
   const apiKey = process.env.REACT_APP_BASE_URL
 
   const Getuserdata = async () => {
@@ -63,7 +63,7 @@ const AdminApplicationForm = () => {
     const applicationStatus = {
       // Update application status
       Apstatus: status,
-      ApOfficerName: adminCookie.user,
+      ApOfficerName: adminCookie.admin || adminCookie.useradmin,
   
       // Update admit card details
       admitcardstatus: formData.admitcard.status,

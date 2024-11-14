@@ -12,15 +12,14 @@ export function Admitcard() {
   const [admitcarddetails, setadmitcarddetails] = useState([{}]);
   const [time, settime] = useState('')
   const [date, setdate] = useState('')
-  const [adminCookie,removeadminCookie] = useCookies(["user"]);
+  const [adminCookie, setadminCookie, removeadminCookie] = useCookies(["useradmin", "admin"]);
   const apiKey = process.env.REACT_APP_BASE_URL
+  const [address, setAddress] = useState("");
 
   const fetchdata = async () => {
     try {
-      const usedata = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
-      const users = usedata.data;
-      const filteredUsers = users.find((user) => user.applicationId == param.applicationNo);
-      setadmitcarddetails(filteredUsers)
+      const usedata = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidate/${param.applicationNo}`)
+      setadmitcarddetails(usedata.data)
     } catch (error) {
       console.error(error, 'catch error');
     }
@@ -34,30 +33,31 @@ export function Admitcard() {
       admitcardstatus: 'Approved',
       admitcarddate: date,
       admitcardtime: time,
-      admitcardofficer: adminCookie.user,
+      admitcardofficer: adminCookie.admin || adminCookie.useradmin,
 
       interviewfeedback: admitcarddetails?.interviewoutcome?.interviewFeedback,
-      interviewstatus:admitcarddetails?.interviewoutcome?.status,
+      interviewstatus: admitcarddetails?.interviewoutcome?.status,
+      interviewAddresh: address,
       interviewofficer: admitcarddetails?.interviewoutcome?.OfficerName,
-  
+
       // Update selection letter details
       selectionletterstatus: admitcarddetails?.selectionletter?.status,
-      Totalamount:admitcarddetails?.selectionletter?.TAmount,
-      initialamount:admitcarddetails?.selectionletter?.InitialAmount,
-      deadlinedate:admitcarddetails?.selectionletter?.DeadlineDate,
+      Totalamount: admitcarddetails?.selectionletter?.TAmount,
+      initialamount: admitcarddetails?.selectionletter?.InitialAmount,
+      deadlinedate: admitcarddetails?.selectionletter?.DeadlineDate,
       selectionletterofficer: admitcarddetails?.selectionletter?.OfficerName,
-  
+
       // Update confirmation letter details
       confirmationletterstatus: admitcarddetails?.confirmationletter?.status,
-      JoinDate:admitcarddetails?.confirmationletter?.JoiningDate,
+      JoinDate: admitcarddetails?.confirmationletter?.JoiningDate,
       instalment2amt: admitcarddetails?.confirmationletter?.InstalmentAmount2,
       instalment3amt: admitcarddetails?.confirmationletter?.InstalmentAmount3,
       instalment2dat: admitcarddetails?.confirmationletter?.InstalmentDate2,
       instalment3dat: admitcarddetails?.confirmationletter?.InstalmentDate3,
-      confirmationletterofficer:  admitcarddetails?.confirmationletter?.status,
+      confirmationletterofficer: admitcarddetails?.confirmationletter?.status,
     }
+    console.log(applicationstatus,'chekc the application details')
 
-    
 
     try {
       const response = await axios.patch(`https://sailorswaveadmins-backend.onrender.com/candidate/${id}`, applicationstatus);
@@ -90,25 +90,53 @@ export function Admitcard() {
             <h5>Details of {admitcarddetails.candidateName}</h5>
             <dl>
               <div className='d-flex my-4   bg-light'>
-                <dt className='mx-4 col-5'>Application No.</dt>
+                <dt className='mx-4 col-5 align-content-center'>Application No.</dt>
                 <dd>{admitcarddetails.applicationId}</dd>
               </div>
               <div className='d-flex my-4  bg-light '>
-                <dt className='mx-4 col-5'>Application status</dt>
+                <dt className='mx-4 col-5 align-content-center'>Application status</dt>
                 <dd>{admitcarddetails?.applicationstatus?.status}</dd>
               </div>
               <div className='d-flex my-4   bg-light '>
-                <dt className='mx-4 col-5'>Date of applied</dt>
+                <dt className='mx-4 col-5 align-content-center'>Date of applied</dt>
                 <dd>{moment(admitcarddetails.createdAt).format('YYYY-MM-DD')}</dd>
               </div>
               <div className='d-flex my-4  bg-light '>
-                <dt className='mx-4 col-5 '>Date of Interview</dt>
+                <dt className='mx-4 col-5 align-content-center '>Date of Interview</dt>
                 <dd><input className='form-control' type='date' value={moment(date).format('YYYY-MM-DD')} onChange={(e) => setdate(e.target.value)}></input></dd>
               </div>
               <div className='d-flex my-4  bg-light '>
-                <dt className='mx-4 col-5'>Time of Interview</dt>
+                <dt className='mx-4 col-5 align-content-center'>Time of Interview</dt>
                 <dd className='d-flex align-items-center'><input type='time' className='form-control' value={moment(time, "HH:mm").format("hh:mm")} onChange={(e) => settime(e.target.value)}></input></dd>
               </div>
+              <div className=' bg-light my-4 p-2 rounded-1'>
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    value="0"
+                    checked={address === "Loids marine services pvt ltd, 6-1, jothi nagar, 2nd street, ramanuja nagar, coimbatore, tamil nadu - 641015 Contact number : 9600630942"}
+                    onChange={() => setAddress('Loids marine services pvt ltd, 6-1, jothi nagar, 2nd street, ramanuja nagar, coimbatore, tamil nadu - 641015 Contact number : 9600630942')}
+                    name="addreshOne"
+                  />
+                  <label className="form-check-label">Coiambatoor Branch 1: 6-1, jothi nagar, 2nd street, ramanuja nagar, coimbatore, tamil nadu - 641015 Contact number : 9600630942
+
+                  </label>
+                </div>
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    value="1"
+                    checked={address === "Loids marine services pvt ltd, 508, 5th floor, prajay princeton towers, saroornagar, lb nagar, hyderabad, telangana - 508247 Contact number :7673982065"}
+                    onChange={() => setAddress('Loids marine services pvt ltd, 508, 5th floor, prajay princeton towers, saroornagar, lb nagar, hyderabad, telangana - 508247 Contact number :7673982065')}
+                    name="addreshTwo"
+                  />
+                  <label className="form-check-label">Hyderabad Branch 2: 508, 5th floor, prajay princeton towers, saroornagar, lb nagar, hyderabad, telangana - 508247 Contact number : 7673982065
+                  </label>
+                </div>
+              </div>
+
             </dl>
           </div>
           <div className='text-center'>

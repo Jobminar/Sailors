@@ -7,11 +7,14 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js'
 import { CookiesProvider } from 'react-cookie';
+import { BrowserRouter } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <CookiesProvider>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </CookiesProvider>
   </React.StrictMode>
 );

@@ -7,7 +7,7 @@ import { useCookies } from "react-cookie";
 import moment from 'moment'
 
 const ApplicationLetter = () => {
-  const [data, setuserdata] = useState([])
+  const [data, setuserdata] = useState({})
   const navigate = useNavigate('')
   const [cookies, setcookie, removecookie] = useCookies(["user"])
   const apiKey = process.env.REACT_APP_BASE_URL;
@@ -22,8 +22,8 @@ const ApplicationLetter = () => {
     try {
       const alluser = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
       const user = alluser.data;
-      const finduser = user.filter((usernumber) => parseInt(usernumber.mobileNumber) === cookies.user)
-      // console.log(cookies.user,'finlter')
+      const finduser = user.find((usernumber) => parseInt(usernumber.mobileNumber) === parseInt(cookies.user))
+      console.log('dkfjlaskdflk',finduser)
       setuserdata(finduser)
     } catch (error) {
       console.log(error)
@@ -36,7 +36,7 @@ const ApplicationLetter = () => {
   return (
     <>
       <section>
-        <div style={{ margin: '30px 30px', padding:'200px',overflow:'hidden'  }}>
+        <div style={{ margin: '30px 0px', padding:'200px'  }}>
           <div className="container rotate">
             <div className="pb-3">
               <img src={myapplication} alt="imgicon" style={{ cursor: "pointer", fontSize: "24px" }} /><span style={{ color: '#303C6C', paddingLeft: "15px" }}>Application Letters</span>
@@ -58,22 +58,19 @@ const ApplicationLetter = () => {
                     <th>Comments</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {data.map((confirmLetter, i) => (
-                    <tr>
-                      <td>{i + 1}</td>
-                      <td>{confirmLetter.applicationId}</td>
-                      <td>{moment(confirmLetter.updatedAt).format('YYYY-MM-DD')}</td>
-                      <td>{confirmLetter.applicationstatus.status}</td>
-                      <td>{confirmLetter.admitcard.status}</td>
+                <tbody><tr>
+                      <td>1</td>
+                      <td>{data?.applicationId}</td>
+                      <td>{moment(data?.updatedAt).format('YYYY-MM-DD')}</td>
+                      <td>{data?.applicationstatus?.status}</td>
+                      <td>{data?.admitcard?.status}</td>
                       <td onClick={() => navigate(`/interviewletterhead3`)}><button className="btn" >download</button></td>
-                      <td>{confirmLetter.admitcard.date}</td>
-                      <td>{confirmLetter.interviewoutcome.interviewFeedback}</td>
-                      <td>{confirmLetter.selectionletter.status}</td>
-                      <td>{confirmLetter.confirmationletter.status}</td>
-                      <td>{(confirmLetter.Commants ? '' : 'No comments')}</td>
+                      <td>{data?.admitcard?.date}</td>
+                      <td>{data?.interviewoutcome?.interviewFeedback}</td>
+                      <td>{data?.selectionletter?.status}</td>
+                      <td>{data?.confirmationletter?.status}</td>
+                      <td>{(data?.Commants? '' : 'No comments')}</td>
                     </tr>
-                  ))}
                 </tbody>
               </table>
             </div>

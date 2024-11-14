@@ -16,7 +16,7 @@ const SelectionProfile = () => {
     const [Amount,setAmount] = useState(null)
     const {id} = useParams()
     const navigate = useNavigate('')
-    const [adminCookie,removeadminCookie] = useCookies(["user"]);
+    const [adminCookie,removeadminCookie] = useCookies(["admin","useradmin"]);
   const apiKey = process.env.REACT_APP_BASE_URL
 
     const fetchdata = async () => {
@@ -54,6 +54,7 @@ const SelectionProfile = () => {
             // Update interview outcome details
             interviewfeedback: applicantdetails?.interviewoutcome?.interviewFeedback, // Include interview feedback
             interviewstatus:applicantdetails?.interviewoutcome?.status,
+            interviewAddresh: applicantdetails?.interviewoutcome?.address,
             interviewofficer: applicantdetails?.interviewoutcome?.OfficerName,
         
             // Update selection letter details
@@ -61,7 +62,7 @@ const SelectionProfile = () => {
             Totalamount:TotalAmount,
             initialamount:Amount,
             deadlinedate:date,
-            selectionletterofficer: adminCookie.user,
+            selectionletterofficer: adminCookie.admin || adminCookie.useradmin,
 
             // Update confirmation letter details
             confirmationletterstatus: applicantdetails?.confirmationletter?.status,
