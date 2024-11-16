@@ -1,5 +1,6 @@
 import axios from "axios";
 import lettericons from '../../../assets/Images/lettericon.png'
+import icons from '../../../assets/Images/LOIDSMARINE-logo.png'
 import "./selectionletterhead.css";
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
@@ -39,8 +40,8 @@ export function UserSelectionletter(param) {
               <button onClick={reactToPrintFn} className="btn btn-warning">Print</button>
               <div ref={contentRef}>
                 <div className="Header row">
-                  <div className="col-3 text-center align-content-center">
-                    <img src={lettericons} alt="lettericon" style={{ width: '80%' }} />
+                  <div className="col-4 text-center align-content-center">
+                    <img src={icons} alt="lettericon" style={{ width: '70%' }} />
                   </div>
                   <div className="col ms-5 ps-2">
                     <h2 style={{ letterSpacing: '20px', fontSize: '80px' }}>LOIDS</h2>

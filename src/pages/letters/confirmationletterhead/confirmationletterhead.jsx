@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import leterheadheader from "../../../assets/Images/leterheadheader.png";
 import lettericons from '../../../assets/Images/lettericon.png'
+import icons from '../../../assets/Images/LOIDSMARINE-logo.png'
 import "./confirmationletterhead.css";
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
@@ -37,12 +37,12 @@ export function UserConfirmationletter() {
                             <button onClick={reactToPrintFn} className="btn btn-warning">Print</button>
                             <div ref={contentRef}>
                                 <div className="Header row my-5">
-                                    <div className="col-3 text-center align-content-center">
-                                        <img src={lettericons} alt="lettericon" style={{ width: '80%' }} />
+                                    <div className="col-4 text-center align-content-center">
+                                        <img src={icons} alt="lettericon" style={{ width: '70%' }} />
                                     </div>
                                     <div className="col ms-5">
                                         <h2 style={{ letterSpacing: '20px', fontSize: '80px' }}>LOIDS</h2>
-                                        <div className="fw-medium ms-5 ps-3">-- Marine Services PVT LTD --</div>
+                                        <div className="fw-medium ms-5">-- Marine Services PVT LTD --</div>
                                     </div>
                                 </div>
                                 <hr />

@@ -1,5 +1,6 @@
 import "./admitcardletter.css";
-import lettericons from '../../../assets/Images/lettericon.png'
+// import lettericons from '../../../assets/Images/lettericon.png'
+import Icons from '../../../assets/Images/LOIDSMARINE-logo.png'
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useParams } from "react-router-dom";
@@ -34,8 +35,8 @@ export function Admitcardletterhead() {
           <button onClick={reactToPrintFn} className="btn btn-warning">Print</button>
           <div ref={contentRef}>
             <div className="Header row my-3">
-              <div className="col-3 text-center align-content-center">
-                <img src={lettericons} alt="lettericon" style={{ width: '80%' }} />
+              <div className="col-4 text-center align-content-center">
+                <img src={Icons} alt="lettericon" style={{ width: '70%' }} />
               </div>
               <div className="col ms-5 ps-2">
                 <h2 style={{ letterSpacing: '20px', fontSize: '80px' }}>LOIDS</h2>
@@ -67,7 +68,8 @@ export function Admitcardletterhead() {
                     You are welcome to attend an interview at our office on <strong>{user?.admitcard?.date}</strong> at any time between <strong>{user?.admitcard?.time}</strong>.
                   </p>
                   <p>
-                    If you have any queries, feel free to call me on <strong>9600630942</strong> and reach me at <strong>loidsmarineservicespvtltd@gmail.com</strong>.
+                    {/* If you have any queries, feel free to call me on <strong>9600630942</strong> and reach me at <strong>loidsmarineservicespvtltd@gmail.com</strong>. */}
+                    If you have any queries, feel free to reach us at <strong>loidsmarineservicespvtltd@gmail.com</strong>.
                   </p>
                 </div>
               </div>
@@ -93,7 +95,7 @@ export function Admitcardletterhead() {
               </div>
             </div>
 
-            <div className="Footer bg-secondary text-light my-5">
+            <div className="Foote my-5">
               <div>
                 <div className="text-center">
                   <div>

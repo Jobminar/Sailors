@@ -5,25 +5,18 @@ import Profile from '../profile/profile';
 import axios from 'axios';
 import moment from 'moment';
 import { useCookies } from 'react-cookie';
+import useUserById from '../../Hook/finduser/findalluser';
 
 export function Admitcard() {
   const navigate = useNavigate();
   const param = useParams()
-  const [admitcarddetails, setadmitcarddetails] = useState([{}]);
+  const { user: admitcarddetails, loading, error } = useUserById(`https://sailorswaveadmins-backend.onrender.com/candidates`, param.applicationNo);
   const [time, settime] = useState('')
   const [date, setdate] = useState('')
   const [adminCookie, setadminCookie, removeadminCookie] = useCookies(["useradmin", "admin"]);
   const apiKey = process.env.REACT_APP_BASE_URL
   const [address, setAddress] = useState("");
 
-  const fetchdata = async () => {
-    try {
-      const usedata = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidate/${param.applicationNo}`)
-      setadmitcarddetails(usedata.data)
-    } catch (error) {
-      console.error(error, 'catch error');
-    }
-  }
 
   const btngenereteadmit = async (id) => {
     const applicationstatus = {
@@ -56,9 +49,6 @@ export function Admitcard() {
       instalment3dat: admitcarddetails?.confirmationletter?.InstalmentDate3,
       confirmationletterofficer: admitcarddetails?.confirmationletter?.status,
     }
-    console.log(applicationstatus,'chekc the application details')
-
-
     try {
       const response = await axios.patch(`https://sailorswaveadmins-backend.onrender.com/candidate/${id}`, applicationstatus);
       alert('response updated sucessfull')
@@ -70,8 +60,12 @@ export function Admitcard() {
   };
 
   useEffect(() => {
-    fetchdata();
-  }, [])
+    if(admitcarddetails){
+      setdate(admitcarddetails?.admitcard?.date || '')
+      settime(admitcarddetails?.admitcard?.time || '')
+    }
+
+  }, [admitcarddetails])
 
   return (
     <>
@@ -119,7 +113,7 @@ export function Admitcard() {
                     onChange={() => setAddress('Loids marine services pvt ltd, 6-1, jothi nagar, 2nd street, ramanuja nagar, coimbatore, tamil nadu - 641015 Contact number : 9600630942')}
                     name="addreshOne"
                   />
-                  <label className="form-check-label">Coiambatoor Branch 1: 6-1, jothi nagar, 2nd street, ramanuja nagar, coimbatore, tamil nadu - 641015 Contact number : 9600630942
+                  <label className="form-check-label">Branch 1: 6-1, jothi nagar, 2nd street, ramanuja nagar, coimbatore, tamil nadu - 641015 Contact number : 9600630942
 
                   </label>
                 </div>
@@ -132,7 +126,7 @@ export function Admitcard() {
                     onChange={() => setAddress('Loids marine services pvt ltd, 508, 5th floor, prajay princeton towers, saroornagar, lb nagar, hyderabad, telangana - 508247 Contact number :7673982065')}
                     name="addreshTwo"
                   />
-                  <label className="form-check-label">Hyderabad Branch 2: 508, 5th floor, prajay princeton towers, saroornagar, lb nagar, hyderabad, telangana - 508247 Contact number : 7673982065
+                  <label className="form-check-label">Branch 2: 508, 5th floor, prajay princeton towers, saroornagar, lb nagar, hyderabad, telangana - 508247 Contact number : 7673982065
                   </label>
                 </div>
               </div>
