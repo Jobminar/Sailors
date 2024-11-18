@@ -80,17 +80,19 @@ export function Selectionletterhead(param) {
                 </p>
                 {/* <p className="fw-medium">Further query call on . 9600630942</p> */}
               </div>
-            </div>
-            <div className="Footer px-5 mx-3" style={{ fontSize: '14px' }}>
+
               <div>
                 <div className="d-flex justify-content-between">
-                  <div className="ps-3">
+                  <div>
                     WISH YOU A BRIGHT FUTURE...
                   </div>
-                  <strong className="pe-3">
+                  <strong>
                     LOIDS MARINE SERVICES PVT .LTD.
                   </strong>
                 </div>
+            </div>
+            <hr />
+            <div className="Footer px-5 mx-3" style={{ fontSize: '14px' }}>
                 <div className="text-center mt-3">
                   <div>
                     CIN: U78300TZ2024PTC032226

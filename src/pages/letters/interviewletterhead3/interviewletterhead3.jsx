@@ -97,8 +97,8 @@ export function InterviewLetterHead3() {
                     </ul>
                   </div>
                 </div>
-
-                <div className="Footer mt-5">
+                <hr />
+                <div className="Footer mt-3">
                   <div>
                     <div className="text-center">
                       <div>

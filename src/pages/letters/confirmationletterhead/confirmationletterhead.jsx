@@ -92,18 +92,18 @@ export function UserConfirmationletter() {
                                         </p>
                                         <p className="fw-medium">For query: 9600630942</p>
                                     </strong>
+                                    <div className="d-flex justify-content-between p-3">
+                                        <strong>
+                                            WISH YOU A BRIGHT FUTURE...
+                                        </strong>
+                                        <strong>
+                                            LOIDS MARINE SERVICES PVT .LTD.
+                                        </strong>
+                                    </div>
                                 </div>
-
+                                <hr />
                                 <div className="Footer mx-3 px-5">
                                     <div>
-                                        <div className="d-flex justify-content-between p-3">
-                                            <strong>
-                                                WISH YOU A BRIGHT FUTURE...
-                                            </strong>
-                                            <strong>
-                                                LOIDS MARINE SERVICES PVT .LTD.
-                                            </strong>
-                                        </div>
                                         <div className="text-center">
                                             <div>
                                                 CIN: U78300TZ2024PTC032226

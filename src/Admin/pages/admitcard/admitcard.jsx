@@ -109,11 +109,11 @@ export function Admitcard() {
                     className="form-check-input"
                     type="radio"
                     value="0"
-                    checked={address === "Loids marine services pvt ltd, 6-1, jothi nagar, 2nd street, ramanuja nagar, coimbatore, tamil nadu - 641015 Contact number : 9600630942"}
-                    onChange={() => setAddress('Loids marine services pvt ltd, 6-1, jothi nagar, 2nd street, ramanuja nagar, coimbatore, tamil nadu - 641015 Contact number : 9600630942')}
+                    checked={address === "Loids marine services pvt ltd, 6-1, Jothi Nagar, 2nd Street, Ramanuja Nagar, Coimbatore, Tamil Nadu - 641015 Phone. 96006-30942"}
+                    onChange={() => setAddress('Loids marine services pvt ltd, 6-1, Jothi Nagar, 2nd Street, Ramanuja Nagar, Coimbatore, Tamil Nadu - 641015 Phone. 96006-30942')}
                     name="addreshOne"
                   />
-                  <label className="form-check-label">Branch 1: 6-1, jothi nagar, 2nd street, ramanuja nagar, coimbatore, tamil nadu - 641015 Contact number : 9600630942
+                  <label className="form-check-label">Branch 1: 6-1, Jothi Nagar, 2nd Street, Ramanuja Nagar, Coimbatore, Tamil Nadu - 641015 Phone. 96006-30942
 
                   </label>
                 </div>
@@ -122,11 +122,11 @@ export function Admitcard() {
                     className="form-check-input"
                     type="radio"
                     value="1"
-                    checked={address === "Loids marine services pvt ltd, 508, 5th floor, prajay princeton towers, saroornagar, lb nagar, hyderabad, telangana - 508247 Contact number :7673982065"}
-                    onChange={() => setAddress('Loids marine services pvt ltd, 508, 5th floor, prajay princeton towers, saroornagar, lb nagar, hyderabad, telangana - 508247 Contact number :7673982065')}
+                    checked={address === "Loids marine services pvt ltd,508, 5th Floor, Prajay Princeton Towers, Saroornagar, Ib Nagar, Hyderabad, Telangana - 508247 Phone. 76739-82065"}
+                    onChange={() => setAddress('Loids marine services pvt ltd,508, 5th Floor, Prajay Princeton Towers, Saroornagar, Ib Nagar, Hyderabad, Telangana - 508247 Phone. 76739-82065')}
                     name="addreshTwo"
                   />
-                  <label className="form-check-label">Branch 2: 508, 5th floor, prajay princeton towers, saroornagar, lb nagar, hyderabad, telangana - 508247 Contact number : 7673982065
+                  <label className="form-check-label">Branch 2: 508, 5th Floor, Prajay Princeton Towers, Saroornagar, Ib Nagar, Hyderabad, Telangana - 508247Phone. 76739-82065
                   </label>
                 </div>
               </div>

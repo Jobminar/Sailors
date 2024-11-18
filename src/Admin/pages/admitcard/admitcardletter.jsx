@@ -94,8 +94,8 @@ export function Admitcardletterhead() {
                 </ul>
               </div>
             </div>
-
-            <div className="Foote my-5">
+            <hr />
+            <div className="Foote my-3 ">
               <div>
                 <div className="text-center">
                   <div>

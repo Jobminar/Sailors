@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const About = () => {
   const navigate = useNavigate('')
   return (
-    <div className="py-5  justify-content-center about-container " >
+    <div className="py-5  justify-content-center about-container px-3 " >
       <div className="first-container">
         <h1 className="heading ">About Loids Marine</h1>
         <img src={underlineabout}></img>

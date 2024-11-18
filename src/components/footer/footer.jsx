@@ -49,12 +49,12 @@ export function Footer() {
                     </div>
                     <div className="text-center">
                         <div>
-                            Coiambatoor Branch 1: 6-1, jothi nagar, 2nd street, ramanuja nagar, coimbatore, tamil nadu - 641015
-                            ph no. 96006-30942
+                            Branch 1: 6-1, Jothi Nagar, 2nd Street, Ramanuja Nagar, Coimbatore, Tamil Nadu - 641015
+                            Phone. 96006-30942
                         </div>
                         <div>
-                            Hyderabad Branch 2: 508, 5th floor, prajay princeton towers, saroornagar, lb nagar, hyderabad, telangana - 508247
-                            ph no. 76739-82065
+                            Branch 2: 508, 5th Floor, Prajay Princeton Towers, Saroornagar, Ib Nagar, Hyderabad, Telangana - 508247
+                            Phone. 76739-82065
                         </div>
                     </div>
                     <hr></hr>
