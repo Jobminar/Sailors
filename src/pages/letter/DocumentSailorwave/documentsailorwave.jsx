@@ -20,7 +20,7 @@ const Documentsailorwave = () => {
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     };
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e,num) => {
         e.preventDefault();
         if (!file) {
             alert('Please select a file to upload.');
@@ -29,7 +29,7 @@ const Documentsailorwave = () => {
         const formData = new FormData();
         formData.append('file', file);
         try {
-            await axios.post('http://localhost:7000/fileById/:id', formData, {
+            await axios.post(`http://localhost:7000/uploaddocument/${num}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -76,7 +76,7 @@ const Documentsailorwave = () => {
                                 <th>Download Admit card </th>
                                 <th>Interview date</th>
                                 <th>Outcome</th>
-                                {/* <th>Upload documents</th> */}
+                                <th>Upload documents</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,7 +93,7 @@ const Documentsailorwave = () => {
                                         <td onClick={() => navigate(`/interviewletterhead3`)}><button className="btn" >download</button></td>
                                         <td >{val?.admitcard?.date || 'Not Checked'}</td>
                                         <td >{val?.comments} No Comments</td>
-                                        {/* <td>
+                                        <td>
                                             {val.uploadDocuments}
                                             <span
                                                 className="bi bi-upload ms-3"
@@ -108,11 +108,11 @@ const Documentsailorwave = () => {
                                                 accept=".docx, .jpg, .jpeg, .png"
                                             />
                                             {file && (
-                                                <button className="btn btn-primary mt-2" onClick={handleSubmit}>
+                                                <button className="btn btn-primary mt-2" onClick={(e)=>handleSubmit(e,val?.mobileNumber)}>
                                                     Upload File
                                                 </button>
                                             )}
-                                        </td> */}
+                                        </td>
 
                                     </tr>
                                 )
