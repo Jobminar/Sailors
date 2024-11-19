@@ -12,7 +12,7 @@ const useUserById = (url, id) => {
       try {
         const values = await axios.get(url);
         const userdata = values.data
-        const finduser = userdata.find((user)=> user.applicationId  === parseInt(id));
+        const finduser = userdata.find((user)=> user.applicationId  === id);
         setUser (finduser );
       } catch (err) {
         setError(err);

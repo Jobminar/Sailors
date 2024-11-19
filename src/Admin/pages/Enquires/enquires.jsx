@@ -5,7 +5,7 @@ const Enquires = () => {
     const [candidates, setcandidates] = useState([])
     const fetchdata = async () => {
         try {
-            const users = await axios.get('https://sailorswaveadmins-backend.onrender.com/candidates')
+            const users = await axios.get('http://localhost:7000/candidates')
             setcandidates(users.data)
         } catch (error) {
             console.log(error);

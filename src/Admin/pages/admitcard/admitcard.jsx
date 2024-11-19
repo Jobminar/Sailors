@@ -10,7 +10,7 @@ import useUserById from '../../Hook/finduser/findalluser';
 export function Admitcard() {
   const navigate = useNavigate();
   const param = useParams()
-  const { user: admitcarddetails, loading, error } = useUserById(`https://sailorswaveadmins-backend.onrender.com/candidates`, param.applicationNo);
+  const { user: admitcarddetails, loading, error } = useUserById(`http://localhost:7000/candidates`, param.applicationNo);
   const [time, settime] = useState('')
   const [date, setdate] = useState('')
   const [adminCookie, setadminCookie, removeadminCookie] = useCookies(["useradmin", "admin"]);
@@ -35,6 +35,7 @@ export function Admitcard() {
 
       // Update selection letter details
       selectionletterstatus: admitcarddetails?.selectionletter?.status,
+      selectiontype:admitcarddetails?.selectionletter?.selectiontype,
       Totalamount: admitcarddetails?.selectionletter?.TAmount,
       initialamount: admitcarddetails?.selectionletter?.InitialAmount,
       deadlinedate: admitcarddetails?.selectionletter?.DeadlineDate,
@@ -50,7 +51,7 @@ export function Admitcard() {
       confirmationletterofficer: admitcarddetails?.confirmationletter?.status,
     }
     try {
-      const response = await axios.patch(`https://sailorswaveadmins-backend.onrender.com/candidate/${id}`, applicationstatus);
+      const response = await axios.patch(`http://localhost:7000/candidate/${id}`, applicationstatus);
       alert('response updated sucessfull')
       navigate(`/dashboardadmin/admitcardletter/${admitcarddetails.applicationId}`)
     } catch (error) {
@@ -63,6 +64,7 @@ export function Admitcard() {
     if(admitcarddetails){
       setdate(admitcarddetails?.admitcard?.date || '')
       settime(admitcarddetails?.admitcard?.time || '')
+      setAddress(admitcarddetails?.interviewoutcome?.address || '')
     }
 
   }, [admitcarddetails])
@@ -97,7 +99,7 @@ export function Admitcard() {
               </div>
               <div className='d-flex my-4  bg-light '>
                 <dt className='mx-4 col-5 align-content-center '>Date of Interview</dt>
-                <dd><input className='form-control' type='date' value={moment(date).format('YYYY-MM-DD')} onChange={(e) => setdate(e.target.value)}></input></dd>
+                <dd><input className='form-control' type='date' min={moment().format('YYYY-MM-DD')} value={moment(date).format('YYYY-MM-DD')} onChange={(e) => setdate(e.target.value)}></input></dd>
               </div>
               <div className='d-flex my-4  bg-light '>
                 <dt className='mx-4 col-5 align-content-center'>Time of Interview</dt>
@@ -141,7 +143,9 @@ export function Admitcard() {
             >
               Generate Admit Card
             </button>
-
+            {
+              (admitcarddetails?.admitcard?.date)?<button className='bi-check2-circle btn btn-outline-success ms-2'> Checked</button>:''
+            }
           </div>
         </div>
       </div>

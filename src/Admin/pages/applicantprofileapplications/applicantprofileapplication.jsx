@@ -10,10 +10,10 @@ export function Applicantprofileapplication() {
     const navigate = useNavigate('')
     const fetchdata = async () => {
         try {
-            const usedata = await axios.get('https://sailorswaveadmins-backend.onrender.com/candidates')
+            const usedata = await axios.get('http://localhost:7000/candidates')
             const users = usedata.data;
-            const finduser = users.find((user) => user.applicationId === parseInt(param.applicationNo));
-            const filteruser = users.filter((user) => user.applicationId === parseInt(param.applicationNo));
+            const finduser = users.find((user) => user?.applicationId == param.applicationNo);
+            const filteruser = users.filter((user) => user?.applicationId == param.applicationNo);
             setdata(filteruser)
             setapplicatdetails(finduser)
         } catch (error) {
@@ -48,9 +48,9 @@ export function Applicantprofileapplication() {
                             </thead>
                             <tbody>
                                 {data.map((item, index) => (
-                                    <tr key={index}>
+                                    <tr key={index} onClick={()=>Handilenavigate(item?.applicationId)}>
                                         <td>{index + 1}</td>
-                                        <td onClick={()=>Handilenavigate(item.applicationId)}>{item.applicationId}</td>
+                                        <td>{item?.applicationId}</td>
                                         <td className="no-wrap">{item?.applicationstatus?.status}</td>
                                         <td className="no-wrap">{item?.admitcard?.status}</td>
                                         <td className="no-wrap">{item?.admitcard?.OfficerName}</td>

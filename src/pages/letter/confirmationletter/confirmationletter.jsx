@@ -12,7 +12,7 @@ const ConfirmationLetter = () => {
 
     const Fetchdata = async () => {
         try {
-            const user = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
+            const user = await axios.get(`http://localhost:7000/candidates`)
             setConfirmLetter(user.data)
         } catch (error) {
             console.log(error)
@@ -35,7 +35,7 @@ const ConfirmationLetter = () => {
     };
 
     const handleViewDocument = (filename) => {
-        const url = `https://sailorswaveadmins-backend.onrender.com}/fileById/${filename}`;
+        const url = `http://localhost:7000}/fileById/${filename}`;
         window.location.href = url;
     };
 

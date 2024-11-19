@@ -73,13 +73,13 @@ export function Header() {
     <div>
       <header className="headerw">
         <div className="image-containers">
-          <img src={logo} onClick={() =>navigate("/")} alt="Sailorswave logo" />
+          <img src={logo} onClick={() => navigate("/")} alt="Sailorswave logo" />
         </div>
         <nav className="text-center headernav">
           <span
             className="fw-medium"
             id="home"
-            onClick={() => [navigate("/"),setIsMenuOpen('home')]}
+            onClick={() => [navigate("/"), setIsMenuOpen('home')]}
             style={{ color: isMenuOpen === "home" ? "#F97D3D" : "black" }}
 
           >
@@ -88,7 +88,7 @@ export function Header() {
           <span
             className="fw-medium"
             id="about"
-            onClick={() => [navigate('/about'),setIsMenuOpen('about')]}
+            onClick={() => [navigate('/about'), setIsMenuOpen('about')]}
             style={{ color: isMenuOpen === "about" ? "#F97D3D" : "black" }}
           >
             About
@@ -96,7 +96,7 @@ export function Header() {
           <span
             className="fw-medium"
             id="services"
-            onClick={() => [navigate("/services"),setIsMenuOpen('services')]}
+            onClick={() => [navigate("/services"), setIsMenuOpen('services')]}
             style={{ color: isMenuOpen === "services" ? "#F97D3D" : "black" }}
           >
             Services
@@ -104,7 +104,7 @@ export function Header() {
           <span
             className="fw-medium"
             id="contact"
-            onClick={() => [navigate('/contact'),setIsMenuOpen('contact')]}
+            onClick={() => [navigate('/contact'), setIsMenuOpen('contact')]}
             style={{ color: isMenuOpen === "contact" ? "#F97D3D" : "black" }}
           >
             Contact us
@@ -112,7 +112,7 @@ export function Header() {
           <span
             className="fw-medium"
             id="contact"
-            onClick={() => [cookies.user ? navigate('/application') : navigate('/login'),setIsMenuOpen('applynow')]}
+            onClick={() => [cookies.user ? navigate('/application') : navigate('/login'), setIsMenuOpen('applynow')]}
             style={{ color: isMenuOpen === "applynow" ? "#F97D3D" : "black" }}
           >
             ApplyNow
@@ -151,7 +151,7 @@ export function Header() {
                 </span>
               </button>
               {!isMobileView && dropdownVisible && (
-                <div className="dropdown-menu show mt-2" onClick={()=>setDropdownVisible(false)}>
+                <div className="dropdown-menu show mt-2" onClick={() => setDropdownVisible(false)}>
                   <div className="dropdown-item d-flex">
                     <span>
                       <img
@@ -175,7 +175,10 @@ export function Header() {
                   <div className="dropdown-divider"></div>
                   <div
                     className="bi bi-box-arrow-left dropdown-item text-danger"
-                    onClick={() => removecookie('user')}
+                    onClick={() => {
+                      removecookie("user");
+                      navigate('/login');
+                    }}
                   >
                     <span className="ms-1">Sign Out</span>
                   </div>
@@ -237,7 +240,10 @@ export function Header() {
                 <div className="dropdown-divider"></div>
                 <div
                   className="bi bi-box-arrow-left dropdown-item text-danger"
-                  onClick={() => removecookie("user")}
+                  onClick={() => {
+                    removecookie("user");
+                    navigate('/login');
+                  }}
                 >
                   <span className="ms-1">Sign Out</span>
                 </div>
@@ -249,5 +255,5 @@ export function Header() {
       )}
     </div>
   );
-} 
+}
 

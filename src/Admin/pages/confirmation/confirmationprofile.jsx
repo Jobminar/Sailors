@@ -11,7 +11,7 @@ import axios from 'axios';
 export function Confirmationprofile() {
     const navigate = useNavigate();
     const { applicationNo: id } = useParams();
-    const { user: applicantdetails, loading, error } = useUserById(`https://sailorswaveadmins-backend.onrender.com/candidates`, id);
+    const { user: applicantdetails, loading, error } = useUserById(`http://localhost:7000/candidates`, id);
     const [JoiningDate, setJoiningDate] = useState('');
     const [Instalment2amt, setInstalment2amt] = useState('');
     const [Instalment3amt, setInstalment3amt] = useState('');
@@ -21,7 +21,7 @@ export function Confirmationprofile() {
 
     useEffect(() => {
         if (applicantdetails) {
-            setJoiningDate(applicantdetails?.confirmationletter?.JoinDate || '');
+            setJoiningDate(applicantdetails?.confirmationletter?.Joindate || '');
             setInstalment2amt(applicantdetails?.confirmationletter?.InstalmentAmount2 || '');
             setInstalment3amt(applicantdetails?.confirmationletter?.InstalmentAmount3 || '');
             setInstalment2dat(applicantdetails?.confirmationletter?.InstalmentDate2 || '');
@@ -33,19 +33,24 @@ export function Confirmationprofile() {
         const userdata = {
             Apstatus: applicantdetails?.applicationstatus?.status,
             ApOfficerName: applicantdetails?.applicationstatus?.OfficerName,
+
             admitcardstatus: applicantdetails?.admitcard?.status,
             admitcarddate: applicantdetails?.admitcard?.date,
             admitcardtime: applicantdetails?.admitcard?.time,
             admitcardofficer: applicantdetails?.admitcard?.OfficerName,
+
             interviewfeedback: applicantdetails?.interviewoutcome?.interviewFeedback,
             interviewstatus: applicantdetails?.interviewoutcome?.status,
             interviewAddresh: applicantdetails?.interviewoutcome?.address,
             interviewofficer: applicantdetails?.interviewoutcome?.OfficerName,
+
             selectionletterstatus: applicantdetails?.selectionletter?.status,
+            selectiontype: applicantdetails?.selectionletter?.selectiontype,
             Totalamount: applicantdetails?.selectionletter?.TAmount,
             initialamount: applicantdetails?.selectionletter?.InitialAmount,
             deadlinedate: applicantdetails?.selectionletter?.DeadlineDate,
             selectionletterofficer: applicantdetails?.selectionletter?.OfficerName,
+
             confirmationletterstatus: 'Approved',
             JoinDate: JoiningDate,
             instalment2amt: Instalment2amt,
@@ -56,7 +61,7 @@ export function Confirmationprofile() {
         };
 
         try {
-            const response = await axios.patch(`https://sailorswaveadmins-backend.onrender.com/candidate/${id}`, userdata);
+            const response = await axios.patch(`http://localhost:7000/candidate/${id}`, userdata);
             alert('Response updated successfully');
             navigate(`/dashboardadmin/confirmationletter/${id}`);
         } catch (error) {
@@ -101,11 +106,12 @@ export function Confirmationprofile() {
                         <dd className="col-3">{moment(applicantdetails?.createdAt).format('YYYY-MM-DD')}</dd>
                     </div>
                     <div className="row py-1 mb-3 bg-light">
-                        <dt className="col-3">Joining Date</dt>
+                        <dt className="col-3">Reporting Date</dt>
                         <dd className="col-3">
                             <input
                                 type="date"
-                                value={JoiningDate}
+                                min={moment().format('YYYY-MM-DD')}
+                                value={moment(JoiningDate).format('YYYY-MM-DD')}
                                 onChange={(e) => setJoiningDate(e.target.value)}
                                 className="form-control"
                             />
@@ -134,6 +140,7 @@ export function Confirmationprofile() {
                         <dd className="col-3">
                             <input
                                 className="form-control bg-transparent"
+                                min={moment().format('YYYY-MM-DD')}
                                 value={Instalment2dat}
                                 onChange={(e) => setInstalment2dat(e.target.value)}
                                 type="date"
@@ -154,6 +161,7 @@ export function Confirmationprofile() {
                         <dd className="col-3">
                             <input
                                 className="form-control"
+                                min={moment().format('YYYY-MM-DD')}
                                 value={Instalment3dat}
                                 onChange={(e) => setInstalment3dat(e.target.value)}
                                 type="date"
@@ -169,6 +177,9 @@ export function Confirmationprofile() {
                     >
                         Generate Confirmation Letter
                     </button>
+                    {
+                        (applicantdetails?.confirmationletter?.InstalmentAmount2) ? <button className='bi-check2-circle btn btn-outline-success ms-2'> Checked</button> : ''
+                    }
                 </div>
             </div>
         </div>

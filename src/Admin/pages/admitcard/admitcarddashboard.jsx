@@ -17,7 +17,7 @@ const Admitcarddashboard = () => {
 
     const featchdata  = async ()=>{
         try{
-            const values = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
+            const values = await axios.get(`http://localhost:7000/candidates`)
             setuserdata(values.data)(values.data)
 
         }catch(error){

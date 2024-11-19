@@ -10,7 +10,7 @@ export function Headeradmin(){
     const [adminCookie, setCookie, removeCookie] = useCookies(["useradmin","admin"]);
     const fetchadmin = async() =>{
         try{
-            const response = await axios.get(`https://sailorswaveadmins-backend.onrender.com/subadmin/${adminCookie.admin}`)
+            const response = await axios.get(`http://localhost:7000/subadmin/${adminCookie.admin}`)
             setadmin(response.data)
         }catch(error){
             console.log(error)

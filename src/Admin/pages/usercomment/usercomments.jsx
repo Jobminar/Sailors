@@ -9,7 +9,7 @@ export function Usercomments(){
     const [user,setuser] = useState({})
     const apiKey = process.env.REACT_APP_BASE_URL
     const GetComments = async()=>{
-        const usedata= await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidate/${applicationNo}`)
+        const usedata= await axios.get(`http://localhost:7000/candidate/${applicationNo}`)
         setuser(usedata.data)
     }
     useEffect(()=>{

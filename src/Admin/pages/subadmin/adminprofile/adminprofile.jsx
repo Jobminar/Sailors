@@ -6,7 +6,7 @@ import { useCookies } from "react-cookie";
 
 const Adminprofile = () => {
      const apiKey = process.env.REACT_APP_BASE_URL
-    const { data, error, isLoading } = useFetchData(`https://sailorswaveadmins-backend.onrender.com/subadmin`);
+    const { data, error, isLoading } = useFetchData(`http://localhost:7000/subadmin`);
     const [adminCookie, setcookie, removeCookie] = useCookies(["useradmin"]);
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const Adminprofile = () => {
         const confirmDelete = window.confirm("Are you sure you want to delete this subadmin?");
         if (confirmDelete) {
             try {
-                const response = await axios.delete(`https://sailorswaveadmins-backend.onrender.com/subadmin/${id}`);
+                const response = await axios.delete(`http://localhost:7000/subadmin/${id}`);
                 alert(response.data.message);
                 // Reload to fetch updated data
                 window.location.reload();
@@ -69,7 +69,7 @@ const Adminprofile = () => {
                                 <td onClick={() => Handilenavigate(admin.number)}>
                                     {admin.photoId ? (
                                         <img
-                                            src={`https://sailorswaveadmins-backend.onrender.com/fileById/${admin.photoId}`}
+                                            src={`http://localhost:7000/fileById/${admin.photoId}`}
                                             alt={admin.name}
                                             style={{ width: '50px', height: '50px', borderRadius: '50%' }}
                                         />

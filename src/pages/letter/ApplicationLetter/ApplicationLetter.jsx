@@ -13,14 +13,14 @@ const ApplicationLetter = () => {
   const apiKey = process.env.REACT_APP_BASE_URL;
   
   const handleViewDocument = (filename) => {
-    const url = `https://sailorswaveadmins-backend.onrender.com/fileById/${filename}`;
+    const url = `http://localhost:7000/fileById/${filename}`;
     window.location.href = url;
   };
 
 
   const Fetchdata = async () => {
     try {
-      const alluser = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
+      const alluser = await axios.get(`http://localhost:7000/candidates`)
       const user = alluser.data;
       const finduser = user.find((usernumber) => parseInt(usernumber.mobileNumber) === parseInt(cookies.user))
       console.log('dkfjlaskdflk',finduser)
@@ -52,10 +52,10 @@ const ApplicationLetter = () => {
                     <th>Admit card status</th>
                     <th>Download Admit card</th>
                     <th>Interview date</th>
-                    <th>Interview Feedback</th>
+                    {/* <th>Interview Feedback</th> */}
                     <th>Selection Letter</th>
                     <th>Confirmation Letter</th>
-                    <th>Comments</th>
+                    {/* <th>Comments</th> */}
                   </tr>
                 </thead>
                 <tbody><tr>
@@ -65,11 +65,11 @@ const ApplicationLetter = () => {
                       <td>{data?.applicationstatus?.status}</td>
                       <td>{data?.admitcard?.status}</td>
                       <td onClick={() => navigate(`/interviewletterhead3`)}><button className="btn" >download</button></td>
-                      <td>{data?.admitcard?.date}</td>
-                      <td>{data?.interviewoutcome?.interviewFeedback}</td>
+                      <td>{data?.admitcard?.date || 'Not Checked'}</td>
+                      {/* <td>{data?.interviewoutcome?.interviewFeedback}</td> */}
                       <td>{data?.selectionletter?.status}</td>
                       <td>{data?.confirmationletter?.status}</td>
-                      <td>{(data?.Commants? '' : 'No comments')}</td>
+                      {/* <td>{(data?.Commants? '' : 'No comments')}</td> */}
                     </tr>
                 </tbody>
               </table>

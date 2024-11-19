@@ -11,7 +11,7 @@ const UserApplication = () => {
     class10th: null,
     aadhar: null
   });
-  const [cookies,setcookie,removecookie]=useCookies(["user"]);
+  const [cookies, setcookie, removecookie] = useCookies(["user"]);
   const [formDatauser, setFormDatauser] = useState({
     applyFor: '',
     candidateName: '',
@@ -94,7 +94,7 @@ const UserApplication = () => {
     formData.append('aadhar', files.aadhar);
     try {
       const apiKey = process.env.REACT_APP_BASE_URL;
-      const response = await fetch(`https://sailorswaveadmins-backend.onrender.com/userformsubmit`, {
+      const response = await fetch(`http://localhost:7000/userformsubmit`, {
         method: 'POST',
         body: formData,
       });
@@ -108,6 +108,8 @@ const UserApplication = () => {
           tenthschool: '', tenthyear: '', tenthpercentage: '', twelfthschool: '', twelfthyear: '', twelfthpercentage: '', degreeschool: '', degreeyear: '', degreepercentage: ''
         });
         setFiles({ passport: null, class10th: null, aadhar: null });
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        fileInputs.forEach((input) => (input.value = ''));
       } else {
         alert('Error: ' + result.message);
       }
@@ -361,7 +363,7 @@ const UserApplication = () => {
 
                 {/* 10th Qualification */}
                 <Grid item xs={12} sm={3}>
-                  <div className=" text-dark-subtle fw-medium">10 th</div>
+                  <div className=" text-dark-subtle fw-medium">10 th *</div>
                 </Grid>
                 <Grid item xs={12} sm={3}>
                   <TextField
@@ -396,7 +398,7 @@ const UserApplication = () => {
 
                 {/* 12th Qualification */}
                 <Grid item xs={12} sm={3}>
-                  <div className=" text-dark-subtle fw-medium">12 th</div>
+                  <div className=" text-dark-subtle fw-medium">12 th *</div>
                 </Grid>
                 <Grid item xs={12} sm={3}>
                   <TextField
@@ -431,7 +433,7 @@ const UserApplication = () => {
 
                 {/* Degree Qualification */}
                 <Grid item xs={12} sm={3}>
-                  <div className=" text-dark-subtle fw-medium">Degree</div>
+                  <div className=" text-dark-subtle fw-medium">Degree *</div>
                 </Grid>
                 <Grid item xs={12} sm={3}>
                   <TextField
@@ -473,7 +475,7 @@ const UserApplication = () => {
                 UPLOAD PICTURE (*Select image of less than 2mb)
               </Typography>
               <div className='row my-4' style={{ alignContent: "center" }}>
-                <dt className='col-6 text-dark-subtle fw-medium '>Upload your passport size picture (.jpg)</dt>
+                <dt className='col-6 text-dark-subtle fw-medium '>Upload your passport size picture (.jpg) *</dt>
                 <dd className='col-5 '>
                   <input
                     type="file"
@@ -481,12 +483,13 @@ const UserApplication = () => {
                     onChange={(e) => handleFileChange(e, 'passport')}
                     multiple
                     className='form-control ms-2'
+                    required
                   />
                 </dd>
               </div>
               <hr />
               <div className='row my-4' style={{ alignContent: "center" }}>
-                <dt className='col-6 text-dark-subtle fw-medium'>Upload your class 10th certificate (.jpg)</dt>
+                <dt className='col-6 text-dark-subtle fw-medium'>Upload your class 10th certificate (.jpg) *</dt>
                 <dd className='col-5'>
                   <input
                     type="file"
@@ -494,12 +497,13 @@ const UserApplication = () => {
                     onChange={(e) => handleFileChange(e, 'class10th')}
                     multiple
                     className='form-control ms-2'
+                    required
                   />
                 </dd>
               </div>
               <hr />
               <div className='row my-4' style={{ alignContent: "center" }}>
-                <dt className='col-6 text-dark-subtle fw-medium '>Upload your Aadhar card (.jpg)</dt>
+                <dt className='col-6 text-dark-subtle fw-medium '>Upload your Aadhar card (.jpg) *</dt>
                 <dd className='col-5'>
                   <input
                     type="file"
@@ -507,6 +511,7 @@ const UserApplication = () => {
                     onChange={(e) => handleFileChange(e, 'aadhar')}
                     multiple
                     className='form-control ms-2'
+                    required
                   />
                 </dd>
               </div>

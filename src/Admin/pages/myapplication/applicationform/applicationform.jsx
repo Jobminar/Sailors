@@ -19,9 +19,9 @@ const AdminApplicationForm = () => {
 
   const Getuserdata = async () => {
     try {
-      const values = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`);
+      const values = await axios.get(`http://localhost:7000/candidates`);
       const userdata = values.data
-      const finduser = userdata.find((user) => user.applicationId === parseInt(params.id));
+      const finduser = userdata.find((user) => user.applicationId === params.id);
       setFormData(finduser)
     } catch (error) {
       console.log(error)
@@ -35,7 +35,7 @@ const AdminApplicationForm = () => {
     }
 
     try {
-      const response = await axios.get(`https://sailorswaveadmins-backend.onrender.com/fileById/${id}`, {
+      const response = await axios.get(`http://localhost:7000/fileById/${id}`, {
         responseType: 'blob',
       });
       const fileURL = URL.createObjectURL(new Blob([response.data]));
@@ -52,16 +52,15 @@ const AdminApplicationForm = () => {
   }, [])
   
   useEffect(() => {
-    if (formData.passport || formData.class10th || formData.aadhar) {
-      fetchFileById(formData.passport, setPhoto);
-      fetchFileById(formData.class10th, setclass10Photo);
-      fetchFileById(formData.aadhar, setaadharPhoto);
+    if (formData?.passport || formData?.class10th || formData?.aadhar) {
+      fetchFileById(formData?.passport, setPhoto);
+      fetchFileById(formData?.class10th, setclass10Photo);
+      fetchFileById(formData?.aadhar, setaadharPhoto);
     }
   }, [formData]);
   
   const HandileUpdatestaus = async (id, status) => {
     const applicationStatus = {
-      // Update application status
       Apstatus: status,
       ApOfficerName: adminCookie.admin || adminCookie.useradmin,
   
@@ -74,10 +73,13 @@ const AdminApplicationForm = () => {
       // Update interview outcome details
       interviewfeedback: formData.interviewoutcome.interviewFeedback, // Include interview feedback
       interviewstatus:formData.interviewoutcome.status,
+      interviewAddresh: formData?.interviewoutcome?.address,
       interviewofficer: formData.interviewoutcome.OfficerName,
   
       // Update selection letter details
-      selectionletterstatus: formData.selectionletter.status,
+      selectionletterstatus: formData?.selectionletter.status,
+      selectiontype:formData?.selectionletter?.selectiontype,
+      Totalamount: formData?.selectionletter?.TAmount,
       initialamount:formData?.selectionletter?.InitialAmount,
       deadlinedate:formData?.selectionletter?.DeadlineDate,
       selectionletterofficer: formData.selectionletter.OfficerName,
@@ -97,7 +99,7 @@ const AdminApplicationForm = () => {
     };
   
     try {
-      const response = await axios.patch(`https://sailorswaveadmins-backend.onrender.com/candidate/${id}`, applicationStatus);
+      const response = await axios.patch(`http://localhost:7000/candidate/${id}`, applicationStatus);
       alert('Response updated successfully');
       console.log(response);
       navigate('/dashboardadmin/myapplication');
@@ -137,7 +139,7 @@ const AdminApplicationForm = () => {
                 <TextField
                   required
                   name="applyFor"
-                  value={formData.applyFor}
+                  value={formData?.applyFor}
                   variant="outlined"
                   label="Apply For" 
                   InputLabelProps={{
@@ -151,7 +153,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="candidateName"
-                  value={formData.candidateName}
+                  value={formData?.candidateName}
                   variant="outlined"
                   label="Candidate Name" 
                   InputLabelProps={{
@@ -167,7 +169,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="fatherName"
-                  value={formData.fatherName}
+                  value={formData?.fatherName}
                   variant="outlined"
                   label="Father Name" 
                   InputLabelProps={{
@@ -183,7 +185,7 @@ const AdminApplicationForm = () => {
                   fullWidth
                   name="dob"
                   placeholder="DD-MM-YY"
-                  value={formData.dob?moment(formData.dob).format('DD-MM-YYYY'):""}
+                  value={formData?.dob?moment(formData?.dob).format('DD-MM-YYYY'):""}
                   variant="outlined"
                   label="Date-of-Birth" 
                   InputLabelProps={{
@@ -197,7 +199,7 @@ const AdminApplicationForm = () => {
                 <TextField
                   fullWidth
                   name="gender"
-                  value={formData.gender}
+                  value={formData?.gender}
                   variant="outlined"
                   label="Gender" 
                   InputLabelProps={{
@@ -212,7 +214,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="mobileNumber"
-                  value={formData.mobileNumber}
+                  value={formData?.mobileNumber}
                   variant="outlined"
                   label="Mobile Number" 
                   InputLabelProps={{
@@ -227,7 +229,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="email"
-                  value={formData.email}
+                  value={formData?.email}
                   variant="outlined"
                   label="Email" 
                   InputLabelProps={{
@@ -252,7 +254,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="houseNo"
-                  value={formData.houseNo}
+                  value={formData?.houseNo}
                   variant="outlined"
                   label="House No" 
                   InputLabelProps={{
@@ -265,7 +267,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="postOffice"
-                  value={formData.postOffice}
+                  value={formData?.postOffice}
                   variant="outlined"
                   label="Post Office" 
                   InputLabelProps={{
@@ -278,7 +280,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="policeStation"
-                  value={formData.policeStation}
+                  value={formData?.policeStation}
                   variant="outlined"
                   label="Police Station" 
                   InputLabelProps={{
@@ -291,7 +293,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="district"
-                  value={formData.district}
+                  value={formData?.district}
                   variant="outlined"
                   label="District" 
                   InputLabelProps={{
@@ -305,7 +307,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="city"
-                  value={formData.city}
+                  value={formData?.city}
                   variant="outlined"
                   label="City" 
                   InputLabelProps={{
@@ -319,7 +321,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="state"
-                  value={formData.state}
+                  value={formData?.state}
                   variant="outlined"
                   label="State" 
                   InputLabelProps={{
@@ -333,7 +335,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="postalCode"
-                  value={formData.postalCode}
+                  value={formData?.postalCode}
                   variant="outlined"
                   label="Postal Code" 
                   InputLabelProps={{
@@ -379,7 +381,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="tenthschool"
-                  value={formData.tenthschool}
+                  value={formData?.tenthschool}
                   variant="outlined"
                  
                   
@@ -390,7 +392,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="tenthyear"
-                  value={formData.tenthyear}
+                  value={formData?.tenthyear}
                   variant="outlined"
                  
                 />
@@ -400,7 +402,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="tenthpercentage"
-                  value={formData.tenthpercentage}
+                  value={formData?.tenthpercentage}
                   variant="outlined"
                 
                 />
@@ -415,7 +417,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="twelfthschool"
-                  value={formData.twelfthschool}
+                  value={formData?.twelfthschool}
                   variant="outlined"
                  
                 />
@@ -425,7 +427,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="twelfthyear"
-                  value={formData.twelfthyear}
+                  value={formData?.twelfthyear}
                   variant="outlined"
                 />
               </Grid>
@@ -434,7 +436,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="twelfthpercentage"
-                  value={formData.twelfthpercentage}
+                  value={formData?.twelfthpercentage}
                   variant="outlined"
                   
                 />
@@ -449,7 +451,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="degreeschool"
-                  value={formData.degreeschool}
+                  value={formData?.degreeschool}
                   variant="outlined"
                   
                 />
@@ -459,7 +461,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="degreeyear"
-                  value={formData.degreeyear}
+                  value={formData?.degreeyear}
                   variant="outlined"
                   
                 />
@@ -469,7 +471,7 @@ const AdminApplicationForm = () => {
                   required
                   fullWidth
                   name="degreepercentage"
-                  value={formData.degreepercentage}
+                  value={formData?.degreepercentage}
                   variant="outlined"
                   
                 />
@@ -510,14 +512,14 @@ const AdminApplicationForm = () => {
               <button
                 style={{ backgroundColor: "#0486AA" }}
                 className="btn  text-light px-5 py-2 mt-4"
-                onClick={()=>HandileUpdatestaus(formData.applicationId,'Rejected')}
+                onClick={()=>HandileUpdatestaus(formData?.applicationId,'Rejected')}
               >
                 REJECTED
               </button>
               <button
                 style={{ backgroundColor: "#0486AA" }}
                 className='btn text-light px-5 py-2 mt-4 ms-2'
-                onClick={()=>HandileUpdatestaus(formData.applicationId,'Approved')}
+                onClick={()=>HandileUpdatestaus(formData?.applicationId,'Approved')}
               >
                 APPROVED
               </button>

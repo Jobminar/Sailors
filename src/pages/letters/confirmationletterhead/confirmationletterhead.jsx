@@ -1,6 +1,5 @@
-import { useParams } from "react-router-dom";
-import lettericons from '../../../assets/Images/lettericon.png'
-import icons from '../../../assets/Images/LOIDSMARINE-logo.png'
+import { useNavigate, useParams } from "react-router-dom";
+import Icons from '../../../assets/Images/letterlogo.png'
 import "./confirmationletterhead.css";
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
@@ -14,10 +13,11 @@ export function UserConfirmationletter() {
     const reactToPrintFn = useReactToPrint({ contentRef });
     const [cookies, setcookie, removecookie] = useCookies(["user"]);
     const apiKey = process.env.REACT_APP_BASE_URL
+    const navigate = useNavigate()
 
     const Fetchdata = async () => {
         try {
-            const alluser = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
+            const alluser = await axios.get(`http://localhost:7000/candidates`)
             const user = alluser.data;
             const finduser = user.find((usernumber) => parseInt(usernumber.mobileNumber) === cookies.user)
             setusers(finduser)
@@ -31,25 +31,27 @@ export function UserConfirmationletter() {
     return (
         <>
             {
-                (user?.confirmationletter?.status === undefined) ? <div className="px-4 text-center h2 text-warning" style={{ height: '50vh' }}>Letter not found</div> :
-                    <div className="mainbody">
+                (user?.confirmationletter?.status === 'Not Checked') ? navigate('/applicationletter') :
+                <div className="mainbody">
                         <div className="px-4 w-75 border border-2 ">
                             <button onClick={reactToPrintFn} className="btn btn-warning">Print</button>
                             <div ref={contentRef}>
-                                <div className="Header row my-5">
-                                    <div className="col-4 text-center align-content-center">
-                                        <img src={icons} alt="lettericon" style={{ width: '70%' }} />
+                                <div className="Header row">
+                                    <div className="col-3 text-center align-content-center">
+                                        <img src={Icons} alt="lettericon" style={{ width: '80%' }} />
                                     </div>
                                     <div className="col ms-5">
-                                        <h2 style={{ letterSpacing: '20px', fontSize: '80px' }}>LOIDS</h2>
-                                        <div className="fw-medium ms-5">-- Marine Services PVT LTD --</div>
+                                        <h2 style={{ letterSpacing: '20px', fontSize: '80px', fontWeight: 'bold', fontFamily: 'Arial Rounded MT Bold' }}>LOIDS</h2>
+                                        <div className="fw-medium ms-5"> ─── Marine Services PVT LTD ───</div>
                                     </div>
                                 </div>
                                 <hr />
-                                <div className="Body my-3 mx-3 px-5">
+                                <div className="Body my-2 mx-3 px-5">
                                     <div>
                                         <div className="text-center h2 mb-5">CONFIRMATION LETTER</div>
-                                        <strong className="mb-4 mt-1 fw-medium">Dear Applicant,</strong>
+                                        <strong className="mb-4 mt-1 fw-bold">Dear Applicant,</strong>
+                                        <div style={{ textIndent: '30px' }}>We would like to inform you that your seat has been reserved.</div>
+                                        <div style={{ textIndent: '30px' }}>For further procedure, Please go through the letters attached here with this mail. Also For any query you can call us...</div>
                                         <div >
                                             <strong className="row">
                                                 <div className="col-3">Application No</div>
@@ -64,10 +66,10 @@ export function UserConfirmationletter() {
                                                 <div className="col">:{user?.fatherName}</div>
                                             </strong>
                                             <div className="fw-medium my-3">Congratulations,</div>
-                                            <p>
+                                            <p style={{ textIndent: '30px' }}>
                                                 We are glad to inform you that the seat has been reserved for the pre-sea training. Hereafter, we need to apply for your seafarer identification number. Once done, we can send your training batch details and batch starting date.
                                             </p>
-                                            <p>
+                                            <p style={{ textIndent: '30px' }}>
                                                 After completion of your training, we will provide you placement assurance in India and foreign vessels.
                                             </p>
                                         </div>
@@ -85,7 +87,7 @@ export function UserConfirmationletter() {
                                             <div className="col">:<span>{user?.confirmationletter?.InstalmentAmount3}/- ON {user?.confirmationletter?.InstalmentDate3}</span></div>
                                         </div>
                                         <p>
-                                            <span>REPORTING DATE:</span> 04/11/2024 (CANDIDATE SHOULD COME TO BRANCH OFFICE ON THE SAME DATE AT 10:30 AM)
+                                            <span>REPORTING DATE:</span> {user?.confirmationletter?.Joindate} (CANDIDATE SHOULD COME TO BRANCH OFFICE ON THE SAME DATE AT 10:30 AM)
                                         </p>
                                         <p>
                                             <span>NOTE:</span> Candidate should bear the Visa & Ticket charges / Onboard Pro Charges.
@@ -112,12 +114,7 @@ export function UserConfirmationletter() {
                                                 LOIDS MARINE SERVICES Pvt Ltd
                                             </div>
                                             <div>
-                                                <div>
-                                                    Branch - I, 6-1, Jothi Nagar, 2nd Street, Ramanuja Nagar, Coimbatore, Tamilnadu - 641015
-                                                </div>
-                                                <div>
-                                                    Branch - II, 508,5th floor, prajay princton towers, saroornagar, lb nagar, hyd - 500035
-                                                </div>
+                                                {user?.interviewoutcome?.address}
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +122,7 @@ export function UserConfirmationletter() {
 
                             </div>
                         </div>
-                    </div>
+                </div>
             }
 
         </>

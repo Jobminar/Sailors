@@ -16,7 +16,7 @@ const Subadmin = () => {
 
     const fetchData = async () => {
         try {
-            const { data: users } = await axios.get(`https://sailorswaveadmins-backend.onrender.com/subadmin`);
+            const { data: users } = await axios.get(`http://localhost:7000/subadmin`);
             const filteredUser = users.find((user) => user.number === id);
             setAllSubadmins(users);
             setUserDetail(filteredUser);
@@ -31,7 +31,7 @@ const Subadmin = () => {
         if (!photoId) return; // Avoid unnecessary calls if no photoId
 
         try {
-            const response = await axios.get(`https://sailorswaveadmins-backend.onrender.com/fileById/${photoId}`, {
+            const response = await axios.get(`http://localhost:7000/fileById/${photoId}`, {
                 responseType: 'blob',
             });
             const fileURL = URL.createObjectURL(new Blob([response.data]));

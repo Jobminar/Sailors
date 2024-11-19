@@ -7,6 +7,15 @@ import { useNavigate } from 'react-router-dom'
 
 export function Footer() {
     const navigate = useNavigate('');
+    const navigateTo = (path) => {
+        window.scrollTo(0, 0); // Scroll to the top of the page
+        navigate(path); // Navigate to the new page
+    };
+    const navigateToshore = (path) => {
+        window.scrollTo(2090, 2090); // Scroll to the top of the page
+        navigate(path)
+    }
+
     return (
         <>
             <footer >
@@ -35,16 +44,16 @@ export function Footer() {
                             </div>
                         </div>
                         <div className="footeritem">
-                            <div onClick={() => navigate('/about')}>About us</div>
-                            <div onClick={() => navigate('/services')}>Reviews</div>
-                            <div onClick={() => navigate('/contact')}>Contact Us</div>
-                            <div onClick={() => navigate('/application')} >Careers</div>
+                            <div onClick={() => navigateTo('/about')}>About us</div>
+                            <div onClick={() => navigateTo('/services')}>Reviews</div>
+                            <div onClick={() => navigateTo('/contact')}>Contact Us</div>
+                            <div onClick={() => navigateTo('/application')}>Careers</div>
                         </div>
                         <div className="footeritem">
-                            <div>On shore Joining</div>
-                            <div>off shore Joining</div>
-                            <div>Training</div>
-                            <div>Placements</div>
+                            <div onClick={() => navigateToshore('/')}>On shore Joining</div>
+                            <div onClick={() => navigateToshore('/')}>off shore Joining</div>
+                            <div onClick={() => navigateToshore('/')}>Training</div>
+                            <div onClick={() => navigateToshore('/')}>Placements</div>
                         </div>
                     </div>
                     <div className="text-center">

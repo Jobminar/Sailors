@@ -39,6 +39,9 @@ export function Adminsidebar({ selectedItem, setSelectedItem }) {
             case "ConfirmationLetter":
                 newValue = 'confirmationdashboard';
                 break;
+            case "Financials":
+                newValue = 'Financials';
+                break;
             default:
                 console.log("Unknown key:", key);
                 return; // Exit if the key doesn't match any case
@@ -50,6 +53,9 @@ export function Adminsidebar({ selectedItem, setSelectedItem }) {
                 navigate('/dashboardadmin');
             } else {
                 navigate(`/dashboardadmin/${newValue}`);
+            }
+            if(newValue === 'Financials'){
+                navigate('/dashboardadmin/MyApplication')
             }
             setSelectedItem(newValue);
         } catch (error) {
@@ -64,7 +70,7 @@ export function Adminsidebar({ selectedItem, setSelectedItem }) {
     const Getadmin = async () => {
         if (adminCookie.admin) {
             try {
-                const response = await axios.get(`https://sailorswaveadmins-backend.onrender.com/subadmin/${adminCookie.admin}`);
+                const response = await axios.get(`http://localhost:7000/subadmin/${adminCookie.admin}`);
                 setAdminData(response.data)
             } catch (error) {
 

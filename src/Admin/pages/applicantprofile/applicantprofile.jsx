@@ -14,9 +14,9 @@ export function Applicantprofile() {
     const params = useParams()
     const fetchdata = async () => {
         try {
-            const usedata = await axios.get('https://sailorswaveadmins-backend.onrender.com/candidates')
+            const usedata = await axios.get('http://localhost:7000/candidates')
             const users = usedata.data;
-            const filteredUsers = users.find((user) => user.applicationId === parseInt(params.applicationNo));
+            const filteredUsers = users.find((user) => user.applicationId === params.applicationNo);
             setuserdata(filteredUsers)
         } catch (error) {
             console.error(error, 'catch error');
@@ -37,7 +37,6 @@ export function Applicantprofile() {
     }
     const applicantcommentlick=()=>{
         setdocumentuser(false)
-
         navigate(`/dashboardadmin/applicantprofile/${userdata.applicationId}/applicantcomment`)
   
     }
@@ -55,11 +54,11 @@ export function Applicantprofile() {
                     <Profile applicantdetail={userdata} />
                     <div className='d-flex' >
                         <div  >
-                            <button style={{ width: "225px" }} className='my-5 btn btn-light applicantprofile  text-secondary p-3 fw-bold' onClick={applicantprofileapplication} >My Applications</button>
+                            <button style={{ width: "225px" }} className='my-5 btn btn-light applicantprofile  text-secondary p-3 fw-bold' onClick={()=>applicantprofileapplication()} >My Applications</button>
 
                         </div>
                         <div  >
-                            <button style={{ width: "225px" }} className='my-5 btn btn-light applicantprofile  text-secondary fw-bold p-3' onClick={applicantfinanceclick}>
+                            <button style={{ width: "225px" }} className='my-5 btn btn-light applicantprofile  text-secondary fw-bold p-3' onClick={()=>applicantfinanceclick()}>
                                 Financials
                             </button >
                         </div>
@@ -73,7 +72,7 @@ export function Applicantprofile() {
                             </button>
                         </div>
                         <div >
-                            <button style={{ width: "225px" }} className='my-5 btn btn-light applicantprofile fw-bold text-secondary  p-3' onClick={applicantcommentlick}>
+                            <button style={{ width: "225px" }} className='my-5 btn btn-light applicantprofile fw-bold text-secondary  p-3' onClick={()=>applicantcommentlick()}>
                                 comments
                             </button>
                         </div>

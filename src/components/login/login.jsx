@@ -67,7 +67,7 @@ const Login = () => {
                                         console.log(values.userNumber, 'user Number')
                                         SetLoading(true)
                                         try {
-                                            await axios.post('https://sailorswaveadmins-backend.onrender.com/userNumber', { userPhone: values.userNumber })
+                                            await axios.post('http://localhost:7000/userNumber', { userPhone: values.userNumber })
                                                 .then(response => {
                                                     const otp = (response.data.otp).toString();
                                                     console.log('OTP:', otp);

@@ -22,13 +22,12 @@ const Myapplication = () => {
 
     const fetchdata = async () => {
         try {
-            const values = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
+            const values = await axios.get(`http://localhost:7000/candidates`)
             setusersdata(values.data)
         } catch (error) {
             console.log(error)
         }
     }
-    console.log(usersdata.map((item) => item.applicationstatus, 'hello'))
     useEffect(() => {
         fetchdata();
     }, [])

@@ -1,6 +1,5 @@
 import "./interviewletterhead.css";
-import lettericons from '../../../assets/Images/lettericon.png'
-import icons from '../../../assets/Images/LOIDSMARINE-logo.png'
+import Icons from '../../../assets/Images/letterlogo.png'
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import axios from "axios";
@@ -18,7 +17,7 @@ export function InterviewLetterHead3() {
 
   const Fetchdata = async () => {
     try {
-      const alluser = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
+      const alluser = await axios.get(`http://localhost:7000/candidates`)
       const user = alluser.data;
       const finduser = user.find((usernumber) => parseInt(usernumber.mobileNumber) === cookies.user)
       setUser(finduser)
@@ -33,24 +32,24 @@ export function InterviewLetterHead3() {
     <>
 
       {
-        (user?.interviewoutcome?.status === undefined) ? navigate('/myadmitcard') :
+        (user?.interviewoutcome?.status === 'Not Checked') ? navigate('/myadmitcard') :
           <div className="mainbody">
             <div className="px-4 w-75 border border-2 ">
               <button onClick={reactToPrintFn} className="btn btn-warning">Print</button>
               <div ref={contentRef}>
                 <div className="Header row my-3">
                   <div className="col-4 text-center align-content-center">
-                    <img src={icons} alt="lettericon" style={{ width: '70%' }} />
+                    <img src={Icons} alt="lettericon" style={{ width: '70%' }} />
                   </div>
                   <div className="col ms-5 ps-2">
-                    <h2 style={{ letterSpacing: '20px', fontSize: '80px' }}>LOIDS</h2>
-                    <div className="fw-medium ms-5">-- Marine Services PVT LTD --</div>
+                    <h2 style={{ letterSpacing: '20px', fontSize: '80px', fontWeight: 'bold', fontFamily: 'Arial Rounded MT Bold' }}>LOIDS</h2>
+                    <div className="fw-medium ms-5">─── Marine Services PVT LTD ───</div>
                   </div>
                 </div>
                 <hr />
                 <div className="Body my-5 px-5 mx-4">
                   <div>
-                    <div className="text-center h2 mt-1 mb-5 ">INTERVIEW INVITATION</div>
+                    <div className="text-center h2 mt-1 mb-3 fw-bold " style={{ fontFamily: 'Arial' }}>ADMIT CARD</div>
                     <div>
                       <div className="row">
                         <div className="col-3">Application No</div>
@@ -69,10 +68,7 @@ export function InterviewLetterHead3() {
                         Your qualifications have impressed us, and we would like to have a discussion with you.
                       </p>
                       <p>
-                        You are welcome to attend an interview at our office on <strong>{user?.admitcard?.date}</strong> at any time between <strong>{user?.admitcard?.time}</strong>.
-                      </p>
-                      <p>
-                        If you have any queries, feel free to reach as at <strong>loidsmarineservicespvtltd@gmail.com</strong>.
+                        If you have any queries, feel free to call me on <strong>96006-30942</strong> and reach me at <strong>loidsmarineservicespvtltd@gmail.com</strong>.
                       </p>
                     </div>
                   </div>
@@ -98,7 +94,7 @@ export function InterviewLetterHead3() {
                   </div>
                 </div>
                 <hr />
-                <div className="Footer mt-3">
+                <div className="Foote mt-3  px-2">
                   <div>
                     <div className="text-center">
                       <div>
@@ -109,10 +105,7 @@ export function InterviewLetterHead3() {
                       </div>
                       <div>
                         <div>
-                          Branch - I, 6-1, Jothi Nagar, 2nd Street, Ramanuja Nagar, Coimbatore, Tamilnadu - 641015
-                        </div>
-                        <div>
-                          Branch - II, 508,5th floor, prajay princton towers, saroornagar, lb nagar, hyd - 500035
+                          {user?.interviewoutcome?.address}
                         </div>
                       </div>
                     </div>

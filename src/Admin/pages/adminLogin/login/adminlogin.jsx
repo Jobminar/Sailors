@@ -27,7 +27,7 @@ const Adminlogin = () => {
         {Loading ? (
           <div><img src={loadgif} alt="Loading" /></div> // Loading indicator
         ) : (
-          <div className="bg-light border border-1 rounded-3" style={{ padding: '20px 80px' }}>
+          <div className="bg-light border border-1 rounded-3 bg-dark-subtle" style={{ padding: '20px 80px' }}>
             <div className="fw-medium fs-2 p-2">Log In to Admin Panel</div>
             <div className="mb-5 text-center">Enter your mail and Password below</div>
 
@@ -41,13 +41,13 @@ const Adminlogin = () => {
                 setLoading(true);
                 try {
                   if (adminlogin === 'Admin') {
-                    await axios.post(`https://sailorswaveadmins-backend.onrender.com/subadmin`, values);
+                    await axios.post(`http://localhost:7000/subadmin`, values);
                     alert('Admin logged in successfully');
                     setCookie('admin', values.adminEmail); 
                     navigate('/dashboardadmin')
                   }
                   if (adminlogin === 'Subadmin') {
-                    await axios.post(`https://sailorswaveadmins-backend.onrender.com/loginmainsubadmin`, values);
+                    await axios.post(`http://localhost:7000/loginmainsubadmin`, values);
                     alert('Super Admin logged in successfully');
                     setCookie('useradmin', values.adminEmail);
                     navigate('/dashboardadmin')
@@ -69,7 +69,18 @@ const Adminlogin = () => {
                     <dt>Password</dt>
                     <dd><Field type='password' className='form-control' name='adminPassword' placeholder='Enter Your Password' /></dd>
                     <dd>
-                      <div>Login as:</div>
+                      <b>Login as:</b>
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          value="Subadmin"
+                          checked={adminlogin === "Subadmin"}
+                          onChange={handleAdminLoginChange}
+                          name="adminlogin"
+                        />
+                        <label className="form-check-label">SuperAdmin</label>
+                      </div>
                       <div className="form-check">
                         <input
                           className="form-check-input"
@@ -80,18 +91,6 @@ const Adminlogin = () => {
                           name="adminlogin"
                         />
                         <label className="form-check-label">Admin</label>
-                      </div>
-
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          value="Subadmin"
-                          checked={adminlogin === "Subadmin"}
-                          onChange={handleAdminLoginChange}
-                          name="adminlogin"
-                        />
-                        <label className="form-check-label">Subadmin</label>
                       </div>
                     </dd>
                     <dd><button className="btn btn-dark py-2 px-5 w-100 mt-3" type='submit'>Submit</button></dd>

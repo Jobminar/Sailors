@@ -54,7 +54,7 @@ const Routing = () => {
 
   // const validateMainSubadmin = async () => {
   //   try {
-  //     const response = await axios.get(`https://sailorswaveadmins-backend.onrender.com/mainsubadmin/${adminCookie.useradmin}`);
+  //     const response = await axios.get(`http://localhost:7000/mainsubadmin/${adminCookie.useradmin}`);
   //     return response.data.present;
   //   } catch (error) {
   //     console.log(error, 'error while fetching admin');

@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Interoutcome = () => {
     const {id} = useParams()
-    const { user, loading, error } = useUserById(`https://sailorswaveadmins-backend.onrender.com/candidates`, id)
+    const { user, loading, error } = useUserById(`http://localhost:7000/candidates`, id)
     const [adminCookie,removeadminCookie] = useCookies(["useradmin","admin"]);
     const [feedback,setfeedback] = useState('')
     const navigate = useNavigate('')
@@ -28,10 +28,12 @@ const Interoutcome = () => {
             // Update interview outcome details
             interviewfeedback:feedback, // Include interview feedback
             interviewstatus:status,
+            interviewAddresh: user?.interviewoutcome?.address,
             interviewofficer: adminCookie.admin || adminCookie.useradmin,
         
             // Update selection letter details
             selectionletterstatus: user?.selectionletter.status,
+            selectiontype:user?.selectionletter?.selectiontype,
             Totalamount:user?.selectionletter?.TotalAmount,
             initialamount:user?.selectionletter?.InitialAmount,
             deadlinedate:user?.selectionletter?.DeadlineDate,
@@ -47,7 +49,7 @@ const Interoutcome = () => {
             confirmationletterofficer:  user?.confirmationletter.status,
           };
           try {
-            const response = await axios.patch(`https://sailorswaveadmins-backend.onrender.com/candidate/${id}`, userdata);
+            const response = await axios.patch(`http://localhost:7000/candidate/${id}`, userdata);
             alert('Response updated successfully');
             console.log(response);
             navigate('/dashboardadmin/myapplication');

@@ -1,6 +1,5 @@
 import "./admitcardletter.css";
-// import lettericons from '../../../assets/Images/lettericon.png'
-import Icons from '../../../assets/Images/LOIDSMARINE-logo.png'
+import Icons from '../../assets/Images/letterlogo.png'
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useParams } from "react-router-dom";
@@ -17,10 +16,9 @@ export function Admitcardletterhead() {
 
   const fetchdata = async () => {
     try {
-      const usedata = await axios.get(`https://sailorswaveadmins-backend.onrender.com/candidates`)
+      const usedata = await axios.get(`http://localhost:7000/candidate/${param.applicationNo}`)
       const users = usedata.data;
-      const filteredUsers = users.find((user) => user.applicationId == param.applicationNo);
-      setUser(filteredUsers)
+      setUser(users)
     } catch (error) {
       console.error(error, 'catch error');
     }
@@ -39,14 +37,14 @@ export function Admitcardletterhead() {
                 <img src={Icons} alt="lettericon" style={{ width: '70%' }} />
               </div>
               <div className="col ms-5 ps-2">
-                <h2 style={{ letterSpacing: '20px', fontSize: '80px' }}>LOIDS</h2>
-                <div className="fw-medium ms-5">-- Marine Services PVT LTD --</div>
+                <h2 style={{ letterSpacing: '20px', fontSize: '80px',fontWeight:'bold',fontFamily:'Arial Rounded MT Bold' }}>LOIDS</h2>
+                <div className="fw-medium ms-5">─── Marine Services PVT LTD ───</div>
               </div>
             </div>
             <hr />
             <div className="Body my-5 px-5 mx-4">
               <div>
-                <div className="text-center h2 mt-1 mb-5 ">INTERVIEW INVITATION</div>
+                <div className="text-center h2 mt-1 mb-3 fw-bold " style={{fontFamily:'Arial'}}>ADMIT CARD</div>
                 <div>
                   <div className="row">
                     <div className="col-3">Application No</div>
@@ -65,11 +63,7 @@ export function Admitcardletterhead() {
                     Your qualifications have impressed us, and we would like to have a discussion with you.
                   </p>
                   <p>
-                    You are welcome to attend an interview at our office on <strong>{user?.admitcard?.date}</strong> at any time between <strong>{user?.admitcard?.time}</strong>.
-                  </p>
-                  <p>
-                    {/* If you have any queries, feel free to call me on <strong>9600630942</strong> and reach me at <strong>loidsmarineservicespvtltd@gmail.com</strong>. */}
-                    If you have any queries, feel free to reach us at <strong>loidsmarineservicespvtltd@gmail.com</strong>.
+                    If you have any queries, feel free to call me on <strong>96006-30942</strong> and reach me at <strong>loidsmarineservicespvtltd@gmail.com</strong>.
                   </p>
                 </div>
               </div>
@@ -95,7 +89,7 @@ export function Admitcardletterhead() {
               </div>
             </div>
             <hr />
-            <div className="Foote my-3 ">
+            <div className="Foote mt-3  px-2">
               <div>
                 <div className="text-center">
                   <div>
@@ -106,10 +100,7 @@ export function Admitcardletterhead() {
                   </div> 
                   <div>
                     <div>
-                     Branch - I, 6-1, Jothi Nagar, 2nd Street, Ramanuja Nagar, Coimbatore, Tamilnadu - 641015
-                    </div>
-                    <div>
-                      Branch - II, 508,5th floor, prajay princton towers, saroornagar, lb nagar, hyd - 500035
+                    {user?.interviewoutcome?.address}
                     </div>
                   </div>
                 </div>
