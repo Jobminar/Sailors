@@ -1,5 +1,5 @@
 import "./admitcardletter.css";
-import Icons from '../../assets/Images/letterlogo.png'
+import Icons from '../../../assets/Images/letterlogo.png'
 import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useParams } from "react-router-dom";
