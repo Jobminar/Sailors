@@ -29,7 +29,7 @@ const Documentsailorwave = () => {
         const formData = new FormData();
         formData.append('file', file);
         try {
-            await axios.post('http://localhost:2024/upload', formData, {
+            await axios.post('http://localhost:7000/fileById/:id', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -75,10 +75,8 @@ const Documentsailorwave = () => {
                                 <th>Admit card status</th>
                                 <th>Download Admit card </th>
                                 <th>Interview date</th>
-                                <th>Interview Feedback</th>
                                 <th>Outcome</th>
-                                <th>Comments</th>
-                                <th>Upload documents</th>
+                                {/* <th>Upload documents</th> */}
                             </tr>
                         </thead>
                         <tbody>
@@ -90,15 +88,12 @@ const Documentsailorwave = () => {
                                         <td >Date</td>
                                         <td >
                                             {val?.applicationstatus?.status}
-                                            <span className="bi bi-check-circle-fill text-success ms-4"></span>
                                         </td>
                                         <td >{val?.admitcard?.status}</td>
                                         <td onClick={() => navigate(`/interviewletterhead3`)}><button className="btn" >download</button></td>
-                                        <td >{val?.admitcard?.date}</td>
-                                        <td >{val?.interviewoutcome?.interviewFeedback}</td>
-                                        <td >{val?.interviewoutcome?.interviewFeedback}</td>
+                                        <td >{val?.admitcard?.date || 'Not Checked'}</td>
                                         <td >{val?.comments} No Comments</td>
-                                        <td>
+                                        {/* <td>
                                             {val.uploadDocuments}
                                             <span
                                                 className="bi bi-upload ms-3"
@@ -117,7 +112,7 @@ const Documentsailorwave = () => {
                                                     Upload File
                                                 </button>
                                             )}
-                                        </td>
+                                        </td> */}
 
                                     </tr>
                                 )

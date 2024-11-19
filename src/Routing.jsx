@@ -83,6 +83,7 @@ const Routing = () => {
 
 
   return (
+    // documentsailorwave
     <>
       {/*......................user Routes.......................... applicationstatus */}
       <div className={`${((adminCookie.useradmin) || (adminCookie.admin)) ? 'd-none' : 'd-block'}`}>
